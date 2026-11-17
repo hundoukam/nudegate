@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "mask_version": "bcb-normal-female-study-v1",
+  "source_kind": "local BCB 3.17 archive",
+  "families": {
+    "human_elf_f": {
+      "topology_id": "collada-topology-v1:045dc2100604efa5f4b114a6a0db2fe50e7c9184ddbe2c8c01337d11fcd1935c",
+      "position_sha256": "20957905ab1740455a20c82f94549290235ae1154b94995f6afb02fe1f03316e"
+    },
+    "gith_f": {
+      "topology_id": "collada-topology-v1:0649b330652c7b6047ad872c123208a001e602d01cf3e5567154dfc146a6288a",
+      "position_sha256": "efe749fb5e58938a814a25f92038565a3e6d336306efc50011af37301a299a37"
+    },
+    "tiefling_f": {
+      "topology_id": "collada-topology-v1:d27579a00e808c282bf73df641719266fa4f6f41fe6881b41c43e4432246b133",
+      "position_sha256": "2aad430491d4cb8a866b88ed62063d328a650277f5f9060fa0e0bc6cbc93786f"
+    }
+  }
+}

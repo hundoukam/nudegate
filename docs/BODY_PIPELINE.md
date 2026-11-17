@@ -1,8 +1,10 @@
 # Body variety and physics pipeline
 
-Nudegate's initial appearance compiler preserves each approved adult's existing
-body. The included offline morph authoring library is a foundation for making
-variants; it is not a completed body pack, physics pack, or universal in-game slider.
+Nudegate's basic appearance compiler preserves each approved adult's existing
+body. The optional body-study pipeline now exports six shape profiles for each
+of three reviewed normal-female sources, with private body resources and an
+appearance package for limited compatible adult roots. These local studies are
+not an accepted physics release or universal in-game slider.
 
 ## Reference sources
 
@@ -17,9 +19,11 @@ variants; it is not a completed body pack, physics pack, or universal in-game sl
   three LSF, one LSX, one LOCA, and three stats text files. It bundles no license
   or README; redistribution/modification terms were not established by this audit.
 
-These are reference sources or optional locally installed dependencies. Nudegate
-does not embed their meshes, textures, physics binaries, or extracted resource banks.
-Keep analysis exports and third-party assets outside Git and release packages.
+These are reference sources and optional local build inputs. The source
+repository embeds no third-party meshes, textures, physics binaries or extracted
+resource banks. Local study packages contain private derived mesh assets for
+testing. Keep them outside public source/release uploads until asset provenance
+and release permissions are settled.
 
 ## Verified BCB geometry
 
@@ -55,9 +59,12 @@ body as a compatible replacement for Karlach's strong tiefling body.
    verification status. Choose only compatible verified variants using a stable
    per-character seed. An unknown or mismatched combination retains its original.
 
-The authoring library can validate deformation inputs and preserve protected
-regions. Finished variants still require mesh review, export checks and in-game
-acceptance before entering the enabled body catalog.
+The current studies pin source topology and positions, lock attachment seams,
+and vary chest volume/shape, waist, hip/thigh proportions and local tip geometry.
+They preserve controller/UV/material data, reject reversed/collapsed faces, and
+round-trip each GR2 through COLLADA. Existing UV smoothing seams are preserved
+when rebuilding normals; tangent frames are recalculated by the exporter.
+Texture-based areola changes are not included. In-game acceptance remains open.
 
 ## Physics is a matched asset set
 
@@ -92,5 +99,6 @@ save/reload behavior, including crowd performance, before claiming support.
 
 Archive inspection, resource conversion and the unedited mesh round trip were
 performed in a separate cache. No game files or active mods were changed during
-the audit. Custom shape variants, integrated physics and in-game body-variety
-behavior remain unverified and are not supplied by the initial appearance pack.
+the audit. Custom geometry now has an optional local study package. Integrated
+physics and in-game body-variety behavior remain unverified and are not supplied
+by that package.

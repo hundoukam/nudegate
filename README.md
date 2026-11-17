@@ -58,9 +58,11 @@ Game-derived outputs and third-party assets are excluded from Git.
 
 ## Body variety and jiggle
 
-The alpha retains each character's original body family, so it also references
-compatible installed body replacers. **It does not yet distribute custom shapes
-or add jiggle.** A shared body replacer alone gives all users of that resource
+The basic alpha retains each character's original body family, so it also references
+compatible installed body replacers. The optional local body-study build now bakes
+**six profiles across three normal-female families: 18 GR2 meshes**. It includes
+lean, athletic, source proportions, full, soft and voluptuous studies, with
+separate local surface-proportion controls. A shared body replacer alone gives all users of that resource
 the same replacement; multiple shapes need private body resources and stable
 selection within compatible skeleton/skin families.
 
@@ -68,12 +70,37 @@ The provided BCB 3.17 archive is useful as a local compatibility reference.
 It and the installed `The Jiggle Is Up` mod overlap on body resource IDs, so
 loading both does not establish that both effects survive. The planned custom
 pipeline and verified findings are in [docs/BODY_PIPELINE.md](docs/BODY_PIPELINE.md).
+The latest mesh counts, export results and artifact paths are in
+[body study progress](docs/BODY_STUDIES_STATUS.md).
 
-`src/nudegate/morphs.py` and `tools/morph.py` provide an offline authoring
-foundation: explicit region masks, topology checks, bounded scale changes,
-locked seam vertices and displacement reports. They process JSON vertex
-snapshots, not game-ready meshes. Mesh import/export, authored masks, private
-body resource registration and physics still need integration.
+`tools/build_bodies.py` now edits actual COLLADA geometry, recalculates shading,
+exports GR2 and imports it again to check topology, skinning and position drift.
+The source catalog pins the reviewed source topology and positions. Neck,
+wrist, ankle, outer-arm and central pelvic attachment zones stay fixed.
+Private resource registration preserves each family's skeleton and materials;
+BCB's stale LOD object names are replaced with actual exported object names.
+
+```powershell
+python tools/build_bodies.py --sources "C:\path\to\reviewed\DAE\sources" --divine "C:\path\to\Divine.exe"
+python tools/build.py --body-manifest build/bodies/body-build.json --body-visual-bank "C:\path\to\BCB\VisualBank\_merged.lsx"
+& "C:\path\to\blender.exe" --background --python tools/render_bodies.py -- --manifest build/bodies/body-build.json --output build/bodies/body-comparison.png
+```
+
+These local prototypes derive from the supplied BCB 3.17 archive. Meshes,
+source banks, generated packages and renders remain outside Git. The ordinary
+build still works without body assets. The optional package is
+`dist/Nudegate-0.1.0-body-study.pak`; it shares the basic alpha's module UUID, so
+use one package at a time.
+
+The body-study build currently finds compatible body-set IDs on Lae'zel's root
+and Minthara's normal/vanity roots. Minthara's two roots share a stable selection
+seed. Unsupported bodies retain their existing body. This is not broad NPC
+distribution, runtime sliders or a physics release. Full-body and private
+anatomy attachment alignment still need in-game inspection.
+
+`src/nudegate/morphs.py` and `tools/morph.py` also support explicit masked JSON
+mesh snapshots for offline authoring. Texture-based areola variation and matched
+jiggle assets remain future work.
 
 ## Validation
 
@@ -94,9 +121,9 @@ original appearances. Existing mods that edit the same adult roots can conflict.
 
 ## Development priorities
 
-1. Cover reviewed global and level-local NPC instances, and verify results in game.
-2. Author private adult body meshes with preserved skin weights, UVs and locked seams.
-3. Add compatible body profiles and deterministic weighted assignment.
-4. Match physics to those bodies, then test animation, collision, LOD and performance.
+1. Verify the current private body studies in game, including heads, attachments and distance transitions.
+2. Cover reviewed global and level-local NPC instances and additional body families.
+3. Author compatible LODs, texture variation and broader deterministic distribution.
+4. Match physics to the bodies, then test animation, collision and performance.
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the data model and sources.

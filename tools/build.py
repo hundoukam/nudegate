@@ -16,6 +16,7 @@ import xml.etree.ElementTree as ET
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 from nudegate.core import Database, attrs, compile as compile_patch  # noqa: E402
+from nudegate.body_resources import create_body_resources  # noqa: E402
 
 
 def run(divine: Path, *args: str) -> str:
@@ -83,6 +84,45 @@ def write_inventory(db: Database, path: Path) -> None:
     path.write_text(json.dumps({"schema_version": 1, "characters": rows}, indent=2) + "\n", encoding="utf-8")
 
 
+def assign_body_studies(generated: Path, report: dict, catalog: dict, resources: dict) -> None:
+    """Choose a stable compatible study only for roots already admitted by core."""
+    path = generated / 'Public/Nudegate/Content/[PAK]_CharacterVisuals/_merged.lsx'
+    document = ET.parse(path)
+    visuals = {attrs(node)['ID']: node for node in document.findall('./region/node/children/node')}
+    seeds = {entry['template_id']: entry.get('body_seed', entry['template_id']) for entry in catalog['adults']}
+    weights = {'lean':20, 'athletic':20, 'balanced':20, 'full':18, 'soft':14, 'voluptuous':8}
+    for entry in report['templates']:
+        candidates = resources['resource_map'].get(entry['body_set_visual'], [])
+        if not candidates:
+            continue
+        candidates = sorted(candidates, key=lambda c: c['variant_id'])
+        if len({c['variant_id'] for c in candidates}) != len(candidates):
+            raise ValueError('Ambiguous compatible body palette')
+        total = sum(weights.get(c['variant_id'], 0) for c in candidates)
+        if total <= 0:
+            raise ValueError('Compatible palette has no supported weighted profiles')
+        seed = seeds[entry['template_id']]
+        if not isinstance(seed, str) or not seed.strip():
+            raise ValueError('Body identity seed must be a nonempty string')
+        choice = int.from_bytes(hashlib.sha256(('nudegate-body-v1:' + seed).encode()).digest()[:8], 'big') % total
+        selected = None
+        for candidate in candidates:
+            choice -= weights.get(candidate['variant_id'], 0)
+            if choice < 0:
+                selected = candidate
+                break
+        node = visuals[entry['private_visual_id']].find('attribute[@id="BodySetVisual"]')
+        if node is None:
+            raise ValueError('Compiled adult visual is missing its body set')
+        entry['original_body_set_visual'] = entry['body_set_visual']
+        entry['body_set_visual'] = selected['private_visual_id']
+        entry['body_study'] = {'family': selected['family_id'], 'profile': selected['variant_id'],
+                               'identity_seed': seed, 'physics': 'not included', 'in_game': 'not tested'}
+        node.set('value', entry['body_set_visual'])
+    document.write(path, encoding='utf-8', xml_declaration=True)
+    report['body_resources'] = resources
+
+
 def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, report: dict) -> None:
     run(divine, "-a", "extract-package", "-s", pak, "-d", verification)
     expected = {p.relative_to(stage).as_posix(): p for p in stage.rglob("*") if p.is_file()}
@@ -119,6 +159,13 @@ def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, rep
         clothing = {"Body", "Underwear", "Gloves", "Footwear", "Cloak", "Headwear"}
         if any(attrs(n).get("Slot") in clothing for n in visual.findall('./children/node[@id="Slots"]')):
             raise RuntimeError(f"Compiled visual retained a garment slot: {entry['name']}")
+    if 'body_resources' in report:
+        bank = documents['Public/Nudegate/Content/[PAK]_BodyVisuals/_merged.lsf']
+        body_nodes = {attrs(n)['ID']: n for n in bank.findall('./region/node/children/node')}
+        for entry in report['body_resources']['variants']:
+            values = attrs(body_nodes[entry['private_visual_id']])
+            if values.get('SourceFile') != entry['sourcefile'] or not (verification / entry['sourcefile']).is_file():
+                raise RuntimeError('A private body resource lost its packaged mesh')
 
 
 def main() -> int:
@@ -131,10 +178,14 @@ def main() -> int:
     parser.add_argument("--cache", type=Path, default=Path.home() / ".cache/nudegate/sources")
     parser.add_argument("--catalog", type=Path, default=REPO / "config/adults.json")
     parser.add_argument("--inventory-only", action="store_true")
+    parser.add_argument("--body-manifest", type=Path, help="Optional validated local body study build")
+    parser.add_argument("--body-visual-bank", type=Path, help="Locally extracted BCB VisualBank LSX")
     args = parser.parse_args()
     try:
         if args.divine is None or not args.divine.is_file():
             raise ValueError("Pass --divine with the path to LSLib Divine.exe")
+        if bool(args.body_manifest) != bool(args.body_visual_bank):
+            raise ValueError('Pass --body-manifest and --body-visual-bank together')
         packages = args.packages or package_order(args.game_data)
         root = args.source_root or prepare(args.game_data, args.divine, args.cache, packages)
         print("Indexing templates and character visuals", flush=True)
@@ -150,14 +201,40 @@ def main() -> int:
             work = Path(temp)
             generated, stage = work / "generated", work / "package"
             report = compile_patch(db, catalog, generated)
+            if args.body_manifest:
+                body_manifest = json.loads(args.body_manifest.read_text(encoding='utf-8'))
+                for family in body_manifest['families']:
+                    for variant in family['variants']:
+                        if (variant['verification'].get('skin_arrays') != 'passed'
+                                or 'smooth_seams' not in variant['verification']
+                                or variant['verification'].get('corner_uvs') != 'passed'
+                                or variant['verification'].get('bind_shape') != 'passed'
+                                or variant['sculpt']['surface_quality'] != {'reversed_faces':0,'new_collapsed_faces':0}
+                                or not variant['sculpt']['protected_vertices_unchanged']):
+                            raise ValueError('Body studies must pass geometry and rig checks before packaging')
+                        for kind in ('gr2', 'dae'):
+                            if hashlib.sha256(Path(variant[kind]).read_bytes()).hexdigest() != variant[kind + '_sha256']:
+                                raise ValueError('Body artifact changed after its recorded validation')
+                resources = create_body_resources(body_manifest, args.body_visual_bank, generated)
+                assign_body_studies(generated, report, catalog, resources)
             shutil.copytree(REPO / "mod", stage)
+            if args.body_manifest:
+                metadata_path = stage / 'Mods/Nudegate/meta.lsx'
+                metadata = ET.parse(metadata_path)
+                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Name"]').set('value', 'Nudegate (body study)')
+                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Version64"]').set('value', '140737488355330')
+                metadata.write(metadata_path, encoding='utf-8', xml_declaration=True)
+            for source in generated.rglob('*.GR2'):
+                destination = stage / source.relative_to(generated)
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, destination)
             for source in generated.rglob("*.lsx"):
                 destination = stage / source.relative_to(generated).with_suffix(".lsf")
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 run(args.divine, "-a", "convert-resource", "-s", source, "-d", destination)
                 if not destination.is_file():
                     raise RuntimeError(f"Conversion did not produce {destination.name}")
-            pak = work / "Nudegate-0.1.0-alpha.pak"
+            pak = work / ("Nudegate-0.1.0-body-study.pak" if args.body_manifest else "Nudegate-0.1.0-alpha.pak")
             run(args.divine, "-a", "create-package", "-s", stage, "-d", pak)
             if not pak.is_file():
                 raise RuntimeError("Package creation produced no file")
@@ -169,11 +246,19 @@ def main() -> int:
                 "templates": "build/generated/Public/Nudegate/RootTemplates/_merged.lsx",
                 "visuals": "build/generated/Public/Nudegate/Content/[PAK]_CharacterVisuals/_merged.lsx",
             }
+            if 'body_resources' in report:
+                resources = report['body_resources']
+                resources['outputs'] = {
+                    'visuals': 'build/generated/Public/Nudegate/Content/[PAK]_BodyVisuals/_merged.lsx',
+                    'meshes': ['build/generated/' + str(Path(p).relative_to(generated)).replace('\\', '/')
+                               for p in resources['outputs']['meshes']],
+                }
             dist = REPO / "dist"
             dist.mkdir(exist_ok=True)
             # Publish local build outputs only after every check passes.
             shutil.copy2(pak, dist / pak.name)
-            (dist / "build-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            report_name = 'body-study-report.json' if args.body_manifest else 'build-report.json'
+            (dist / report_name).write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
             shutil.copytree(generated, build / "generated", dirs_exist_ok=True)
             print(f"Built {dist / pak.name}")
             print("Package round trip passed. In-game appearance is not tested.")

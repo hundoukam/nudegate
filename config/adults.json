@@ -44,7 +44,8 @@
         "adult": true,
         "evidence": "Minthara is the canonical adult drow commander and recruitable adult companion. This exact gameplay vanity root in Shared/Public/Shared/RootTemplates references character visual ee1200f2-51a4-7b28-f046-1d29de15a651 and equipment GOB_DrowCommander. Its visual shares base 6f9de444-153f-9825-eef7-e18d6de55bbf and body set db6e5918-8514-4dcc-8363-e8fd3c50cce5 with the authored TEMP_Minthara_Naked appearance, confirming this adult character's compatible body. No descendant root was found in the extracted game database. This approval covers only the vanity template, not every appearance or story instance of Minthara."
       },
-      "enabled": true
+      "enabled": true,
+      "body_seed": "minthara"
     },
     {
       "template_id": "7c7e6552-3fc0-4495-bb11-4b9f9a8e71fc",
@@ -107,7 +108,8 @@
         "adult": true,
         "evidence": "Minthara is the canonical adult drow commander and recruitable adult companion. This exact normal gameplay root in Shared/Public/Shared/RootTemplates references character visual d1bc342f-c995-bad7-4622-4e3f09f3e5ed and GOB_DrowCommander equipment. The immediate cinematic child root declares its own existing character visual, insulating its appearance from this exact root override."
       },
-      "enabled": true
+      "enabled": true,
+      "body_seed": "minthara"
     }
   ]
 }
