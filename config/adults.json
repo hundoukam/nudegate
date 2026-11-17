@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "adults": [
+    {
+      "template_id": "3a0351bd-0b2f-4fbf-84a6-30ad80bb3100",
+      "expected_name": "ORIGIN_Laezel",
+      "review": {
+        "adult": true,
+        "evidence": "Lae'zel is the canonical adult origin companion and trained githyanki warrior. This exact gameplay root is ORIGIN_Laezel in Gustav/Public/Gustav/RootTemplates; it references character visual 1088f4ee-579b-b49e-72cc-7ecc5fc5be79 and EQ_Laezel. No descendant root was found in the extracted game database. This origin template can also be used for a player avatar. Approval is specific to this UUID, not to githyanki race, body size, or the absence of a child tag."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "3ab0a797-0904-47cb-955d-cdc3ec32409c",
+      "expected_name": "ORIGIN_Karlach",
+      "review": {
+        "adult": true,
+        "evidence": "Karlach is the canonical adult origin companion, a former Baldur's Gate bodyguard and veteran of service in Avernus. This exact gameplay root is ORIGIN_Karlach in Gustav/Public/Gustav/RootTemplates; it references character visual 39d59978-8a65-a8ec-6e8b-0d391f4035e3 and EQ_Karlach. No descendant root was found in the extracted game database. This origin template can also be used for a player avatar. Approval does not extend to other tiefling templates or childhood versions."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "159cdf9e-6665-4450-9375-8494e233b0e4",
+      "expected_name": "ORIGIN_Wyll",
+      "review": {
+        "adult": true,
+        "evidence": "Wyll is the canonical adult origin companion and experienced adventurer known as the Blade of Frontiers. This exact human gameplay root is ORIGIN_Wyll in Gustav/Public/Gustav/RootTemplates; it references character visual bdeebe6f-4e34-ae70-5f25-ea0eadb77a34 and EQ_Wyll. No descendant root was found in the extracted game database. This origin template can also be used for a player avatar. Approval is specific to this current adult incarnation."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "7ea87604-e604-4a6d-a7ac-b7b2f293c000",
+      "expected_name": "ORIGIN_Wyll_Devil",
+      "review": {
+        "adult": true,
+        "evidence": "This is the transformed current adult Wyll, the same canonical adult origin companion and Blade of Frontiers as ORIGIN_Wyll. The exact ORIGIN_Wyll_Devil root in Shared/Public/SharedDev/RootTemplates references character visual faf5255f-4dfa-d8bb-7e7a-5e4b7e11497c and EQ_Wyll. No descendant root was found in the extracted game database. This origin template can also be used for a player avatar; this review does not approve arbitrary transformed humanoids."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "632a4fe8-bfd9-4c9e-a671-50530c8c9b45",
+      "expected_name": "Elves_Female_Drow_Minthara_Vanity",
+      "review": {
+        "adult": true,
+        "evidence": "Minthara is the canonical adult drow commander and recruitable adult companion. This exact gameplay vanity root in Shared/Public/Shared/RootTemplates references character visual ee1200f2-51a4-7b28-f046-1d29de15a651 and equipment GOB_DrowCommander. Its visual shares base 6f9de444-153f-9825-eef7-e18d6de55bbf and body set db6e5918-8514-4dcc-8363-e8fd3c50cce5 with the authored TEMP_Minthara_Naked appearance, confirming this adult character's compatible body. No descendant root was found in the extracted game database. This approval covers only the vanity template, not every appearance or story instance of Minthara."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "7c7e6552-3fc0-4495-bb11-4b9f9a8e71fc",
+      "expected_name": "HalfElves_Female_High_Jaheira",
+      "review": {
+        "adult": true,
+        "evidence": "Jaheira is the canonical elderly adult Harper, veteran of the earlier Baldur's Gate adventures and adoptive mother of adult children. This exact normal companion root in Gustav/Public/GustavDev/RootTemplates references character visual 966e8a68-24a0-fd94-8323-74f7b091df7c and EQP_Jaheira. No descendant root was found in the extracted game database. Approval does not include the separate Jaheira clone or generic half-elf templates."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "9d5f838a-8595-490c-85d5-8a2a69414356",
+      "expected_name": "ORIGIN_Minsc",
+      "review": {
+        "adult": true,
+        "evidence": "Minsc is the canonical adult Rashemi ranger and returning veteran of the earlier Baldur's Gate adventures. This exact normal companion root in Gustav/Public/GustavDev/RootTemplates references character visual 9404e0a4-fafd-47ec-ad6d-52d63cb116ff, Origin_Minsc stats and EQP_CC_Ranger. No descendant root was found in the extracted game database. Approval is specific to this named adult character's UUID."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "2ac51f22-e357-4639-b81d-022d462c8c6a",
+      "expected_name": "ORIGIN_Shadowheart",
+      "review": {
+        "adult": true,
+        "evidence": "Shadowheart is the canonical adult origin companion and cleric on the current Sharran mission. This exact ORIGIN_Shadowheart root references adult character visual 9ab62da4-a028-c237-b5b9-ca897f62b771. The immediate cinematic child root declares its own existing character visual, insulating its appearance from this exact root override. Childhood Shadowheart remains separately excluded."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "5614c25e-0213-479f-864c-e95895adb30f",
+      "expected_name": "ORIGIN_Astarion",
+      "review": {
+        "adult": true,
+        "evidence": "Astarion is the canonical adult origin companion, a former magistrate who subsequently spent centuries as a vampire spawn. This exact ORIGIN_Astarion root references character visual be9fbfe1-cf9c-7864-55d3-bbd6d329150b and EQ_Astarion. The immediate hidden-race child root declares its own existing character visual, insulating its appearance from this exact root override."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "7d427a86-81f0-418d-a32a-3b5676c86bfa",
+      "expected_name": "ORIGIN_Gale",
+      "review": {
+        "adult": true,
+        "evidence": "Gale is the canonical adult origin companion and established wizard of Waterdeep. This exact ORIGIN_Gale gameplay root references character visual 62d788a1-f777-4608-8ee1-55325ccf3360 and EQ_Gale. The immediate authored temporary child root declares its own existing character visual, insulating its appearance from this exact root override."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "1a3d9848-f86e-4f4c-bba5-125ab605c69e",
+      "expected_name": "Companion_Halsin",
+      "review": {
+        "adult": true,
+        "evidence": "Halsin is the canonical adult archdruid and experienced leader of the Emerald Grove. This exact Companion_Halsin gameplay UUID appears in Gustav/Public/Gustav and Gustav/Public/GustavDev; the latter references character visual a9af1b0f-f66a-b844-c22a-33151e1ed4fc. The later GustavDev definition is effective. The immediate shirtless child root declares its own existing character visual, insulating its appearance; bear forms are excluded."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "9d85d0f6-5231-4738-a674-bf28ff19e515",
+      "expected_name": "Elves_Female_Drow_Minthara",
+      "review": {
+        "adult": true,
+        "evidence": "Minthara is the canonical adult drow commander and recruitable adult companion. This exact normal gameplay root in Shared/Public/Shared/RootTemplates references character visual d1bc342f-c995-bad7-4622-4e3f09f3e5ed and GOB_DrowCommander equipment. The immediate cinematic child root declares its own existing character visual, insulating its appearance from this exact root override."
+      },
+      "enabled": true
+    }
+  ]
+}
