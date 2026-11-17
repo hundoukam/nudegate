@@ -17,6 +17,8 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 from nudegate.core import Database, attrs, compile as compile_patch  # noqa: E402
 from nudegate.body_resources import create_body_resources  # noqa: E402
+from nudegate.skin_materials import create_soft_materials  # noqa: E402
+from nudegate.tav_presets import create_tav_presets  # noqa: E402
 
 
 def run(divine: Path, *args: str) -> str:
@@ -90,7 +92,7 @@ def assign_body_studies(generated: Path, report: dict, catalog: dict, resources:
     document = ET.parse(path)
     visuals = {attrs(node)['ID']: node for node in document.findall('./region/node/children/node')}
     seeds = {entry['template_id']: entry.get('body_seed', entry['template_id']) for entry in catalog['adults']}
-    weights = {'lean':20, 'athletic':20, 'balanced':20, 'full':18, 'soft':14, 'voluptuous':8}
+    weights = {'lean':15, 'athletic':10, 'balanced':15, 'full':15, 'soft':20, 'voluptuous':10, 'plush':15}
     for entry in report['templates']:
         candidates = resources['resource_map'].get(entry['body_set_visual'], [])
         if not candidates:
@@ -121,6 +123,26 @@ def assign_body_studies(generated: Path, report: dict, catalog: dict, resources:
         node.set('value', entry['body_set_visual'])
     document.write(path, encoding='utf-8', xml_declaration=True)
     report['body_resources'] = resources
+
+
+def soften_private_materials(resources: dict, source_banks: list[Path], generated: Path) -> dict:
+    identifiers = sorted({identifier for entry in resources['variants'] for identifier in entry['material_ids']})
+    skin = create_soft_materials(source_banks, identifiers, generated)
+    path = Path(resources['outputs']['visuals'])
+    document = ET.parse(path)
+    for material in document.findall('.//node[@id="Objects"]/attribute[@id="MaterialID"]'):
+        original = material.get('value')
+        if original not in skin['material_map']:
+            raise ValueError('A private body has an unresolved skin material')
+        material.set('value', skin['material_map'][original])
+    document.write(path, encoding='utf-8', xml_declaration=True)
+    for entry in resources['variants']:
+        entry['original_material_ids'] = entry['material_ids']
+        entry['material_ids'] = [skin['material_map'][identifier] for identifier in entry['material_ids']]
+        for lod in entry.get('lods', []):
+            lod['original_material_id'] = lod['material_id']
+            lod['material_id'] = skin['material_map'][lod['material_id']]
+    return skin
 
 
 def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, report: dict) -> None:
@@ -166,6 +188,15 @@ def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, rep
             values = attrs(body_nodes[entry['private_visual_id']])
             if values.get('SourceFile') != entry['sourcefile'] or not (verification / entry['sourcefile']).is_file():
                 raise RuntimeError('A private body resource lost its packaged mesh')
+    if 'tav_presets' in report:
+        tav = report['tav_presets']
+        template_nodes = {attrs(n)['MapKey']:n for n in documents['Public/Nudegate/RootTemplates/tav.lsf'].findall('./region/node/children/node')}
+        visual_nodes = {attrs(n)['ID']:n for n in documents['Public/Nudegate/Content/[PAK]_CharacterVisuals/tav.lsf'].findall('./region/node/children/node')}
+        for entry in tav['templates']:
+            if (entry['private_template_id'] == entry['original_template_id']
+                    or attrs(template_nodes[entry['private_template_id']]).get('CharacterVisualResourceID') != entry['private_visual_id']
+                    or attrs(visual_nodes[entry['private_visual_id']]).get('BodySetVisual') != entry['private_body_set_visual']):
+                raise RuntimeError('Private Tav template isolation did not survive packaging')
 
 
 def main() -> int:
@@ -180,12 +211,17 @@ def main() -> int:
     parser.add_argument("--inventory-only", action="store_true")
     parser.add_argument("--body-manifest", type=Path, help="Optional validated local body study build")
     parser.add_argument("--body-visual-bank", type=Path, help="Locally extracted BCB VisualBank LSX")
+    parser.add_argument('--soft-material-banks', nargs='+', type=Path, help='Native skin banks for private vein/roughness defaults')
+    parser.add_argument('--tav-presets', nargs='+', type=Path, help='Optional native generic CC preset files in load order')
+    parser.add_argument('--tav-profile', default='plush', help='Fixed compatible body profile for new Tav creation')
     args = parser.parse_args()
     try:
         if args.divine is None or not args.divine.is_file():
             raise ValueError("Pass --divine with the path to LSLib Divine.exe")
         if bool(args.body_manifest) != bool(args.body_visual_bank):
             raise ValueError('Pass --body-manifest and --body-visual-bank together')
+        if (args.soft_material_banks or args.tav_presets) and not args.body_manifest:
+            raise ValueError('Private skin/Tav options require a validated body manifest')
         packages = args.packages or package_order(args.game_data)
         root = args.source_root or prepare(args.game_data, args.divine, args.cache, packages)
         print("Indexing templates and character visuals", flush=True)
@@ -215,14 +251,25 @@ def main() -> int:
                         for kind in ('gr2', 'dae'):
                             if hashlib.sha256(Path(variant[kind]).read_bytes()).hexdigest() != variant[kind + '_sha256']:
                                 raise ValueError('Body artifact changed after its recorded validation')
-                resources = create_body_resources(body_manifest, args.body_visual_bank, generated)
+                resources = create_body_resources(body_manifest, args.body_visual_bank.resolve(), generated)
+                if args.soft_material_banks:
+                    report['skin_materials'] = soften_private_materials(resources, args.soft_material_banks, generated)
                 assign_body_studies(generated, report, catalog, resources)
+                if args.tav_presets:
+                    tav = create_tav_presets(db, args.tav_presets, resources, generated, profile_id=args.tav_profile)
+                    if not tav['counts']['presets']:
+                        raise ValueError('No compatible reviewed new-Tav presets were generated')
+                    report['tav_presets'] = tav
             shutil.copytree(REPO / "mod", stage)
             if args.body_manifest:
                 metadata_path = stage / 'Mods/Nudegate/meta.lsx'
                 metadata = ET.parse(metadata_path)
-                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Name"]').set('value', 'Nudegate (body study)')
-                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Version64"]').set('value', '140737488355330')
+                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Name"]').set('value', 'Nudegate (plush Tav study)' if args.tav_presets else 'Nudegate (body study)')
+                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Description"]').set('value',
+                    'Experimental soft and plush adult body shapes, with normal and strong female frames. '
+                    + ('Includes a new-Tav creation test option. ' if args.tav_presets else '')
+                    + 'In-game acceptance is pending; no new jiggle physics are included.')
+                metadata.find('.//node[@id="ModuleInfo"]/attribute[@id="Version64"]').set('value', '281474976710658')
                 metadata.write(metadata_path, encoding='utf-8', xml_declaration=True)
             for source in generated.rglob('*.GR2'):
                 destination = stage / source.relative_to(generated)
@@ -234,7 +281,9 @@ def main() -> int:
                 run(args.divine, "-a", "convert-resource", "-s", source, "-d", destination)
                 if not destination.is_file():
                     raise RuntimeError(f"Conversion did not produce {destination.name}")
-            pak = work / ("Nudegate-0.1.0-body-study.pak" if args.body_manifest else "Nudegate-0.1.0-alpha.pak")
+            pak_name = ('Nudegate-0.2.0-plush-tav-study.pak' if args.tav_presets else
+                        'Nudegate-0.2.0-body-study.pak' if args.body_manifest else 'Nudegate-0.1.0-alpha.pak')
+            pak = work / pak_name
             run(args.divine, "-a", "create-package", "-s", stage, "-d", pak)
             if not pak.is_file():
                 raise RuntimeError("Package creation produced no file")
@@ -253,6 +302,13 @@ def main() -> int:
                     'meshes': ['build/generated/' + str(Path(p).relative_to(generated)).replace('\\', '/')
                                for p in resources['outputs']['meshes']],
                 }
+            for key in ('skin_materials', 'tav_presets'):
+                if key in report:
+                    section = report[key]
+                    section['outputs'] = {kind:'build/generated/' + str(Path(p).relative_to(generated)).replace('\\','/')
+                                          for kind,p in section['outputs'].items()}
+                    if 'output' in section:
+                        section['output'] = section['outputs']['materials']
             dist = REPO / "dist"
             dist.mkdir(exist_ok=True)
             # Publish local build outputs only after every check passes.

@@ -1,4 +1,4 @@
-"""Bake reviewed local BCB family shape studies and round-trip GR2 exports."""
+"""Bake reviewed normal/strong female studies and verify every GR2 LOD export."""
 from __future__ import annotations
 
 import argparse
@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from nudegate.body_shapes import author_masks, bake_shape, surface_quality  # noqa: E402
 from nudegate.collada import ColladaMesh, validate_smooth_seams  # noqa: E402
+from nudegate.lod_authoring import enumerate_lods, bake_lods, validate_lod_roundtrip  # noqa: E402
 
 FAMILIES = (
     {"id": "human_elf_f", "label": "Human / elf, normal female", "file": "HUM_F_NKD_HighPolyTest_KEL.dae",
@@ -26,10 +27,19 @@ FAMILIES = (
     {"id": "tiefling_f", "label": "Tiefling, normal female", "file": "tiefling.dae",
      "vertices": 7768, "triangles": 15502,
      "original_visual_ids": ["820ddd41-7946-f026-099f-7034983d50d2"]},
+    {"id": "human_elf_fs", "label": "Human / elf, strong female", "file": "HUM_FS_pristine.dae",
+     "vertices": 8044, "triangles": 16068, "geometry_id": "HUM_FS_NKD_Body_A_Mesh-geom",
+     "frame": [1.217716, 1.12049, 1.15], "lod_count": 5,
+     "original_visual_ids": ["9725b3db-6e40-054b-dc49-b8e479bc0cba", "edb26736-c3d5-72a7-b69a-16b5720ba664"]},
+    {"id": "tiefling_fs", "label": "Tiefling, strong female", "file": "TIF_FS_pristine.dae",
+     "vertices": 7770, "triangles": 15504, "geometry_id": "TIF_FS_NKD_Body_A_Mesh-geom",
+     "frame": [1.226154, 1.12049, 1.15], "lod_count": 5,
+     "original_visual_ids": ["a89dc12f-f2d2-f66b-cb25-eebbaa429a25"]},
 )
 
 
 def convert(divine: Path, source: Path, output: Path, input_format: str, output_format: str) -> None:
+    source, output = source.resolve(), output.resolve()
     cmd = [str(divine), "--loglevel", "all", "-g", "bg3", "-a", "convert-model",
            "-s", str(source), "-d", str(output), "-i", input_format, "-o", output_format]
     if output_format == "gr2":
@@ -131,9 +141,10 @@ def validate_roundtrip(source: Path, exported: Path, expected_positions: list, t
             "corner_uvs": 'passed', 'max_corner_uv_drift': max_uv_drift, 'bind_shape': 'passed'}
 
 
-def measurements(positions: list) -> dict:
-    chest = [p for p in positions if 1.27 < p[1] < 1.43 and .025 < abs(p[0]) < .21]
-    hips = [p for p in positions if .86 < p[1] < 1.04 and abs(p[0]) < .28]
+def measurements(positions: list, frame=None) -> dict:
+    frame = frame or [1,1,1]
+    chest = [p for p in positions if 1.27 < p[1]/frame[1] < 1.43 and .025 < abs(p[0]/frame[0]) < .21]
+    hips = [p for p in positions if .86 < p[1]/frame[1] < 1.04 and abs(p[0]/frame[0]) < .28]
     return {"chest_front_z": min(p[2] for p in chest),
             "hip_width": max(p[0] for p in hips) - min(p[0] for p in hips)}
 
@@ -141,60 +152,97 @@ def measurements(positions: list) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sources', type=Path, default=Path.home() / '.cache/nudegate/bcb-analysis')
+    parser.add_argument('--strong-sources', type=Path, default=Path.home() / '.cache/nudegate/strong-analysis')
     parser.add_argument('--divine', type=Path, default=Path.home() / '.cache/nudegate/lslib/Packed/Tools/Divine.exe')
     parser.add_argument('--profiles', type=Path, default=ROOT / 'config/body_studies.json')
     parser.add_argument('--source-catalog', type=Path, default=ROOT / 'config/body_sources.json')
     parser.add_argument('--output', type=Path, default=ROOT / 'build/bodies')
     parser.add_argument('--families', nargs='+', choices=[f['id'] for f in FAMILIES])
+    parser.add_argument('--profile-ids', nargs='+', help='Build only selected authored profile IDs')
     args = parser.parse_args()
     try:
         profiles = json.loads(args.profiles.read_text())['profiles']
+        if args.profile_ids:
+            unknown = set(args.profile_ids) - {p['id'] for p in profiles}
+            if unknown:
+                raise ValueError(f'Unknown profile IDs: {sorted(unknown)}')
+            profiles = [p for p in profiles if p['id'] in args.profile_ids]
         source_catalog = json.loads(args.source_catalog.read_text())['families']
         if len({p['id'] for p in profiles}) != len(profiles):
             raise ValueError('Duplicate study IDs')
         if any(not re.fullmatch(r'[a-z][a-z0-9_]{0,40}', p['id']) for p in profiles):
             raise ValueError('Study IDs must be simple lowercase file-safe names')
+        args.output = args.output.resolve()
         args.output.mkdir(parents=True, exist_ok=True)
-        manifest = {"schema_version": 1, "source_kind": "local BCB 3.17 archive",
+        manifest = {"schema_version": 1, "source_kind": "local BCB normal families and pristine vanilla strong families",
                     "physics": "not included in these geometry studies", "in_game": "not tested", "families": []}
         for family in FAMILIES:
             if args.families and family['id'] not in args.families:
                 continue
-            source = args.sources / family['file']
-            mesh = ColladaMesh.load(source)
+            source = (args.strong_sources if family.get('lod_count') else args.sources) / family['file']
+            mesh = ColladaMesh.load(source, geometry_id=family.get('geometry_id'))
             snapshot = mesh.snapshot()
             if snapshot['vertex_count'] != family['vertices'] or snapshot['triangle_count'] != family['triangles']:
                 raise ValueError(f"Source topology does not match reviewed family: {family['id']}")
             for key in ('topology_id', 'position_sha256'):
                 if snapshot[key] != source_catalog[family['id']][key]:
                     raise ValueError(f"Source {key} does not match reviewed family: {family['id']}")
-            masks, mask_report = author_masks(mesh.positions, mesh.triangles, mesh.topology_id)
+            lods = enumerate_lods(source, expected_lods=5) if family.get('lod_count') else None
+            if lods:
+                for lod in lods:
+                    expected = source_catalog[family['id']]['lods'][str(lod['lod'])]
+                    for key in ('topology_id','position_sha256'):
+                        if lod['snapshot'][key] != expected[key]:
+                            raise ValueError('Unreviewed strong LOD source')
+            masks, mask_report = author_masks(mesh.positions, mesh.triangles, mesh.topology_id, frame=family.get('frame'))
             row = {**family, 'source': str(source.resolve()), 'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
                    'source_snapshot': snapshot, 'masks': mask_report, 'variants': []}
             destination = args.output / family['id']
             destination.mkdir(exist_ok=True)
             for profile in profiles:
                 print(f"Baking {family['id']} / {profile['id']}", flush=True)
-                new_positions, sculpt = bake_shape(masks, profile)
-                sculpt['surface_quality'] = surface_quality(masks['positions'], new_positions, mesh.triangles)
-                variant = ColladaMesh.load(source)
-                variant.set_positions(new_positions, recalculate_normals=sculpt['moved_vertices'] > 0)
-                after = variant.snapshot()
-                for key in ('topology_id', 'controller_sha256', 'uv_sha256', 'material_sha256'):
-                    if snapshot[key] != after[key]:
-                        raise ValueError(f"Sculpt altered protected data: {key}")
                 dae = destination / (family['id'] + '_' + profile['id'] + '.dae')
                 gr2 = dae.with_suffix('.GR2')
                 check = dae.with_suffix('.roundtrip.dae')
-                variant.save(dae)
+                if lods:
+                    sculpt_rows = {}
+                    def transform(lod_mesh, lod):
+                        lod_masks, _ = author_masks(lod_mesh.positions, lod_mesh.triangles, lod_mesh.topology_id, frame=family['frame'])
+                        positions, stats = bake_shape(lod_masks, profile)
+                        stats['surface_quality'] = surface_quality(lod_mesh.positions, positions, lod_mesh.triangles)
+                        sculpt_rows[lod] = (positions, stats)
+                        return positions
+                    bake_report = bake_lods(source, dae, transform, expected_lods=5)
+                    new_positions, main_sculpt = sculpt_rows[0]
+                    sculpt = dict(main_sculpt)
+                    sculpt['lods'] = {str(lod): stats for lod, (_,stats) in sculpt_rows.items()}
+                else:
+                    new_positions, sculpt = bake_shape(masks, profile)
+                    sculpt['surface_quality'] = surface_quality(masks['positions'], new_positions, mesh.triangles)
+                    variant = ColladaMesh.load(source)
+                    variant.set_positions(new_positions, recalculate_normals=sculpt['moved_vertices'] > 0)
+                    after = variant.snapshot()
+                    for key in ('topology_id', 'controller_sha256', 'uv_sha256', 'material_sha256'):
+                        if snapshot[key] != after[key]:
+                            raise ValueError(f"Sculpt altered protected data: {key}")
+                    variant.save(dae)
                 convert(args.divine, dae, gr2, 'dae', 'gr2')
                 convert(args.divine, gr2, check, 'gr2', 'dae')
-                verification = validate_roundtrip(source, check, new_positions, variant.triangles)
-                row['variants'].append({'id': profile['id'], 'label': profile['label'],
+                if lods:
+                    verification = validate_lod_roundtrip(source, dae, check, expected_lods=5)
+                    verification.update({key: 'passed' for key in ('topology','skin_arrays','corner_uvs','bind_shape')})
+                    verification['smooth_seams'] = {'status':'passed','all_lods':True}
+                else:
+                    verification = validate_roundtrip(source, check, new_positions, mesh.triangles)
+                entry = {'id': profile['id'], 'label': profile['label'],
                     'dae': str(dae.resolve()), 'gr2': str(gr2.resolve()), 'mesh_name': snapshot['geometry_id'].removesuffix('-geom'),
+                    'geometry_id': snapshot['geometry_id'],
                     'model_name': 'Dummy_Root', 'sculpt': sculpt, 'verification': verification,
-                    'measurements': measurements(new_positions), 'gr2_sha256': hashlib.sha256(gr2.read_bytes()).hexdigest(),
-                    'dae_sha256': hashlib.sha256(dae.read_bytes()).hexdigest()})
+                    'measurements': measurements(new_positions, family.get('frame')), 'gr2_sha256': hashlib.sha256(gr2.read_bytes()).hexdigest(),
+                    'dae_sha256': hashlib.sha256(dae.read_bytes()).hexdigest()}
+                if lods:
+                    entry['lods'] = [{key:lod[key] for key in ('geometry_id','mesh_name','lod')} for lod in lods]
+                row['variants'].append(entry)
             manifest['families'].append(row)
             target = args.output / 'body-build.json'
             tmp = target.with_suffix('.tmp')

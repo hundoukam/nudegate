@@ -1,4 +1,4 @@
-"""Build private, local body VisualBank resources from single-mesh prototypes.
+"""Build private, local body VisualBank resources with explicit mesh/LOD maps.
 
 This BCB-derived prototype path includes no authored jiggle. It never assigns a
 body to a character: callers may use resource_map only after compatibility and
@@ -23,6 +23,18 @@ _SLUG = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}\Z")
 _MODEL_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_-]{0,127}\Z")
 _BANK_PATH = Path("Public/Nudegate/Content/[PAK]_BodyVisuals/_merged.lsx")
 _BG3_GR2_MAGIC = bytes.fromhex("e59b495e6f631f141e13eba990beedc4")
+# These exact native body resources were inspected in Shared's FemaleStrong
+# banks. Unassigned is a real native slot for HUM_FS/ELF_FS, not a general pass.
+STRONG_UNASSIGNED_VISUALS = frozenset({
+    "9725b3db-6e40-054b-dc49-b8e479bc0cba",  # HUM_FS_NKD_Body_A
+    "edb26736-c3d5-72a7-b69a-16b5720ba664",  # ELF_FS_NKD_Body_A
+    "a89dc12f-f2d2-f66b-cb25-eebbaa429a25",  # TIF_FS_NKD_Body_A
+})
+STRONG_BODY_VISUALS = STRONG_UNASSIGNED_VISUALS | {
+    "4997dd39-8210-e1a8-2e5b-bb3a85c2b2cf",  # Karlach
+    "a1292048-0f09-89e2-2fd6-42d8afe3ef02",  # Karlach glow
+    "df1d045b-6c9f-99d0-c1d3-bf8ad9c5148f",  # Karlach glow 02
+}
 
 
 def _values(node: ET.Element) -> dict[str, str]:
@@ -96,12 +108,89 @@ def _destination(root: Path, relative: Path) -> Path:
     return target
 
 
+def _lod_meshes(variant: dict, dae: Path, mesh_name: str) -> tuple[list[dict], bool]:
+    """Validate every declared LOD against the actual exported COLLADA meshes."""
+    try:
+        root = ET.parse(dae).getroot()
+    except (ET.ParseError, OSError) as exc:
+        raise ValueError(f"Cannot read body COLLADA: {exc}") from exc
+    geometries = root.findall(f'{{{NS}}}library_geometries/{{{NS}}}geometry')
+    explicit = "lods" in variant
+    if explicit:
+        raw = variant["lods"]
+        if not isinstance(raw, list) or len(raw) != 5 or any(not isinstance(d, dict) for d in raw):
+            raise ValueError("Explicit lods requires all five LODs 0 through 4")
+        descriptors = []
+        for item in raw:
+            level = item.get("lod")
+            if type(level) is not int or level not in range(5):
+                raise ValueError("LOD must be an integer from 0 through 4")
+            descriptors.append({"lod": level,
+                                "geometry_id": _name(item.get("geometry_id"), "geometry_id", model=True),
+                                "mesh_name": _name(item.get("mesh_name"), "LOD mesh_name", model=True)})
+        if {d["lod"] for d in descriptors} != set(range(5)):
+            raise ValueError("Explicit lods requires unique entries for all five LODs 0 through 4")
+        descriptors.sort(key=lambda d: d["lod"])
+        if len({d["geometry_id"] for d in descriptors}) != 5 or len({d["mesh_name"] for d in descriptors}) != 5:
+            raise ValueError("LOD geometry IDs and mesh names must be unique")
+        if len(geometries) != 5 or {g.get("id") for g in geometries} != {d["geometry_id"] for d in descriptors}:
+            raise ValueError("Declared LOD geometry IDs must match exactly the five exported geometries")
+        if descriptors[0]["mesh_name"] != mesh_name:
+            raise ValueError("Primary mesh_name must match LOD 0")
+    else:
+        if len(geometries) != 1 or geometries[0].get("name") != mesh_name:
+            raise ValueError(f"mesh_name does not identify the single exported mesh: {mesh_name}")
+        if not geometries[0].get("id"):
+            raise ValueError("Exported geometry requires an XML ID")
+        descriptors = [{"lod": 0, "geometry_id": geometries[0].get("id"), "mesh_name": mesh_name}]
+    skins = root.findall(f'{{{NS}}}library_controllers/{{{NS}}}controller/{{{NS}}}skin')
+    if len(skins) != len(descriptors):
+        raise ValueError("Body prototype requires one skin controller per LOD geometry")
+    if any(n.tag.split("}")[-1] == "DivModelType" and (n.text or "").strip() in {"Cloth", "ClothPhysics"} for n in root.iter()):
+        raise ValueError("Cloth prototypes require a matched physics builder")
+    indexed = {g.get("id"): g for g in geometries}
+    for descriptor in descriptors:
+        geometry = indexed[descriptor["geometry_id"]]
+        if geometry.get("name") != descriptor["mesh_name"]:
+            raise ValueError(f"LOD mesh_name does not match exported geometry: {descriptor['mesh_name']}")
+        if sum(s.get("source") == "#" + descriptor["geometry_id"] for s in skins) != 1:
+            raise ValueError("Body prototype requires one skin controller per LOD geometry")
+        if explicit:
+            order = [(n.text or "").strip() for n in geometry.iter() if n.tag.split("}")[-1] == "ExportOrder"]
+            if order != [str(descriptor["lod"])]:
+                raise ValueError(f"LOD {descriptor['lod']} must match the actual LSTools ExportOrder")
+        mesh = ColladaMesh.load(dae, descriptor["geometry_id"])
+        descriptor["mesh"] = mesh
+    return descriptors, explicit
+
+
+def _lod_materials(original: ET.Element, descriptors: list[dict], explicit: bool) -> dict[int, str]:
+    objects = original.findall('./children/node[@id="Objects"]')
+    if not explicit:
+        materials = {_values(obj).get("MaterialID") for obj in objects}
+        if not objects or None in materials or len(materials) != 1:
+            raise ValueError("Expected one consistent source skin material")
+        return {0: _uuid(next(iter(materials)))}
+    result = {}
+    for obj in objects:
+        fields = _values(obj)
+        raw_lod = fields.get("LOD", "")
+        if raw_lod not in {"0", "1", "2", "3", "4"} or int(raw_lod) in result:
+            raise ValueError("Source Objects must have one material mapping for each LOD 0 through 4")
+        result[int(raw_lod)] = _uuid(fields.get("MaterialID"))
+    if set(result) != {d["lod"] for d in descriptors}:
+        raise ValueError("Source Objects must have one material mapping for each LOD 0 through 4")
+    return result
+
+
 def create_body_resources(body_manifest: dict, source_visual_bank: Path, output: Path) -> dict:
     """Clone explicit original body UUIDs for each local GR2/DAE variant.
 
     families contain id, label, original_visual_ids and variants. Each variant
     requires id, label, absolute gr2/dae paths and mesh_name; model_name defaults
-    to Dummy_Root. Output contains an LSX VisualBank and private GR2 copies.
+    to Dummy_Root. Optional lods explicitly lists geometry_id, mesh_name and lod
+    for all five levels 0..4; registered strong bodies require this complete map.
+    Output contains an LSX VisualBank and private GR2 copies.
     Report variants are flat original-UUID/variant pairs. resource_map maps each
     original UUID to compatible family/variant/private-UUID references; it does
     not itself assert race/rig compatibility or grant character eligibility.
@@ -185,15 +274,10 @@ def create_body_resources(body_manifest: dict, source_visual_bank: Path, output:
             gr2, dae = _file(variant.get("gr2"), ".gr2"), _file(variant.get("dae"), ".dae")
             if gr2.is_relative_to(root) or dae.is_relative_to(root) or bank_path.is_relative_to(root):
                 raise ValueError("Input sources must be outside output")
-            mesh = ColladaMesh.load(dae)
-            dae_root = ET.parse(dae).getroot()
-            geometries = dae_root.findall(f'{{{NS}}}library_geometries/{{{NS}}}geometry')
-            if len(geometries) != 1 or geometries[0].get("name") != mesh_name:
-                raise ValueError(f"mesh_name does not identify the single exported mesh: {mesh_name}")
-            if len(dae_root.findall(f'{{{NS}}}library_controllers/{{{NS}}}controller/{{{NS}}}skin')) != 1:
-                raise ValueError("Body prototype requires one skin controller")
-            if any(n.tag.split("}")[-1] == "DivModelType" and (n.text or "").strip() in {"Cloth", "ClothPhysics"} for n in dae_root.iter()):
-                raise ValueError("Cloth prototypes require a matched physics builder")
+            descriptors, explicit_lods = _lod_meshes(variant, dae, mesh_name)
+            if STRONG_BODY_VISUALS.intersection(ids) and not explicit_lods:
+                raise ValueError("Registered strong body resources require all five explicit LODs")
+            mesh = descriptors[0]["mesh"]
             positions = mesh.positions
             bounds = [[min(p[axis] for p in positions) for axis in range(3)],
                       [max(p[axis] for p in positions) for axis in range(3)]]
@@ -207,16 +291,13 @@ def create_body_resources(body_manifest: dict, source_visual_bank: Path, output:
             for identifier in ids:
                 original = originals[identifier][0]
                 values = _values(original)
-                if values.get("Slot") != "NakedBody":
+                if values.get("Slot") != "NakedBody" and not (
+                    values.get("Slot") == "Unassigned" and identifier in STRONG_UNASSIGNED_VISUALS
+                ):
                     raise ValueError(f"Source is not a NakedBody visual: {identifier}")
                 if original.findall('.//node[@id="ClothParams"]') or original.findall('.//attribute[@id="ClosestVertices"]'):
                     raise ValueError("Source has cloth physics requiring a matched physics builder")
-                objects = original.findall('./children/node[@id="Objects"]')
-                materials = {_values(obj).get("MaterialID") for obj in objects}
-                if not objects or None in materials or len(materials) != 1:
-                    raise ValueError(f"Expected one consistent source skin material: {identifier}")
-                material = next(iter(materials))
-                _uuid(material)
+                material_by_lod = _lod_materials(original, descriptors, explicit_lods)
                 private_id = str(uuid5(BODY_NAMESPACE, f"{identifier}|{family_id}|{variant_id}|{digest}"))
                 if private_id in originals or private_id in private_ids:
                     raise ValueError(f"Private visual UUID collision: {private_id}")
@@ -232,18 +313,30 @@ def create_body_resources(body_manifest: dict, source_visual_bank: Path, output:
                 for obj in list(nested):
                     if obj.get("id") in {"Objects", "ClothProxyMapping"}:
                         nested.remove(obj)
-                obj = ET.SubElement(nested, "node", {"id": "Objects"})
-                _set(obj, "ObjectID", f"{variant_id}.{mesh_name}.0")
-                _set(obj, "MaterialID", material)
-                _set(obj, "LOD", "0", "uint8")
+                lod_report = []
+                for descriptor in descriptors:
+                    level, name = descriptor["lod"], descriptor["mesh_name"]
+                    object_id = f"{variant_id}.{name}.{level}"
+                    obj = ET.SubElement(nested, "node", {"id": "Objects"})
+                    _set(obj, "ObjectID", object_id)
+                    _set(obj, "MaterialID", material_by_lod[level])
+                    _set(obj, "LOD", str(level), "uint8")
+                    lod_report.append({"lod": level, "geometry_id": descriptor["geometry_id"],
+                                       "mesh_name": name, "object_id": object_id,
+                                       "material_id": material_by_lod[level],
+                                       "position_vertices": len(descriptor["mesh"].positions),
+                                       "triangles": len(descriptor["mesh"].triangles)})
                 children.append(cloned)
                 entry = {"family_id": family_id, "variant_id": variant_id,
                          "family_label": family_label, "variant_label": variant_label,
                          "original_visual_id": identifier, "private_visual_id": private_id,
                          "sourcefile": sourcefile, "mesh_name": mesh_name, "model_name": model_name,
-                         "material_ids": [material], "skeleton_resource": values.get("SkeletonResource", ""),
+                         "material_ids": sorted(set(material_by_lod.values())),
+                         "skeleton_resource": values.get("SkeletonResource", ""),
                          "source_gr2_sha256": digest, "physics": "not included",
                          "position_vertices": len(positions), "triangles": len(mesh.triangles)}
+                if explicit_lods:
+                    entry["lods"] = lod_report
                 report["variants"].append(entry)
                 report["resource_map"].setdefault(identifier, []).append(
                     {key: entry[key] for key in ("family_id", "variant_id", "private_visual_id")})

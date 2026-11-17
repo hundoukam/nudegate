@@ -334,6 +334,30 @@ class ColladaTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "New smooth-normal seam exceeds"):
             validate_smooth_seams(reference, changed)
 
+    def test_smooth_validation_accepts_only_an_explicit_proven_vertex_bijection(self) -> None:
+        root = document()
+        root.remove(root.find(q("library_controllers")))
+        reference = self.load(root)
+        mapping = {0: 2, 1: 0, 2: 3, 3: 1}
+        values = root.find(f".//{q('source')}[@id='positions']/{q('float_array')}")
+        old = list(map(float, values.text.split()))
+        reordered = [None] * 4
+        for before, after in mapping.items():
+            reordered[after] = old[before * 3:before * 3 + 3]
+        values.text = " ".join(str(value) for point in reordered for value in point)
+        p = root.find(f".//{q('triangles')}/{q('p')}")
+        indices = list(map(int, p.text.split()))
+        for corner in range(0, len(indices), 4):
+            indices[corner] = mapping[indices[corner]]
+        p.text = " ".join(map(str, indices))
+        current = self.load(root)
+        with self.assertRaisesRegex(ValueError, "matching indexed triangle topology"):
+            validate_smooth_seams(reference, current)
+        self.assertEqual(validate_smooth_seams(reference, current, vertex_map=mapping)["status"], "passed")
+        for invalid in ({0: 2, 1: 0, 2: 3}, {0: 2, 1: 0, 2: 3, 3: 0}, {0: 0, 1: 1, 2: 2, 3: 3}):
+            with self.subTest(mapping=invalid), self.assertRaises(ValueError):
+                validate_smooth_seams(reference, current, vertex_map=invalid)
+
 
 if __name__ == "__main__":
     unittest.main()

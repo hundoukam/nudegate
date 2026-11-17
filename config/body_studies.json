@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Local BCB normal-female mesh studies; no in-game or physics acceptance yet",
+  "scope": "Local normal and strong female studies; surface softness and padding, physics untested",
   "profiles": [
     {
       "id": "lean",
@@ -30,7 +30,13 @@
         0.85,
         0.75
       ],
-      "chest_drop": 0.003
+      "chest_drop": 0.003,
+      "soft_surface": {
+        "passes": 4,
+        "padding": 0.003,
+        "max_displacement": 0.018,
+        "reverse_strength": -0.3
+      }
     },
     {
       "id": "athletic",
@@ -60,11 +66,17 @@
         0.9,
         0.85
       ],
-      "chest_drop": 0.004
+      "chest_drop": 0.004,
+      "soft_surface": {
+        "passes": 4,
+        "padding": 0.003,
+        "max_displacement": 0.018,
+        "reverse_strength": -0.3
+      }
     },
     {
       "id": "balanced",
-      "label": "Source proportions",
+      "label": "Soft balanced",
       "chest_scale": [
         1,
         1,
@@ -90,7 +102,13 @@
         1,
         1
       ],
-      "chest_drop": 0
+      "chest_drop": 0,
+      "soft_surface": {
+        "passes": 4,
+        "padding": 0.003,
+        "max_displacement": 0.018,
+        "reverse_strength": -0.3
+      }
     },
     {
       "id": "full",
@@ -120,7 +138,13 @@
         1.1,
         1.1
       ],
-      "chest_drop": -0.008
+      "chest_drop": -0.008,
+      "soft_surface": {
+        "passes": 4,
+        "padding": 0.003,
+        "max_displacement": 0.018,
+        "reverse_strength": -0.3
+      }
     },
     {
       "id": "soft",
@@ -150,7 +174,13 @@
         1.25,
         1.05
       ],
-      "chest_drop": -0.012
+      "chest_drop": -0.012,
+      "soft_surface": {
+        "passes": 6,
+        "padding": 0.006,
+        "max_displacement": 0.018,
+        "reverse_strength": -0.3
+      }
     },
     {
       "id": "voluptuous",
@@ -180,7 +210,49 @@
         1.35,
         1.4
       ],
-      "chest_drop": -0.008
+      "chest_drop": -0.008,
+      "soft_surface": {
+        "passes": 6,
+        "padding": 0.004,
+        "max_displacement": 0.018,
+        "reverse_strength": -0.3
+      }
+    },
+    {
+      "id": "plush",
+      "label": "Plush",
+      "chest_scale": [
+        1.08,
+        1.07,
+        1.22
+      ],
+      "waist_scale": [
+        1.14,
+        1,
+        1.15
+      ],
+      "hips_scale": [
+        1.18,
+        1,
+        1.15
+      ],
+      "thigh_scale": [
+        1.16,
+        1,
+        1.13
+      ],
+      "surface_scale": [
+        1.15,
+        1.15,
+        1.1
+      ],
+      "chest_drop": -0.006,
+      "soft_surface": {
+        "passes": 8,
+        "padding": 0.004,
+        "max_displacement": 0.02,
+        "reverse_strength": -0.25
+      }
     }
   ]
 }

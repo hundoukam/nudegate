@@ -20,6 +20,7 @@ MATERIAL = "33333333-3333-4333-8333-333333333333"
 SKELETON = "44444444-4444-4444-8444-444444444444"
 OTHER_MATERIAL = "55555555-5555-4555-8555-555555555555"
 MESH = "HUM_F_NKD_Body_A_Mesh"
+STRONG = "9725b3db-6e40-054b-dc49-b8e479bc0cba"
 NS = "http://www.collada.org/2005/11/COLLADASchema"
 MAGIC = bytes.fromhex("e59b495e6f631f141e13eba990beedc4")
 
@@ -96,6 +97,52 @@ class BodyResourcesTests(unittest.TestCase):
 
     def save_bank(self) -> None:
         self.source.write(self.bank, encoding="utf-8", xml_declaration=True)
+
+    def make_multilod_fixture(self) -> None:
+        """Five actual exported geometries/controllers with explicit order."""
+        tree = ET.parse(self.dae)
+        root = tree.getroot()
+        geometries = root.find(f'{{{NS}}}library_geometries')
+        controllers = root.find(f'{{{NS}}}library_controllers')
+        original_geometry = copy.deepcopy(geometries[0])
+        original_controller = copy.deepcopy(controllers[0])
+        geometries.clear()
+        controllers.clear()
+        descriptors = []
+        for level in range(5):
+            geometry, controller = copy.deepcopy(original_geometry), copy.deepcopy(original_controller)
+            suffix = "" if level == 0 else f"-lod{level}"
+            renames = {n.get("id"): n.get("id") + suffix
+                       for subtree in (geometry, controller) for n in subtree.iter() if n.get("id")}
+            for subtree in (geometry, controller):
+                for element in subtree.iter():
+                    for key, value in list(element.attrib.items()):
+                        if key == "id":
+                            element.set(key, renames[value])
+                        elif value.startswith("#") and value[1:] in renames:
+                            element.set(key, "#" + renames[value[1:]])
+            name = MESH if level == 0 else f"{MESH}_LOD{level}"
+            geometry.set("name", name)
+            extra = ET.SubElement(geometry.find(f'{{{NS}}}mesh'), f'{{{NS}}}extra')
+            technique = ET.SubElement(extra, f'{{{NS}}}technique', {"profile": "LSTools"})
+            ET.SubElement(technique, "ExportOrder").text = str(level)
+            geometries.append(geometry)
+            controllers.append(controller)
+            descriptors.append({"lod": level, "geometry_id": geometry.get("id"), "mesh_name": name})
+        tree.write(self.dae, encoding="utf-8", xml_declaration=True)
+        family = self.manifest["families"][0]
+        family["original_visual_ids"] = [STRONG]
+        family["variants"][0]["lods"] = descriptors
+        original = self.source.find('.//node[@id="Resource"]')
+        original.find('attribute[@id="ID"]').set("value", STRONG)
+        original.find('attribute[@id="Slot"]').set("value", "Unassigned")
+        nested = original.find("children")
+        for obj in list(nested.findall('node[@id="Objects"]')):
+            nested.remove(obj)
+        for level in range(5):
+            nested.append(node("Objects", ObjectID=f"Original.SourceMesh_LOD{level}.{level}",
+                               LOD=str(level), MaterialID=MATERIAL if level % 2 == 0 else OTHER_MATERIAL))
+        self.save_bank()
 
     def build(self) -> dict:
         return create_body_resources(self.manifest, self.bank, self.output)
@@ -251,6 +298,86 @@ class BodyResourcesTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "link/reparse point"):
             create_body_resources(self.manifest, self.bank, link)
         self.assertEqual(list(outside.iterdir()), [])
+
+    def test_strong_unassigned_resource_preserves_all_five_lods_and_each_material(self) -> None:
+        self.make_multilod_fixture()
+        # LOD 4 is deliberately larger; the resource bounds must use LOD 0.
+        tree = ET.parse(self.dae)
+        geometry = tree.find(f'.//{{{NS}}}geometry[@id="body-geom-lod4"]')
+        geometry.find(f'.//{{{NS}}}float_array').text = "0 100 200 100 300 -400 200 400 600"
+        tree.write(self.dae)
+        report = self.build()
+        resource = ET.parse(report["outputs"]["visuals"]).find('.//node[@id="Resource"]')
+        self.assertEqual(values(resource)["Slot"], "Unassigned")
+        self.assertEqual(values(resource)["BoundsMax"], "2 4 6")
+        objects = resource.findall('./children/node[@id="Objects"]')
+        self.assertEqual(len(objects), 5)
+        for level, obj in enumerate(objects):
+            name = MESH if level == 0 else f"{MESH}_LOD{level}"
+            self.assertEqual(values(obj), {"ObjectID": f"balanced.{name}.{level}",
+                                          "LOD": str(level),
+                                          "MaterialID": MATERIAL if level % 2 == 0 else OTHER_MATERIAL})
+        lods = report["variants"][0]["lods"]
+        self.assertEqual([lod["lod"] for lod in lods], list(range(5)))
+        self.assertEqual([lod["mesh_name"] for lod in lods],
+                         [MESH] + [f"{MESH}_LOD{level}" for level in range(1, 5)])
+
+    def test_unassigned_is_rejected_for_unregistered_body_uuid(self) -> None:
+        self.source.find('.//node[@id="Resource"]/attribute[@id="Slot"]').set("value", "Unassigned")
+        self.save_bank()
+        self.assert_refused("not a NakedBody")
+
+    def test_registered_strong_resource_requires_all_five_lods(self) -> None:
+        self.manifest["families"][0]["original_visual_ids"] = [STRONG]
+        self.source.find('.//node[@id="Resource"]/attribute[@id="ID"]').set("value", STRONG)
+        self.save_bank()
+        self.assert_refused("strong body resources require all five")
+
+    def test_missing_or_duplicate_lod_declarations_are_rejected(self) -> None:
+        self.make_multilod_fixture()
+        lods = self.manifest["families"][0]["variants"][0]["lods"]
+        missing = lods.pop()
+        self.assert_refused("all five LODs")
+        lods.append(missing)
+        lods[4]["lod"] = 3
+        self.assert_refused("all five LODs")
+
+    def test_missing_or_extra_exported_lod_geometry_is_rejected(self) -> None:
+        self.make_multilod_fixture()
+        tree = ET.parse(self.dae)
+        geometries = tree.find(f'{{{NS}}}library_geometries')
+        removed = geometries[-1]
+        geometries.remove(removed)
+        tree.write(self.dae)
+        self.assert_refused("match exactly the five")
+        geometries.append(removed)
+        extra = copy.deepcopy(removed)
+        extra.set("id", "extra-geometry")
+        geometries.append(extra)
+        tree.write(self.dae)
+        self.assert_refused("match exactly the five")
+
+    def test_lod_controller_order_and_source_mapping_must_match(self) -> None:
+        self.make_multilod_fixture()
+        tree = ET.parse(self.dae)
+        order = next(n for n in tree.find(f'.//{{{NS}}}geometry[@id="body-geom-lod2"]').iter()
+                     if n.tag.split("}")[-1] == "ExportOrder")
+        order.text = "4"
+        tree.write(self.dae)
+        self.assert_refused("ExportOrder")
+        order.text = "2"
+        tree.write(self.dae)
+        mapping = self.source.find('.//node[@id="Resource"]/children')
+        obj = next(n for n in mapping.findall('node[@id="Objects"]') if values(n)["LOD"] == "2")
+        mapping.remove(obj)
+        self.save_bank()
+        self.assert_refused("one material mapping for each LOD")
+        mapping.append(obj)
+        self.save_bank()
+        controller = tree.find(f'.//{{{NS}}}controller[@id="body-skin-lod2"]')
+        controller.find(f'{{{NS}}}skin').set("source", "#body-geom-lod1")
+        tree.write(self.dae)
+        self.assert_refused("one skin controller per LOD")
 
 
 if __name__ == "__main__":

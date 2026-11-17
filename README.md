@@ -3,7 +3,7 @@
 An experimental Baldur's Gate 3 project for adult NPC nudity, body variety and
 compatible body physics, inspired by NudePunk2077.
 
-**Current version: 0.1.0 alpha. This is a development prototype, not an
+**Current source version: 0.2.0 experimental. This is a development prototype, not an
 all-NPC release.** The builder produces an appearance-only `.pak` from a local
 BG3 installation. It changes twelve explicitly reviewed adult root templates,
 creates private character visuals, removes embedded garment slots and disables
@@ -60,8 +60,8 @@ Game-derived outputs and third-party assets are excluded from Git.
 
 The basic alpha retains each character's original body family, so it also references
 compatible installed body replacers. The optional local body-study build now bakes
-**six profiles across three normal-female families: 18 GR2 meshes**. It includes
-lean, athletic, source proportions, full, soft and voluptuous studies, with
+**seven profiles across normal and strong female families**. It includes
+lean, athletic, soft balanced, full, soft, voluptuous and plush studies, with
 separate local surface-proportion controls. A shared body replacer alone gives all users of that resource
 the same replacement; multiple shapes need private body resources and stable
 selection within compatible skeleton/skin families.
@@ -76,7 +76,7 @@ The latest mesh counts, export results and artifact paths are in
 `tools/build_bodies.py` now edits actual COLLADA geometry, recalculates shading,
 exports GR2 and imports it again to check topology, skinning and position drift.
 The source catalog pins the reviewed source topology and positions. Neck,
-wrist, ankle, outer-arm and central pelvic attachment zones stay fixed.
+wrist, ankle, neck and central pelvic/tail attachment zones stay fixed.
 Private resource registration preserves each family's skeleton and materials;
 BCB's stale LOD object names are replaced with actual exported object names.
 
@@ -86,11 +86,17 @@ python tools/build.py --body-manifest build/bodies/body-build.json --body-visual
 & "C:\path\to\blender.exe" --background --python tools/render_bodies.py -- --manifest build/bodies/body-build.json --output build/bodies/body-comparison.png
 ```
 
-These local prototypes derive from the supplied BCB 3.17 archive. Meshes,
+These local prototypes derive from the supplied BCB 3.17 archive and the user's vanilla game. Meshes,
 source banks, generated packages and renders remain outside Git. The ordinary
 build still works without body assets. The optional package is
-`dist/Nudegate-0.1.0-body-study.pak`; it shares the basic alpha's module UUID, so
+`dist/Nudegate-0.2.0-body-study.pak`; it shares the basic alpha's module UUID, so
 use one package at a time.
+
+The larger human/elf and tiefling female bodies retain their own native frame
+and all five LODs. An optional experimental new-Tav preset path chooses the
+Plush shape for both supported frame sizes without replacing original NPC
+roots. See [soft female frames and Tav testing](docs/PLUSH_FRAMES.md), including
+the private skin-material option and remaining normal-map/physics work.
 
 The body-study build currently finds compatible body-set IDs on Lae'zel's root
 and Minthara's normal/vanity roots. Minthara's two roots share a stable selection

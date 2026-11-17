@@ -1,9 +1,9 @@
 # Body variety and physics pipeline
 
 Nudegate's basic appearance compiler preserves each approved adult's existing
-body. The optional body-study pipeline now exports six shape profiles for each
-of three reviewed normal-female sources, with private body resources and an
-appearance package for limited compatible adult roots. These local studies are
+body. The optional body-study pipeline now exports seven shape profiles for
+three reviewed normal-female and two strong-female families, with private body
+resources, all native strong LODs, and optional new-Tav presets. These local studies are
 not an accepted physics release or universal in-game slider.
 
 ## Reference sources
@@ -40,8 +40,9 @@ output vertices after seam splitting; that differs from COLLADA position count.
 This checks file conversion, not rendering, animation, seams, or physics in BG3.
 
 BCB also includes normal female githyanki and tiefling body meshes. No strong
-female nude body mesh was found in this archive. Do not treat its normal female
-body as a compatible replacement for Karlach's strong tiefling body.
+female nude body mesh was found in this archive. Version 0.2 instead uses
+pristine vanilla strong human/elf and tiefling sources, retaining their 80-joint
+skins and all five LODs. Karlach's unique scarred/glowing model remains separate.
 
 ## Authoring owned variants
 

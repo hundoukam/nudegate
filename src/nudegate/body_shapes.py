@@ -1,12 +1,14 @@
-"""Offline shape studies for explicitly selected normal-female BG3 sources.
+"""Offline shape studies for explicitly selected normal/strong female sources.
 
-Coordinates and masks are authored for the reviewed BCB family sources, not an
+Coordinates and masks are authored for reviewed, fingerprinted family sources, not an
 age classifier or a generic replacement for arbitrary bodies.
 """
 from collections import Counter, defaultdict
+import heapq
 import math
 
 from .morphs import apply_morph
+from .soften import soften_surface
 
 
 def smooth(a: float, b: float, x: float) -> float:
@@ -16,6 +18,30 @@ def smooth(a: float, b: float, x: float) -> float:
 
 def band(x: float, a: float, b: float, c: float, d: float) -> float:
     return smooth(a, b, x) * (1.0 - smooth(c, d, x))
+
+
+def attachment_falloff(positions, triangles, locked, radius=.035):
+    """Feather motion into fixed attachment zones along the actual surface."""
+    keys = [tuple(round(v, 6) for v in p) for p in positions]
+    neighbors = defaultdict(set)
+    for tri in triangles:
+        for a,b in zip(tri, tri[1:] + tri[:1]):
+            if keys[a] != keys[b]:
+                neighbors[keys[a]].add(keys[b])
+                neighbors[keys[b]].add(keys[a])
+    distance = {keys[i]:0.0 for i in locked}
+    queue = [(0.0,key) for key in distance]
+    heapq.heapify(queue)
+    while queue:
+        value, key = heapq.heappop(queue)
+        if value != distance[key] or value >= radius:
+            continue
+        for other in neighbors[key]:
+            candidate = value + math.dist(key, other)
+            if candidate < min(distance.get(other, radius), radius):
+                distance[other] = candidate
+                heapq.heappush(queue, (candidate, other))
+    return [smooth(0.0, radius, distance.get(key, radius)) for key in keys]
 
 
 def seam_locks(positions: list, triangles: list, rings: int = 2) -> set[int]:
@@ -60,7 +86,17 @@ def surface_quality(original: list, modified: list, triangles: list) -> dict:
     return {"reversed_faces": flipped, "new_collapsed_faces": collapsed}
 
 
-def author_masks(positions: list, triangles: list, topology_id: str) -> tuple[dict, dict]:
+def author_masks(positions: list, triangles: list, topology_id: str, frame=None) -> tuple[dict, dict]:
+    if frame is not None:
+        if len(frame) != 3 or any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or not .8 <= v <= 1.4 for v in frame):
+            raise ValueError('Invalid reviewed body frame')
+        canonical = [[point[k] / frame[k] for k in range(3)] for point in positions]
+        mesh, report = author_masks(canonical, triangles, topology_id)
+        mesh['positions'] = positions
+        for region in mesh['regions'].values():
+            region['center'] = [region['center'][k] * frame[k] for k in range(3)]
+        report['frame'] = list(frame)
+        return mesh, report
     if not positions or any(len(p) != 3 or not all(math.isfinite(v) for v in p) for p in positions):
         raise ValueError("Expected finite three-dimensional source positions")
     height = max(p[1] for p in positions)
@@ -70,8 +106,9 @@ def author_masks(positions: list, triangles: list, topology_id: str) -> tuple[di
     # Preserve attachment zones and the central pelvic region independently of
     # the spatial envelopes, including meshes whose seams happen to be closed.
     locked.update(i for i, (x, y, z) in enumerate(positions)
-                  if y > 1.48 or y < .20 or abs(x) > .28
-                  or (.79 < y < 1.02 and abs(x) < .045 and z < .015))
+                  if y > 1.48 or y < .20 or abs(x) > .55
+                  or (.79 < y < 1.12 and abs(x) < .045))
+    attachment_weights = attachment_falloff(positions, triangles, locked)
     regions = {}
     tips = {}
     for side, sign in (("left", -1), ("right", 1)):
@@ -108,10 +145,21 @@ def author_masks(positions: list, triangles: list, topology_id: str) -> tuple[di
         if total > 1:
             for name in body_names:
                 regions[name]["weights"][i] /= total + 1e-12
+        for region in regions.values():
+            region['weights'][i] *= attachment_weights[i]
     mesh = {"positions": positions, "regions": regions,
-            "locked_vertices": sorted(locked), "topology_id": topology_id}
+            "locked_vertices": sorted(locked), "topology_id": topology_id,
+            "triangles": triangles}
+    soft_weights = []
+    for i, (x, y, z) in enumerate(positions):
+        torso = band(y, .99, 1.08, 1.40, 1.49) * (1 - smooth(.18, .28, abs(x)))
+        arms = band(abs(x), .17, .24, .43, .55) * band(y, 1.10, 1.17, 1.43, 1.49)
+        legs = band(y, .27, .47, .96, 1.08) * (1 - smooth(.19, .28, abs(x)))
+        tip_mask = max(regions['nipple_left']['weights'][i], regions['nipple_right']['weights'][i])
+        soft_weights.append(max(torso, arms, legs) * (1 - tip_mask) * attachment_weights[i])
+    mesh['soft_weights'] = soft_weights
     return mesh, {"surface_landmarks": tips, "locked_vertices": len(locked),
-                  "mask_version": "bcb-normal-female-study-v1"}
+                  "mask_version": "normal-strong-soft-study-v2", 'attachment_feather_metres': .035}
 
 
 def bake_shape(mesh: dict, profile: dict) -> tuple[list, dict]:
@@ -133,6 +181,13 @@ def bake_shape(mesh: dict, profile: dict) -> tuple[list, dict]:
         if i not in locked:
             weight = mesh["regions"]["chest_left"]["weights"][i] + mesh["regions"]["chest_right"]["weights"][i]
             p[1] += drop * weight
+    soft_report = None
+    if profile.get('soft_surface'):
+        settings = profile['soft_surface']
+        result, soft_report = soften_surface(result, mesh['triangles'], mesh['soft_weights'],
+            mesh['locked_vertices'], passes=settings.get('passes', 4), padding=settings.get('padding', .003),
+            strength=settings.get('strength', .45), reverse_strength=settings.get('reverse_strength', -.30),
+            max_displacement=settings.get('max_displacement', .018))
     displaced = [math.dist(a, b) for a, b in zip(mesh["positions"], result)]
     if any(result[i] != mesh["positions"][i] for i in locked):
         raise ValueError("Protected source vertices moved")
@@ -141,4 +196,5 @@ def bake_shape(mesh: dict, profile: dict) -> tuple[list, dict]:
     return result, {"moved_vertices": sum(d > 1e-10 for d in displaced),
                     "max_displacement_metres": max(displaced),
                     "protected_vertices_unchanged": True,
-                    "surface_stage": first["report"], "body_stage": second["report"]}
+                    "surface_stage": first["report"], "body_stage": second["report"],
+                    'soft_surface': soft_report}

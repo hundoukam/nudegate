@@ -533,19 +533,43 @@ class ColladaMesh:
 
 
 def validate_smooth_seams(reference: ColladaMesh, current: ColladaMesh,
-                          tolerance_degrees: float = 1.0) -> dict[str, Any]:
+                          tolerance_degrees: float = 1.0, *,
+                          vertex_map: dict[int, int] | list[int] | tuple[int, ...] | None = None) -> dict[str, Any]:
     """Reject shading splits within smoothing groups established by the source.
 
     Matching triangle/corner order maps current normals even when an exporter
     renames or deduplicates normal arrays. Only the reference's original
     coincident positions and original agreeing normals establish merged groups;
-    original hard edges retain separate acceptance groups.
+    original hard edges retain separate acceptance groups. A caller may provide
+    an explicit source-to-current vertex_map for a reindexed export. This map
+    is independently checked as a complete bijection preserving every ordered
+    triangle corner; absent a map, vertex indices must match exactly.
     """
     tolerance = _number(tolerance_degrees, "normal seam tolerance")
     if tolerance <= 0 or tolerance > 180:
         raise ValueError("Normal seam tolerance must be within (0, 180] degrees")
-    if len(reference.positions) != len(current.positions) or reference.triangles != current.triangles:
+    vertex_count = len(reference.positions)
+    original_triangles, current_triangles = reference.triangles, current.triangles
+    if vertex_count != len(current.positions) or len(original_triangles) != len(current_triangles):
         raise ValueError("Smooth seam validation requires matching indexed triangle topology")
+    if vertex_map is None:
+        if original_triangles != current_triangles:
+            raise ValueError("Smooth seam validation requires matching indexed triangle topology")
+    else:
+        if isinstance(vertex_map, (list, tuple)):
+            vertex_map = dict(enumerate(vertex_map))
+        if (not isinstance(vertex_map, dict)
+                or any(isinstance(key, bool) or not isinstance(key, int) for key in vertex_map)
+                or any(isinstance(value, bool) or not isinstance(value, int) for value in vertex_map.values())
+                or set(vertex_map) != set(range(vertex_count))
+                or set(vertex_map.values()) != set(range(vertex_count))):
+            raise ValueError("Smooth seam vertex_map must be a complete vertex bijection")
+        if ({index for triangle in original_triangles for index in triangle} != set(range(vertex_count))
+                or {index for triangle in current_triangles for index in triangle} != set(range(vertex_count))):
+            raise ValueError("Smooth seam vertex_map requires every vertex to be used")
+        if any(tuple(vertex_map[index] for index in original) != changed
+               for original, changed in zip(original_triangles, current_triangles)):
+            raise ValueError("Smooth seam vertex_map does not preserve ordered triangle corners")
     if any(corner.normal is None for mesh in (reference, current)
            for triangle in mesh._corners for corner in triangle):
         raise ValueError("Smooth seam validation requires NORMAL bindings on every corner")

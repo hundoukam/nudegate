@@ -160,6 +160,9 @@ def main() -> None:
     scene.render.resolution_x = 2000
     scene.render.resolution_y = 1500
     scene.render.resolution_percentage = 100
+    scene.render.pixel_aspect_x = 1.0
+    scene.render.pixel_aspect_y = 1.0
+    scene.render.use_border = False
     scene.render.image_settings.file_format = "PNG"
     scene.render.film_transparent = False
     shading = scene.display.shading
@@ -236,7 +239,7 @@ def main() -> None:
     camera_data.type = "ORTHO"
     aspect = scene.render.resolution_x / scene.render.resolution_y
     # With AUTO sensor fit and a landscape frame, ortho_scale is the width.
-    camera_data.ortho_scale = max((upper + 1.18) * aspect,
+    camera_data.ortho_scale = max((upper + 1.60) * aspect,
                                   columns * cell_width + 0.28)
     scene.camera = camera
     scene.render.filepath = str(output)

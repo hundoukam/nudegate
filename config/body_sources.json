@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "mask_version": "bcb-normal-female-study-v1",
-  "source_kind": "local BCB 3.17 archive",
+  "mask_version": "normal-strong-soft-study-v2",
+  "source_kind": "BCB normal families / pristine vanilla strong families",
   "families": {
     "human_elf_f": {
       "topology_id": "collada-topology-v1:045dc2100604efa5f4b114a6a0db2fe50e7c9184ddbe2c8c01337d11fcd1935c",
@@ -14,6 +14,58 @@
     "tiefling_f": {
       "topology_id": "collada-topology-v1:d27579a00e808c282bf73df641719266fa4f6f41fe6881b41c43e4432246b133",
       "position_sha256": "2aad430491d4cb8a866b88ed62063d328a650277f5f9060fa0e0bc6cbc93786f"
+    },
+    "human_elf_fs": {
+      "topology_id": "collada-topology-v1:db922bec17266b91d072a282a968605dcc4e6a879642e92297d7c505f0cc7f60",
+      "position_sha256": "b59f1cc1ec3acd8ee91116b0f53f1775f42dd6c6f53ed841036b05827e379463",
+      "lods": {
+        "0": {
+          "topology_id": "collada-topology-v1:db922bec17266b91d072a282a968605dcc4e6a879642e92297d7c505f0cc7f60",
+          "position_sha256": "b59f1cc1ec3acd8ee91116b0f53f1775f42dd6c6f53ed841036b05827e379463"
+        },
+        "1": {
+          "topology_id": "collada-topology-v1:512b45010fc520fc2d04f650dc6bc18d8f9e6156ce185f89680fa7c87edd1445",
+          "position_sha256": "7efd2f90d0e6cdd5cf8033a2c7712d23cb9283ef4cd98b5734f5d898b96b0388"
+        },
+        "2": {
+          "topology_id": "collada-topology-v1:582badef619e342028f6b0712b6cdf699ce2c9c084634405ac610be75f82f7c2",
+          "position_sha256": "4c6c5e441a5dd1994a27d3064ace27f4ff67baccd410ce8e37dca96ab7bc29a4"
+        },
+        "3": {
+          "topology_id": "collada-topology-v1:fb2cae4e9441b2ffe0234c7cc8a08e6e4d2e9767919844b5f5d97e5fcebc3c1d",
+          "position_sha256": "f70b2f56e9309a0e78d81d43b106af4484021de3033ae55584238ce4d3ecf58b"
+        },
+        "4": {
+          "topology_id": "collada-topology-v1:fff9ad0777d504a370c83dd091ecfec7ae546dcb925a89dfdadf288f545830eb",
+          "position_sha256": "44d77702cd93311d49e34f2f276396f703d4a3484d56d3c4b22816cd403c3a9e"
+        }
+      }
+    },
+    "tiefling_fs": {
+      "topology_id": "collada-topology-v1:c045951b2aee344ef149d2062928f2321d47c38d4ff0d7008a96a722458f4f23",
+      "position_sha256": "479c3f3f3deff76700c843107944eb6ddb4bfdbdd92369a072dc116aca3bba39",
+      "lods": {
+        "0": {
+          "topology_id": "collada-topology-v1:c045951b2aee344ef149d2062928f2321d47c38d4ff0d7008a96a722458f4f23",
+          "position_sha256": "479c3f3f3deff76700c843107944eb6ddb4bfdbdd92369a072dc116aca3bba39"
+        },
+        "1": {
+          "topology_id": "collada-topology-v1:ddd6cf63c97ef293318816d4145e2c79cd1820a1fb63478cde2482da216f0e38",
+          "position_sha256": "5ae9dc3dca5d6e4665ae1a98e437ff859bb5e44c105462fc7ef1225fea2e012e"
+        },
+        "2": {
+          "topology_id": "collada-topology-v1:f3ce6a5973b9be9947c41723492f4e6b5c2ab16ad3ebc2490e29c9f9ec064c9d",
+          "position_sha256": "d8ab00f8b97b045ad66eaf5e1980a4589bf8489213a7ac5058fddaf09d5e83ec"
+        },
+        "3": {
+          "topology_id": "collada-topology-v1:4cde951a818568d5c6e54e0d165e5c9da57ec18f9c0de53645882723c533ce35",
+          "position_sha256": "a19418df0d06f58f73191a1c44dfc49edd27d79826e06bcafc04742eb8da4d0b"
+        },
+        "4": {
+          "topology_id": "collada-topology-v1:c6e3e6b7384ff55cb64159e68a2d9bf245baa059f41994c4aa468ba3d770ff69",
+          "position_sha256": "9b71283e00c1c05165c17b3caeb915403eb7912a4f6e3c249babec1a6ad4ae64"
+        }
+      }
     }
   }
 }

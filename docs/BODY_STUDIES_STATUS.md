@@ -1,5 +1,12 @@
 # Body study progress, 2026-11-17
 
+**0.2 update:** the current build has 35 body files across five normal/strong
+female families and seven profiles, containing 91 LOD geometries. The larger
+female sources retain all five native LODs. Experimental new-Tav support covers
+27 compatible presets using 25 private roots; optional skin presentation uses
+six private materials. See [soft female frames](PLUSH_FRAMES.md) for current
+scope and limitations. The first-batch results below are retained as history.
+
 There are now **18 actual exported GR2 body studies**, not placeholder body names.
 Six profiles were baked separately for human/elf, githyanki and tiefling normal
 female sources. Each retains its own source geometry, materials and bind data.
