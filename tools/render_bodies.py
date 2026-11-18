@@ -148,6 +148,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument('--fit-width',action='store_true',help='Fit both views of large-volume variants inside each panel')
     args = parser.parse_args(sys.argv[args_start:])
     family, profiles = load_profiles(args.manifest.resolve())
     output = args.output.resolve()
@@ -190,6 +191,15 @@ def main() -> None:
                      for p in profiles)
     # A common display scale preserves the relative size of all profiles.
     scale = min(1.0, 1.62 / max_height) if max_height > 0 else 1.0
+    front_offset,side_offset = -.27,.88
+    if args.fit_width:
+        front_min = min(v[0]*scale for p in profiles for v in p['vertices'])
+        front_max = max(v[0]*scale for p in profiles for v in p['vertices'])
+        side_min = min(-v[1]*scale for p in profiles for v in p['vertices'])
+        side_max = max(-v[1]*scale for p in profiles for v in p['vertices'])
+        cell_width = max(cell_width,front_max-front_min+side_max-side_min+.55)
+        front_offset = -cell_width/2+.20-front_min
+        side_offset = front_offset+front_max+.15-side_min
     summaries = []
     for index, profile in enumerate(profiles):
         row, column = divmod(index, columns)
@@ -207,8 +217,8 @@ def main() -> None:
             raise ValueError(f"Corner normal count mismatch in {profile['path']}")
         mesh.normals_split_custom_set(profile["normals"])
         min_z = min(v[2] for v in vertices)
-        for view, position_x, angle in [("front", x - 0.27, 0.0),
-                                         ("side", x + 0.88, math.pi / 2)]:
+        for view, position_x, angle in [("front", x + front_offset, 0.0),
+                                         ("side", x + side_offset, math.pi / 2)]:
             obj = bpy.data.objects.new(f"{mesh.name}_{view}", mesh)
             scene.collection.objects.link(obj)
             obj.location = (position_x, 0.0, floor - min_z)
@@ -216,8 +226,8 @@ def main() -> None:
             obj.color = BODY_COLOR
         name = str(profile["variant"].get("label") or profile["variant"].get("id") or f"Profile {index + 1}")
         label(name, x, floor + 1.88, min(0.135, 2.5 / max(1, len(name))))
-        label("FRONT", x - 0.27, floor - 0.035, 0.052, MUTED_COLOR)
-        label("SIDE", x + 0.88, floor - 0.035, 0.052, MUTED_COLOR)
+        label("FRONT", x + front_offset, floor - 0.035, 0.052, MUTED_COLOR)
+        label("SIDE", x + side_offset, floor - 0.035, 0.052, MUTED_COLOR)
         summaries.append({"id": profile["variant"].get("id"), "dae": str(profile["path"]),
                           "vertices": len(vertices), "triangles": len(profile["triangles"]),
                           "custom_split_normals": len(profile["normals"])})

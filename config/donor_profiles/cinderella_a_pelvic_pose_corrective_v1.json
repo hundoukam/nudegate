@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "operation": "local source-displacement coherence, not source smoothing or sculpt",
+  "source_npz_sha256": "91cfedc858ffd6fe487da5fc812efa7472a2cf2ca3563c4ab3d84c62218ea5bd",
+  "source_pose_geometry_sha256": "2550d4167dcef8cc0bf9be0600e8c9d564a07635526bf70f2e53e35b377ae02a",
+  "reviewed_source_vertex_ids": [2482, 2487, 7357, 11180, 14669, 14984, 15015, 21079, 24537, 24879, 31933, 32117, 36925, 37109],
+  "inner_min": [-0.002766890746149993, 0.9786773287450571, 0.08855390060082809],
+  "inner_max": [0.0021401560724455338, 1.0240404020262286, 0.10777544892222927],
+  "fade_m": 0.001,
+  "target_displacement": [1.5077810132380076e-08, 0.0006878849702901535, 0.0003746357129175079],
+  "maximum_allowed_corrective_m": 0.001,
+  "maximum_verified_corrective_m": 0.00078365249268361,
+  "scope": "Selected Cinderella A pose only; optional authored-key variants require their own review. No source skin/topology changes or intersection exceptions."
+}

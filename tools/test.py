@@ -1,4 +1,4 @@
-"""Run source tests without installing the package or third-party dependencies."""
+"""Run source tests from the checkout; install authoring extras first."""
 from pathlib import Path
 import sys
 import unittest

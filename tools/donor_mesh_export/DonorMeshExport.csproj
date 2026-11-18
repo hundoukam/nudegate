@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <LSLibDir Condition="'$(LSLibDir)' == ''">$(UserProfile)/.cache/nudegate/gr2-tools/Divine-1.20.4</LSLibDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../physics_export/PhysicsExport.csproj" />
+    <PackageReference Include="Supercluster.KDTree.Standard" Version="[1.0.5]" />
+    <Reference Include="LSLib"><HintPath>$(LSLibDir)/LSLib.dll</HintPath></Reference>
+    <Reference Include="OpenTK.Mathematics"><HintPath>$(LSLibDir)/OpenTK.Mathematics.dll</HintPath></Reference>
+    <Content Include="$(LSLibDir)/*.dll" CopyToOutputDirectory="PreserveNewest" Link="%(Filename)%(Extension)" />
+    <None Include="../physics_export/toolchain-pins.json" Link="toolchain-pins.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="mapping-dependency-pins.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

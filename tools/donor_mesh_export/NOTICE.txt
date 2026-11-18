@@ -1,0 +1,5 @@
+Cloth selection and packing are based on nicoco007/lslib ClothUtils.cs, commit 9ce136678ade9a14d57b05897cfa47e6d6622803.
+Primary source: https://github.com/nicoco007/lslib/blob/9ce136678ade9a14d57b05897cfa47e6d6622803/LSLib/Granny/ClothUtils.cs
+MIT license: see nicoco-MIT-LICENSE.txt.
+ReferenceClothUtils.cs is copied without changes from that commit. Strict coincident mapping is the default; --allow-nearest explicitly enables the source's general nearest-three heuristics. Those distance heuristics are approximate per the source comments and do not establish in-game correctness.
+Supercluster.KDTree.Standard 1.0.5 matches the primary implementation's dependency, with an exact package version/lock and a runtime DLL SHA256 pin.

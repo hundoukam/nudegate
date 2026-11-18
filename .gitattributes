@@ -1,1 +1,3 @@
 * text=auto eol=lf
+# Preserve the pinned upstream implementation, including its CRLF and spaces.
+tools/donor_mesh_export/ReferenceClothUtils.cs -text -whitespace

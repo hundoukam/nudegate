@@ -3,7 +3,7 @@
 An experimental Baldur's Gate 3 project for adult NPC nudity, body variety and
 compatible body physics, inspired by NudePunk2077.
 
-**Current source version: 0.2.0 experimental. This is a development prototype, not an
+**Current source version: 0.3.0 experimental. This is a development prototype, not an
 all-NPC release.** The builder produces an appearance-only `.pak` from a local
 BG3 installation. It changes twelve explicitly reviewed adult root templates,
 creates private character visuals, removes embedded garment slots and disables
@@ -33,7 +33,8 @@ and shared body resources are never edited by this alpha.
 
 Requires Python 3.10+, an installed PC copy of BG3, and
 [LSLib / Divine](https://github.com/Norbyte/lslib/releases).
-Script Extender is not required for the current static alpha.
+The basic static alpha does not require Script Extender. The optional private
+texture styles require Script Extender 12 or later.
 
 ```powershell
 python tools/build.py --divine "C:\path\to\Divine.exe" --game-data "C:\path\to\Baldurs Gate 3\Data"
@@ -58,6 +59,29 @@ Game-derived outputs and third-party assets are excluded from Git.
 
 ## Body variety and jiggle
 
+The [selected Blender donor study](docs/DONOR_BODY_STUDY.md) now has a local
+Juno medium new-Tav prototype using the actual dense donor surface and rebuilt
+native cloth mappings. Authored large and chubby states are separate source
+exports. Runtime motion and skin appearance remain unverified; this is not the
+all-NPC distribution package.
+
+The additive 0.3 authoring pipeline keeps the original 35 body meshes and adds
+five new base shapes with separate nominal breast-growth buckets through +100.
+It includes frame-specific curve balancing and optional private strong-frame
+skin textures. See [the variety expansion](docs/VARIETY_EXPANSION.md) for build,
+preview, integrity-check and scope details. The new texture option requires
+Script Extender 12 or later; the earlier static packages do not.
+
+Local source-preserving prototypes explore continuous growth, broad attachments
+and static drape. Their +50/+100 labels are nominal growth strengths rather than
+exact projection or volume percentages. The latest visual review still found
+the shape unnatural, so donor-model shape transfer is being evaluated before
+further batch exports. These prototypes have not replaced the experimental
+cage backend in the authoring code. Integration and full-grid export validation
+remain pending. Runtime gravity,
+squeezing and new jiggle behavior are not yet implemented. The +100 cap applies
+to the current package grid; larger offline experiments remain separate.
+
 The basic alpha retains each character's original body family, so it also references
 compatible installed body replacers. The optional local body-study build now bakes
 **seven profiles across normal and strong female families**. It includes
@@ -76,7 +100,7 @@ The latest mesh counts, export results and artifact paths are in
 `tools/build_bodies.py` now edits actual COLLADA geometry, recalculates shading,
 exports GR2 and imports it again to check topology, skinning and position drift.
 The source catalog pins the reviewed source topology and positions. Neck,
-wrist, ankle, neck and central pelvic/tail attachment zones stay fixed.
+wrist, ankle and central pelvic/tail attachment zones stay fixed.
 Private resource registration preserves each family's skeleton and materials;
 BCB's stale LOD object names are replaced with actual exported object names.
 
@@ -107,6 +131,8 @@ anatomy attachment alignment still need in-game inspection.
 `src/nudegate/morphs.py` and `tools/morph.py` also support explicit masked JSON
 mesh snapshots for offline authoring. Texture-based areola variation and matched
 jiggle assets remain future work.
+The [local physics audit](docs/PHYSICS_COMPATIBILITY.md) records the separate
+cloth proxy, mapping and rig requirements that a jiggle prototype must preserve.
 
 ## Validation
 

@@ -65,6 +65,40 @@ def seam_locks(positions: list, triangles: list, rings: int = 2) -> set[int]:
     return {i for i, p in enumerate(canonical) if p in protected}
 
 
+def seam_distance_locks(positions: list, triangles: list, distance: float) -> set[int]:
+    """Lock true open boundaries plus a bounded surface-geodesic neighborhood.
+
+    Coordinates are canonical meters. UV splits use the existing six-decimal
+    source-position weld convention. Edge lengths are measured on that welded
+    graph, so a coarse triangle cannot turn a ring count into a large protected
+    area. Every true boundary stays locked even when distance is zero.
+    """
+    if (isinstance(distance, bool) or not isinstance(distance, (int,float))
+            or not math.isfinite(distance) or not 0 <= distance <= .05):
+        raise ValueError('Seam protection distance must be within [0, .05] canonical meters')
+    boundary = seam_locks(positions,triangles,rings=0)
+    keys = [tuple(round(float(v),6) for v in point) for point in positions]
+    neighbors = defaultdict(set)
+    for tri in triangles:
+        for a,b in zip(tri,tri[1:]+tri[:1]):
+            if keys[a] != keys[b]:
+                neighbors[keys[a]].add(keys[b])
+                neighbors[keys[b]].add(keys[a])
+    distances = {keys[i]:0.0 for i in boundary}
+    queue = [(0.0,key) for key in distances]
+    heapq.heapify(queue)
+    while queue:
+        value,key = heapq.heappop(queue)
+        if value != distances[key] or value >= distance:
+            continue
+        for other in sorted(neighbors[key]):
+            candidate = value + math.dist(key,other)
+            if candidate <= distance and candidate < distances.get(other,math.inf):
+                distances[other] = candidate
+                heapq.heappush(queue,(candidate,other))
+    return {i for i,key in enumerate(keys) if key in distances}
+
+
 def surface_quality(original: list, modified: list, triangles: list) -> dict:
     """Reject collapsed or locally reversed faces introduced by a study."""
     if len(original) != len(modified):
@@ -86,13 +120,23 @@ def surface_quality(original: list, modified: list, triangles: list) -> dict:
     return {"reversed_faces": flipped, "new_collapsed_faces": collapsed}
 
 
-def author_masks(positions: list, triangles: list, topology_id: str, frame=None) -> tuple[dict, dict]:
+def author_masks(positions: list, triangles: list, topology_id: str, frame=None, *, pelvis_front_top=1.12,
+                 seam_distance=None) -> tuple[dict, dict]:
+    """Author reviewed body fields; legacy default retains two seam rings.
+
+    ``seam_distance`` opts into bounded canonical-meter geodesic seam locks.
+    Physical attachment zones and the existing attachment feather still apply.
+    """
+    if isinstance(pelvis_front_top, bool) or not isinstance(pelvis_front_top, (int,float)) or not math.isfinite(pelvis_front_top) or not 1.03 <= pelvis_front_top <= 1.12:
+        raise ValueError('Invalid front pelvic protection height')
     if frame is not None:
         if len(frame) != 3 or any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or not .8 <= v <= 1.4 for v in frame):
             raise ValueError('Invalid reviewed body frame')
         canonical = [[point[k] / frame[k] for k in range(3)] for point in positions]
-        mesh, report = author_masks(canonical, triangles, topology_id)
+        mesh, report = author_masks(canonical, triangles, topology_id,
+                                    pelvis_front_top=pelvis_front_top,seam_distance=seam_distance)
         mesh['positions'] = positions
+        mesh['frame'] = list(frame)
         for region in mesh['regions'].values():
             region['center'] = [region['center'][k] * frame[k] for k in range(3)]
         report['frame'] = list(frame)
@@ -102,12 +146,13 @@ def author_masks(positions: list, triangles: list, topology_id: str, frame=None)
     height = max(p[1] for p in positions)
     if not 1.5 < height < 1.65:
         raise ValueError("Source dimensions do not match reviewed normal-female masks")
-    locked = seam_locks(positions, triangles)
+    locked = (seam_locks(positions,triangles) if seam_distance is None
+              else seam_distance_locks(positions,triangles,seam_distance))
     # Preserve attachment zones and the central pelvic region independently of
     # the spatial envelopes, including meshes whose seams happen to be closed.
     locked.update(i for i, (x, y, z) in enumerate(positions)
                   if y > 1.48 or y < .20 or abs(x) > .55
-                  or (.79 < y < 1.12 and abs(x) < .045))
+                  or (.79 < y < (pelvis_front_top if z < -.025 else 1.12) and abs(x) < .045))
     attachment_weights = attachment_falloff(positions, triangles, locked)
     regions = {}
     tips = {}
@@ -149,7 +194,8 @@ def author_masks(positions: list, triangles: list, topology_id: str, frame=None)
             region['weights'][i] *= attachment_weights[i]
     mesh = {"positions": positions, "regions": regions,
             "locked_vertices": sorted(locked), "topology_id": topology_id,
-            "triangles": triangles}
+            "triangles": triangles, "frame": [1, 1, 1],
+            "attachment_weights": attachment_weights}
     soft_weights = []
     for i, (x, y, z) in enumerate(positions):
         torso = band(y, .99, 1.08, 1.40, 1.49) * (1 - smooth(.18, .28, abs(x)))
@@ -158,8 +204,15 @@ def author_masks(positions: list, triangles: list, topology_id: str, frame=None)
         tip_mask = max(regions['nipple_left']['weights'][i], regions['nipple_right']['weights'][i])
         soft_weights.append(max(torso, arms, legs) * (1 - tip_mask) * attachment_weights[i])
     mesh['soft_weights'] = soft_weights
-    return mesh, {"surface_landmarks": tips, "locked_vertices": len(locked),
-                  "mask_version": "normal-strong-soft-study-v2", 'attachment_feather_metres': .035}
+    report = {"surface_landmarks": tips, "locked_vertices": len(locked),
+              "mask_version": "normal-strong-soft-study-v2", 'attachment_feather_metres': .035}
+    if seam_distance is not None:
+        report['seam_protection'] = {'method':'bounded-surface-geodesic-v1',
+                                     'distance_canonical_metres':seam_distance,
+                                     'source_weld_precision_metres':1e-6,
+                                     'true_boundary_vertices':len(seam_locks(positions,triangles,rings=0)),
+                                     'spatial_attachment_locks_preserved':True}
+    return mesh,report
 
 
 def bake_shape(mesh: dict, profile: dict) -> tuple[list, dict]:
@@ -191,7 +244,10 @@ def bake_shape(mesh: dict, profile: dict) -> tuple[list, dict]:
     displaced = [math.dist(a, b) for a, b in zip(mesh["positions"], result)]
     if any(result[i] != mesh["positions"][i] for i in locked):
         raise ValueError("Protected source vertices moved")
-    if max(displaced) > .15:
+    limit = profile.get('max_shape_displacement', .15)
+    if isinstance(limit, bool) or not isinstance(limit, (int, float)) or not math.isfinite(limit) or not .01 <= limit <= .30:
+        raise ValueError('Invalid authored shape displacement limit')
+    if max(displaced) > limit:
         raise ValueError("Shape exceeded the authored displacement limit")
     return result, {"moved_vertices": sum(d > 1e-10 for d in displaced),
                     "max_displacement_metres": max(displaced),

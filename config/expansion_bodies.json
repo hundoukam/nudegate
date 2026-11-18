@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "collection_id": "variety-expansion-v0.3",
+  "profiles": [
+    {"id":"curvy","label":"Curvy soft","chest_scale":[1.10,1.08,1.28],"waist_scale":[1.06,1,1.08],"hips_scale":[1.24,1,1.14],"thigh_scale":[1.15,1,1.10],"surface_scale":[1.1,1.1,1.1],"chest_drop":-0.006,"soft_surface":{"passes":10,"padding":0.004,"max_displacement":0.025,"reverse_strength":-0.25},"strong_adjustments":{"hip_width":1.24,"thigh_width":1.10,"bust_width":1.055,"bust_projection":1.04},"body_details":{"belly":0.008},"skin_style":"soft"},
+    {"id":"chubby","label":"Chubby","chest_scale":[1.10,1.10,1.28],"waist_scale":[1.42,1,1.32],"hips_scale":[1.35,1,1.25],"thigh_scale":[1.28,1,1.20],"surface_scale":[1.1,1.1,1.1],"chest_drop":-0.008,"soft_surface":{"passes":12,"padding":0.008,"max_displacement":0.025,"reverse_strength":-0.25},"strong_adjustments":{"hip_width":1.24,"thigh_width":1.10,"bust_width":1.055,"bust_projection":1.04},"body_details":{"belly":0.040},"skin_style":"soft"},
+    {"id":"pear","label":"Soft pear","chest_scale":[1.04,1.04,1.12],"waist_scale":[1.25,1,1.24],"hips_scale":[1.42,1,1.25],"thigh_scale":[1.30,1,1.22],"surface_scale":[1,1,1],"chest_drop":-0.006,"soft_surface":{"passes":10,"padding":0.006,"max_displacement":0.025,"reverse_strength":-0.25},"strong_adjustments":{"hip_width":1.24,"thigh_width":1.10,"bust_width":1.055,"bust_projection":1.04},"body_details":{"belly":0.022},"skin_style":"soft"},
+    {"id":"defined","label":"Defined abs","chest_scale":[1.02,1,1.08],"waist_scale":[0.98,1,1.02],"hips_scale":[1.12,1,1.08],"thigh_scale":[1.10,1,1.08],"surface_scale":[1,1,1],"chest_drop":0,"soft_surface":{"passes":3,"padding":0.002,"max_displacement":0.015,"reverse_strength":-0.35},"strong_adjustments":{"hip_width":1.18,"thigh_width":1.05,"bust_width":1.055,"bust_projection":1.04},"body_details":{"abs":0.004},"skin_style":"defined"},
+    {"id":"fantasy","label":"Fantasy bust","chest_scale":[1.20,1.15,1.80],"waist_scale":[1.10,1,1.12],"hips_scale":[1.30,1,1.18],"thigh_scale":[1.18,1,1.13],"surface_scale":[1.2,1.2,1.15],"chest_drop":-0.004,"soft_surface":{"passes":8,"padding":0.004,"max_displacement":0.025,"reverse_strength":-0.25},"strong_adjustments":{"hip_width":1.24,"thigh_width":1.10,"bust_width":1.055,"bust_projection":1.04},"body_details":{"belly":0.010},"skin_style":"soft"}
+  ],
+  "breast_percentages": [0, 50, 100]
+}

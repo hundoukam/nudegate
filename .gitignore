@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+*.egg-info/
 build/
 dist/
 .cache/
@@ -8,3 +9,7 @@ dist/
 *.lsf
 *.gr2
 *.dds
+/tools/physics_export/bin/
+/tools/physics_export/obj/
+/tools/donor_mesh_export/bin/
+/tools/donor_mesh_export/obj/
