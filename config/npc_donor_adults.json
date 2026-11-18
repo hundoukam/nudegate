@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "adults": [
+    {
+      "template_id": "4dbce619-49a2-4fae-b3d9-72aeadc0ee38",
+      "expected_name": "QUEST_HAG_Mayrina",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "mayrina",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "Mayrina is Connor Vinderblad's adult widow in the Save Mayrina quest. The quest root has HAG_Mayrina stats. Its only child, the hag's adult Mayrina disguise, explicitly declares its own visual."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "d54ede98-a80b-45e8-824f-13d778c13412",
+      "expected_name": "GUS_HAG_MayrinaDouble",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "mayrina",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "This is the hag's disguise as the adult widow Mayrina. Its parent is the reviewed QUEST_HAG_Mayrina and its stats are HAG_Mayrina_Polymorph. Both appearances use the same body to preserve the disguise."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "41a60a7d-4949-4449-ab82-3ff3bef1e3c9",
+      "expected_name": "LOW_BlushingMermaid_QuenoraGrizly",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "captain-grizly",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "Quenora Grisly is the adult pirate captain at the Blushing Mermaid. This named Lower City root and its character visual identify QuenoraGrizly and its stats are LOW_QuenoraGrizly."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "303f8bbc-0a71-4c85-a82f-6be9b92b8336",
+      "expected_name": "S_GLO_Wyll_Cambion_HumanForm",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "mizora",
+      "donor_profile": "donor_juno_b",
+      "review": {
+        "adult": true,
+        "evidence": "This is the adult pact-holder Mizora in the human disguise used in Wyll's story. The named character visual and root both identify Wyll_Cambion_HumanForm. This approval is specific to this human disguise."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "b2fe9ed6-c6b4-43fe-af6a-e463c5ae33cd",
+      "expected_name": "LOW_OskarsBeloved_KerriSpirit",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "kerri-evenfield",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "Kerri Evenfield is Oskar Fevras's deceased adult former partner. This Lower City quest root is her named spirit appearance in Free the Artist, with LOW_OskarsBeloved_Spirit stats."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "b7785e33-a7c8-4e49-82d1-38707ede0250",
+      "expected_name": "TEMP_S_WYR_Dalyria_Shirtless",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "dalyria",
+      "donor_profile": "donor_cinderella_a",
+      "review": {
+        "adult": true,
+        "evidence": "Dalyria was a physician before Cazador made her a vampire spawn. Both this alternate root and its visual identify the adult Dalyria by name. Its approval is specific to that appearance."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "ea2388ae-f585-40c7-82b1-712f444732de",
+      "expected_name": "CINE_Elves_Female_Drow_Minthara",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "minthara",
+      "donor_profile": "donor_mercy_c",
+      "review": {
+        "adult": true,
+        "evidence": "This cinematic adult Minthara root directly inherits the reviewed normal gameplay root of the drow commander. Her original catalog entries and this appearance use the same identity seed."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "2f1d1763-9f7d-45f6-a102-5bd388fb7e86",
+      "expected_name": "TEMP_Minthara_Hoodless",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "minthara",
+      "donor_profile": "donor_mercy_c",
+      "review": {
+        "adult": true,
+        "evidence": "The explicit hoodless appearance of the same adult commander Minthara has GOB_DrowCommander stats and equipment. Its named visual and root identify her."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "3333491e-dc88-4b61-8539-fed9f3af5ca1",
+      "expected_name": "TEMP_Minthara_Naked",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "minthara",
+      "donor_profile": "donor_mercy_c",
+      "review": {
+        "adult": true,
+        "evidence": "The original adult Minthara nude appearance has GOB_DrowCommander stats and a character visual named TEMP_Minthara_Naked. Its body matches her other appearances."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "fb266778-3154-4ee7-8fbb-dece0e3058b2",
+      "expected_name": "CINE_S_GLO_Isobel_DarkUrge_Order",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "isobel",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "Isobel Thorm is an adult cleric of Selune and Dame Aylin's partner. This Dark Urge cinematic root explicitly points to the named S_GLO_Isobel visual and covers that appearance."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "d8a45853-ed33-4fbf-967c-35d459c50e61",
+      "expected_name": "CINE_HUM_F_EmperorDukeStellmane",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "duke-stelmane",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "Belynne Stelmane was an adult duke of Baldur's Gate. This specific Emperor cinematic depicts Duke Stelmane as the city's officeholder and has its own named visual."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "a8240a68-1d48-4391-a878-765bcb1390e0",
+      "expected_name": "CINE_Mystra",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "mystra",
+      "donor_profile": "donor_juno_b",
+      "review": {
+        "adult": true,
+        "evidence": "Mystra is the adult goddess of magic in Gale's story. The exact cinematic root and character visual are named CINE_Mystra and cover her depicted adult appearance."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "a5fb4957-29c1-4f58-a0e4-6ced8efccb0d",
+      "expected_name": "UNI_WYR_DapperDrow_Sister_Naked",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "nym-orlith",
+      "review": {
+        "adult": true,
+        "evidence": "Nym Orlith is the adult drow courtesan working at Sharess' Caress. This is her named local sister appearance and uses WYR_DapperDrow_Sister stats."
+      },
+      "enabled": true,
+      "donor_profile": "donor_jubilee_b"
+    },
+    {
+      "template_id": "50f94f9b-a93e-45c8-b5d1-adc4d0fb4a17",
+      "expected_name": "CINE_WYR_DapperDrow_Sister_Nude",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "nym-orlith",
+      "review": {
+        "adult": true,
+        "evidence": "This cinematic appearance of the adult courtesan Nym Orlith uses WYR_DapperDrow_Sister stats and a visual explicitly named UNI_WYR_DapperDrow_Sister_Naked."
+      },
+      "enabled": true,
+      "donor_profile": "donor_jubilee_b"
+    },
+    {
+      "template_id": "d8ccafbc-7d82-48ff-9bec-fa63fe2dec04",
+      "expected_name": "S_GLO_Desire_Hooded",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "counsellor-florrick",
+      "review": {
+        "adult": true,
+        "evidence": "This hooded look belongs to the adult Counsellor Florrick, advisor to Grand Duke Ravengard. The root inherits her S_GLO_Desire template and has GLO_CounsellorFlorrick stats."
+      },
+      "enabled": true,
+      "donor_profile": "donor_kiriko_c"
+    },
+    {
+      "template_id": "37f1bf91-106a-49f3-8c9f-16476109e885",
+      "expected_name": "S_GLO_Desire_Bruised",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "counsellor-florrick",
+      "review": {
+        "adult": true,
+        "evidence": "This bruised look belongs to the adult Counsellor Florrick, advisor to Grand Duke Ravengard. The root inherits her S_GLO_Desire template and has GLO_CounsellorFlorrick stats."
+      },
+      "enabled": true,
+      "donor_profile": "donor_kiriko_c"
+    },
+    {
+      "template_id": "e7b4bc5b-3ca5-4579-8a54-2de1075cf5a3",
+      "expected_name": "S_GLO_Desire_HangedPhysics",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "counsellor-florrick",
+      "review": {
+        "adult": true,
+        "evidence": "This execution appearance belongs to the adult Counsellor Florrick, advisor to Grand Duke Ravengard. It inherits her S_GLO_Desire root and has GLO_CounsellorFlorrick stats."
+      },
+      "enabled": true,
+      "donor_profile": "donor_kiriko_c"
+    },
+    {
+      "template_id": "09c718c6-7f54-4777-81bb-e946fbbb99b9",
+      "expected_name": "CINE_DEN_BrokenBard",
+      "expected_body_set_visual": "820ddd41-7946-f026-099f-7034983d50d2",
+      "body_seed": "alfira",
+      "review": {
+        "adult": true,
+        "evidence": "Alfira is the adult tiefling bard and Lakrissa's partner. This grove cinematic has Tiefling_Bard stats and explicitly references her S_DEN_BrokenBard visual."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "0a4d2393-866c-4f71-b353-9ff641235f45",
+      "expected_name": "ORIGIN_INTRO_Laezel",
+      "expected_body_set_visual": "b7bfa2d3-4dad-d8a3-8639-9e3dddb97a00",
+      "body_seed": "3a0351bd-0b2f-4fbf-84a6-30ad80bb3100",
+      "review": {
+        "adult": true,
+        "evidence": "Lae'zel is the adult gith warrior already reviewed in the original companion catalog. This separate ORIGIN_INTRO_Laezel root has its own explicitly named visual."
+      },
+      "enabled": true
+    },
+    {
+      "template_id": "69f4c031-8d4e-41c5-997b-4d39a763ac66",
+      "expected_name": "TWN_VlaakithAttack_VlaakithForm",
+      "expected_body_set_visual": "b7bfa2d3-4dad-d8a3-8639-9e3dddb97a00",
+      "body_seed": "vlaakith-attack-form",
+      "review": {
+        "adult": true,
+        "evidence": "This is the named attack-quest appearance depicting the adult githyanki lich queen Vlaakith. Both the root and its explicit visual identify TWN_VlaakithAttack_VlaakithForm."
+      },
+      "enabled": true
+    }
+  ]
+}

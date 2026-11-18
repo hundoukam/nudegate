@@ -1,0 +1,1587 @@
+{
+  "schema_version": 1,
+  "actors": [
+    {
+      "actor_id": "30ee2bc0-0e69-4999-8d1c-8335c439cecf",
+      "expected_name": "S_DEN_BirdSender",
+      "template_id": "e9bf55b6-59f8-4bb1-ad4e-06462a3d3467",
+      "expected_visual_id": "f5ff981d-98c7-e907-10b2-0f24ef52b289",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-apikusis",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Apikusis",
+      "review": {
+        "adult": true,
+        "evidence": "A serving druid of the Emerald Grove who tends the messengers for Archdruid Halsin. Stock English display name: Apikusis."
+      }
+    },
+    {
+      "actor_id": "d1de6b4d-02d1-47f9-8e9e-55a593e3dc71",
+      "expected_name": "S_DEN_DruidGuard_001",
+      "template_id": "dee52b77-01e5-4081-bc91-79e20c0e19fb",
+      "expected_visual_id": "2987de9b-dd32-e8c4-3c63-e3085c416f6f",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-jeorna",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Jeorna",
+      "review": {
+        "adult": true,
+        "evidence": "A serving druid of the Emerald Grove who stands guard at the entrance to Kagha's ritual. Stock English display name: Jeorna."
+      }
+    },
+    {
+      "actor_id": "7cae8e24-d610-4229-859d-7b2da7c5d162",
+      "expected_name": "S_DEN_RitualDruid_003",
+      "template_id": "ffcf9408-6695-4e7a-9e57-749da0992df7",
+      "expected_visual_id": "7140e2c0-2698-def5-fa07-f5cd1caf6291",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-inwe",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Inwe",
+      "review": {
+        "adult": true,
+        "evidence": "An officiating druid of the Emerald Grove taking part in the Rite of Thorns. Stock English display name: Inwe."
+      }
+    },
+    {
+      "actor_id": "4b9818fa-cca6-4bad-b382-4c01334ef22a",
+      "expected_name": "S_GOB_ZhentarimGuard_Ranger_01",
+      "template_id": "3b5d2808-af28-47f5-9484-eb5694dd99ce",
+      "expected_visual_id": "7c7d2427-db21-ed71-2a73-f086055aa161",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-erna",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Erna",
+      "review": {
+        "adult": true,
+        "evidence": "Paid Zhentarim mercenary or caravan guard on an assigned security detail. Stock English display name: Erna."
+      }
+    },
+    {
+      "actor_id": "afc5350d-dc9f-4808-b6ce-d7b1bb7c8229",
+      "expected_name": "S_GOB_ZhentarimGuard_Ranger_02",
+      "template_id": "eea4b002-cadc-43d5-a096-b2951d9f15ee",
+      "expected_visual_id": "fa68f096-23cb-8e14-eb1e-5e8cf000a7ad",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-yerle",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Yerle",
+      "review": {
+        "adult": true,
+        "evidence": "Paid Zhentarim mercenary or caravan guard on an assigned security detail. Stock English display name: Yerle."
+      }
+    },
+    {
+      "actor_id": "f48078e6-ec51-49a2-a244-9d0a72af5257",
+      "expected_name": "S_HAV_EnteringHaven_Guard",
+      "template_id": "b9e7a9fb-05b9-4eed-b2fc-5e8a8ed86968",
+      "expected_visual_id": "585b3810-292f-6e15-61f8-7e06eb77ac9e",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-harper-elifer",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Harper Elifer",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Harper on a scout, sentry or ambush detail at Last Light or in the Shadow-Cursed Lands. Stock English display name: Harper Elifer."
+      }
+    },
+    {
+      "actor_id": "39ace2b4-699d-468c-a664-8a06492d997a",
+      "expected_name": "S_HAV_FlamingFist_002",
+      "template_id": "7263b210-2cff-4bc7-bcb3-23ec35ac7723",
+      "expected_visual_id": "6cff9d3e-4fdf-bcc6-d67a-11cdd7edd47d",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-aubree",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Aubree",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Aubree."
+      }
+    },
+    {
+      "actor_id": "eb083eb6-066c-4693-8fb8-575bc4c71373",
+      "expected_name": "S_HAV_FlamingFist_004",
+      "template_id": "801be74f-6f1c-4fcd-bace-48a0308304bb",
+      "expected_visual_id": "5f2af3d5-3bea-9724-87cf-d31395684ea2",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-j-ehlar",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist J'ehlar",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist J'ehlar."
+      }
+    },
+    {
+      "actor_id": "8082f1d4-8942-492e-8d26-1e1ed6bd881f",
+      "expected_name": "S_HAV_HarperGuard_001",
+      "template_id": "5d8ed432-0af7-4911-a840-e0f8b6af95ab",
+      "expected_visual_id": "55ec1d02-f699-f964-266f-93955c6f083c",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-harper-mijah",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Harper Mijah",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Harper on a scout, sentry or ambush detail at Last Light or in the Shadow-Cursed Lands. Stock English display name: Harper Mijah."
+      }
+    },
+    {
+      "actor_id": "ff70f59a-7d50-4e69-a768-60a97c6fb57d",
+      "expected_name": "S_HAV_HavenOutcasts_FountainPatrol_Caster",
+      "template_id": "5d8ed432-0af7-4911-a840-e0f8b6af95ab",
+      "expected_visual_id": "1447dc71-1a57-08e6-61a9-23469de5563f",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-harper-chenti",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Harper Chenti",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Harper on a scout, sentry or ambush detail at Last Light or in the Shadow-Cursed Lands. Stock English display name: Harper Chenti."
+      }
+    },
+    {
+      "actor_id": "d44b6aee-7737-4961-bb2b-e7920b003107",
+      "expected_name": "S_HAV_HavenOutcasts_RoofWatcher_Caster",
+      "template_id": "605aeb41-9ef5-455c-9e03-ab90ee62432e",
+      "expected_visual_id": "48f8ba18-cc44-30c1-541d-3fd61117f6a3",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-harper-terradissia",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Harper Terradissia",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Harper on a scout, sentry or ambush detail at Last Light or in the Shadow-Cursed Lands. Stock English display name: Harper Terradissia."
+      }
+    },
+    {
+      "actor_id": "f61ed726-793d-4611-a234-ad5a6b487514",
+      "expected_name": "S_LOW_BaldursGate_FlamingFist_Cleric_001",
+      "template_id": "2774a43e-db7a-49d4-90b2-e07097b0b531",
+      "expected_visual_id": "edb56123-ea8f-de72-3e08-54415699e7ee",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-healer-darbonna",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Healer Darbonna",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Healer Darbonna."
+      }
+    },
+    {
+      "actor_id": "db0f9ee3-bdda-43f9-82e3-27f7e5ae6da9",
+      "expected_name": "S_LOW_BaldursGate_FlamingFist_Melee_001",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "0eda535f-6029-dfcf-0263-5fbc684e71f1",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-qirahe",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Qirahe",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Qirahe."
+      }
+    },
+    {
+      "actor_id": "730ac8f8-1ea6-43ac-a106-a1094450ce13",
+      "expected_name": "S_LOW_BaldursGate_FlamingFist_Melee_004",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "09451ad6-00c9-1474-bbbe-761bd30051ef",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-grassley",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Fist Grassley",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Grassley."
+      }
+    },
+    {
+      "actor_id": "0517dac3-e9f9-4d40-a863-2034f4a865fb",
+      "expected_name": "S_LOW_BaldursMouth_EstraStir",
+      "template_id": "ef845ccb-4302-41c1-8681-dc47292247aa",
+      "expected_visual_id": "7a8f2045-f0f6-0eaf-8da0-1cb2b9ee0919",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-estra-stir",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Estra Stir",
+      "review": {
+        "adult": true,
+        "evidence": "Journalist for the Baldur's Mouth Gazette who approaches the party for a story. Stock English display name: Estra Stir."
+      }
+    },
+    {
+      "actor_id": "b887a1f8-dab3-4f03-98ca-a61433e9fdcd",
+      "expected_name": "S_LOW_BaldursMouth_FrontDoorGuard_002",
+      "template_id": "99361f29-697d-414e-b927-16d5fdff093b",
+      "expected_visual_id": "25cdeeb1-4d96-16c7-f6ac-ce540a0b6aee",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-guard-baalfe",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Guard Baalfe",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Guard Baalfe."
+      }
+    },
+    {
+      "actor_id": "a74a49eb-1406-4570-8dda-065c929a228f",
+      "expected_name": "S_LOW_BaldursMouth_Guard01",
+      "template_id": "db70a540-e582-4b5e-a6f1-df41d0fb9078",
+      "expected_visual_id": "8a49d968-ad91-3d2b-1b13-42e2e85ff3a8",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-guard-unilda-tiro",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Guard Unilda Tiro",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Guard Unilda Tiro."
+      }
+    },
+    {
+      "actor_id": "22eab8d8-2360-4a8f-9149-349fd7959b24",
+      "expected_name": "S_LOW_BaldursMouth_Reporter_01",
+      "template_id": "ef845ccb-4302-41c1-8681-dc47292247aa",
+      "expected_visual_id": "2edb45cf-92b8-ff79-91ef-8972e000e596",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-salene-freig",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Salene Freig",
+      "review": {
+        "adult": true,
+        "evidence": "Reporter employed by the Baldur's Mouth Gazette, identified by her name and reporter placement. Stock English display name: Salene Freig."
+      }
+    },
+    {
+      "actor_id": "750a35b3-b0c5-4007-ae1a-4446c95a56ae",
+      "expected_name": "S_LOW_BaneiteOfficer14",
+      "template_id": "99361f29-697d-414e-b927-16d5fdff093b",
+      "expected_visual_id": "75cd1c4a-084b-bbed-8991-3351621e63ec",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-of-bane-gudrun",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Fist of Bane Gudrun",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Fist of Bane Gudrun."
+      }
+    },
+    {
+      "actor_id": "f4a8f9e0-564c-41ed-8598-4c350b88f0e8",
+      "expected_name": "S_LOW_BaneiteOfficer18",
+      "template_id": "99361f29-697d-414e-b927-16d5fdff093b",
+      "expected_visual_id": "644d8f56-9502-1f6c-cb17-d1c72e3e2fce",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-of-bane-zana-hade",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Fist of Bane Zana Hade",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Fist of Bane Zana Hade."
+      }
+    },
+    {
+      "actor_id": "163798ab-ea5f-4934-b215-b6061b576d05",
+      "expected_name": "S_LOW_BasiliskGate_Caster",
+      "template_id": "1a80541e-f990-4a07-ba08-008b9992f7be",
+      "expected_visual_id": "1b192864-1338-b800-05e4-6f9f6de712a2",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-eostre",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Fist Eostre",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Eostre."
+      }
+    },
+    {
+      "actor_id": "6080d533-820b-4802-bf0b-fd27066a4a9b",
+      "expected_name": "S_LOW_BasiliskGate_Sentinel",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "515445c8-dd24-592b-a623-2d47f856d4b3",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-clover",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Clover",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Clover."
+      }
+    },
+    {
+      "actor_id": "eadf119c-6484-4a76-994f-6702d7b18f3c",
+      "expected_name": "S_LOW_BasiliskGate_Sergeant",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "f690084e-dec7-4606-8aac-bd94a62ca45a",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-manip-seyama",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Manip Seyama",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Manip Seyama. Recorded title: The Basilisk's Fang."
+      }
+    },
+    {
+      "actor_id": "f83df228-b03f-465d-aae5-c40007249f19",
+      "expected_name": "S_LOW_BereavedMother",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "94d17830-6de6-40ea-884d-fbe462d6ed5b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-anita-fischer",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Anita Fischer",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Anita Fischer."
+      }
+    },
+    {
+      "actor_id": "4fd8e88d-75ca-4fc4-a73c-d8c7ba85b873",
+      "expected_name": "S_LOW_CountingHouse_Clerk_02",
+      "template_id": "baa8d8d0-ca0f-43cc-a079-60c2c95b81ff",
+      "expected_visual_id": "444c6f4c-01aa-2280-9e74-39d3da9c9b31",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-clerk-zollerix",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Clerk Zollerix",
+      "review": {
+        "adult": true,
+        "evidence": "A bank clerk employed by the Counting House. Stock English display name: Clerk Zollerix."
+      }
+    },
+    {
+      "actor_id": "4316b95f-6624-4601-bceb-bdddb8e0ba62",
+      "expected_name": "S_LOW_CountingHouse_Guard_02",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "c4ebbc2f-81f9-89d2-a75c-c275c9078d35",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-erus",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Cashguard Artillerist Erus",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Erus."
+      }
+    },
+    {
+      "actor_id": "400c9176-b9b5-448c-a283-156b15125eec",
+      "expected_name": "S_LOW_CountingHouse_Guard_05",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "c6cda293-7edf-16e5-31d5-7bdce190a65e",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-yonni",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Cashguard Yonni",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Yonni."
+      }
+    },
+    {
+      "actor_id": "e4ff4283-9c1c-4fd7-8e7c-b7fa27b789a8",
+      "expected_name": "S_LOW_CountingHouse_Guard_08",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "c6f05d52-ecba-91d0-45fe-ab33c122971d",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-galleass",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Cashguard Galleass",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Galleass."
+      }
+    },
+    {
+      "actor_id": "0aadf193-523e-40ef-80b6-fcfd5e56143f",
+      "expected_name": "S_LOW_CountingHouse_Guard_09",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "ec47755d-9468-b279-481d-5ff921b9b204",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-triava",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Cashguard Artillerist Triava",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Triava."
+      }
+    },
+    {
+      "actor_id": "b2e920a0-0ca6-463c-beed-6fee81a6bb0b",
+      "expected_name": "S_LOW_CountingHouse_Guard_11",
+      "template_id": "9e054949-8251-438e-bbf5-7371815b5bea",
+      "expected_visual_id": "6a7e5fbe-d44f-8920-e80c-f359a0b04bbe",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-basher-vikki",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Cashguard Basher Vikki",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Basher Vikki."
+      }
+    },
+    {
+      "actor_id": "4ed00592-af13-4eb4-8bfc-e337135b8b87",
+      "expected_name": "S_LOW_CountingHouse_Guard_12",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "c66a04c6-716b-b9f2-785e-6c963013b51e",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-helenia",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Cashguard Helenia",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Helenia."
+      }
+    },
+    {
+      "actor_id": "6cf1730a-50af-49e2-b7f4-1ff52d448071",
+      "expected_name": "S_LOW_CountingHouse_HeadBankerOfficeGuard",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "c7838dbe-5c2a-1da5-3d3c-580721abf7f4",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-faona",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Cashguard Artillerist Faona",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Faona."
+      }
+    },
+    {
+      "actor_id": "f5d6f408-f7d0-4d36-aef9-44e578727fd9",
+      "expected_name": "S_LOW_CountingHouse_HeadClerkOfficeGuard",
+      "template_id": "9e054949-8251-438e-bbf5-7371815b5bea",
+      "expected_visual_id": "a12db507-3f5f-c514-2123-e1d0dc8ac896",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-basher-karol",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Cashguard Basher Karol",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Basher Karol."
+      }
+    },
+    {
+      "actor_id": "33446759-12f2-41ed-aba7-4a4f4408c5fe",
+      "expected_name": "S_LOW_CountingHouse_LobbyStairsGuard",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "2fd9ca49-b3dc-fe66-cecb-453f53ddedd4",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-theoda",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Cashguard Artillerist Theoda",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Theoda."
+      }
+    },
+    {
+      "actor_id": "2eb23f41-9a39-4b28-b2e5-3409f6669b70",
+      "expected_name": "S_LOW_CountingHouse_PrivateGuard_01",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "7f7ccf64-6258-6950-e6d7-94be58f08bed",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-morra",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Cashguard Artillerist Morra",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Morra."
+      }
+    },
+    {
+      "actor_id": "459e4fa3-c9f3-478a-ba56-e09431674e32",
+      "expected_name": "S_LOW_CountingHouse_PrivateGuard_03",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "62afefc7-1780-e141-fc35-1cf9b1448106",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-loretta",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Cashguard Artillerist Loretta",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Loretta."
+      }
+    },
+    {
+      "actor_id": "41a0b028-9e14-4781-8a06-cb3cb8a9ee4f",
+      "expected_name": "S_LOW_CountingHouse_VaultButtonGuard",
+      "template_id": "403e4025-2365-42a5-b561-c71b40ece631",
+      "expected_visual_id": "53e87509-0ed5-20bb-06a0-0fc65950f02c",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-artillerist-smathers",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Cashguard Artillerist Smathers",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Artillerist Smathers."
+      }
+    },
+    {
+      "actor_id": "936953b6-059b-4ed6-b03a-5d1b340f8889",
+      "expected_name": "S_LOW_CountingHouse_VaultMainGuard",
+      "template_id": "9e054949-8251-438e-bbf5-7371815b5bea",
+      "expected_visual_id": "8f3ad517-1d85-10e2-dd36-c353c17c367b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-basher-nickelow",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Cashguard Basher Nickelow",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Basher Nickelow."
+      }
+    },
+    {
+      "actor_id": "971f5890-e0ae-49ef-9a04-5e69ebdf8159",
+      "expected_name": "S_LOW_Elfsong_FlamingFist_002",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "317fae9d-8790-c535-601c-504c0e8f0c27",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-aguta",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Aguta",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Aguta."
+      }
+    },
+    {
+      "actor_id": "3d69c599-5218-4b3d-9845-3c19b8a14278",
+      "expected_name": "S_LOW_FireworksHouse_BaniteClerk02",
+      "template_id": "eda0ef2a-a1c5-455e-8805-e1f95c56113d",
+      "expected_visual_id": "37d1556f-bcd5-90ff-6253-105322f42701",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-clerk-tamara",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Clerk Tamara",
+      "review": {
+        "adult": true,
+        "evidence": "The named clerk working inside Felogyr's Fireworks. Stock English display name: Clerk Tamara."
+      }
+    },
+    {
+      "actor_id": "2dc8b619-4962-4da9-9ab9-011c2f08133e",
+      "expected_name": "S_LOW_FireworksHouse_BaniteGuard02",
+      "template_id": "d7340e9f-f7b7-4d24-bdca-5e751aabaff3",
+      "expected_visual_id": "c51de1c6-3b14-80e0-8965-27beba71c327",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-feloguard-liadan",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Feloguard Liadan",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Feloguard Liadan."
+      }
+    },
+    {
+      "actor_id": "af2dde9a-b304-4656-b871-6804ff8247a9",
+      "expected_name": "S_LOW_FireworksHouse_BaniteGuard03",
+      "template_id": "a90b6296-1261-44d1-b6bf-4f07eb0f7b77",
+      "expected_visual_id": "a9093015-a30d-285c-04d0-4e99e20c5e08",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-feloguard-maeve",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Feloguard Maeve",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Feloguard Maeve."
+      }
+    },
+    {
+      "actor_id": "dc8648df-b19d-4739-9104-0a39bb054470",
+      "expected_name": "S_LOW_FireworksHouse_BaniteGuard06",
+      "template_id": "99361f29-697d-414e-b927-16d5fdff093b",
+      "expected_visual_id": "55eba32c-80d1-fb36-4cc5-0768df12bd03",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-of-bane-hyrriet",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist of Bane Hyrriet",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Fist of Bane Hyrriet."
+      }
+    },
+    {
+      "actor_id": "2d74b412-6ed8-438a-b229-6cee7a48acca",
+      "expected_name": "S_LOW_GriefAttendant",
+      "template_id": "174a37a6-a376-4217-9c89-216d1b6c4848",
+      "expected_visual_id": "7b272999-5177-b84d-ef11-1d79d286d969",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-mirie",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Mirie",
+      "review": {
+        "adult": true,
+        "evidence": "Sharran attendant in charge of admitting visitors to the House of Grief. Stock English display name: Mirie. Recorded title: Attendant of Grief."
+      }
+    },
+    {
+      "actor_id": "e2a86aa9-3d65-4517-a946-f1ad851b6ef1",
+      "expected_name": "S_LOW_GriefGuard_000",
+      "template_id": "456ac466-e1c3-4a13-8189-5b5036cdf26b",
+      "expected_visual_id": "62c5514a-4dfb-8a64-ffdd-e31a1ef7a80c",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-griefguard-afara",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Griefguard Afara",
+      "review": {
+        "adult": true,
+        "evidence": "A professional Sharran temple guard at the House of Grief, identified by name, rank and posting. Stock English display name: Griefguard Afara."
+      }
+    },
+    {
+      "actor_id": "6d430ca2-660e-4000-bcf4-8ee5e2c88440",
+      "expected_name": "S_LOW_Guildhall_Bodyguard_000",
+      "template_id": "0f2f33d3-021e-4d9e-ad99-e83b85044cd9",
+      "expected_visual_id": "33179ede-fb83-82c6-6d8d-f9fbdf696280",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-lady-flux",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Lady Flux",
+      "review": {
+        "adult": true,
+        "evidence": "A personal bodyguard in the employ of the Guildmaster. Both the localized title and the separate named guard assignment identify this professional. Stock English display name: Lady Flux. Recorded title: Nine-Fingers' Bodyguard."
+      }
+    },
+    {
+      "actor_id": "0962e1ca-7d48-4fde-af0e-250091e9d4e1",
+      "expected_name": "S_LOW_Guildhall_Bodyguard_001",
+      "template_id": "eafd5b63-6518-4f71-828f-734dd83fabc2",
+      "expected_visual_id": "713aa02e-9257-94e6-d729-c9c97962d993",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-lady-ague",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Lady Ague",
+      "review": {
+        "adult": true,
+        "evidence": "A personal bodyguard in the employ of the Guildmaster. Both the localized title and the separate named guard assignment identify this professional. Stock English display name: Lady Ague. Recorded title: Nine-Fingers' Bodyguard."
+      }
+    },
+    {
+      "actor_id": "053734fb-4c70-4550-ae64-4b45d4bf59fb",
+      "expected_name": "S_LOW_Guildhall_Bodyguard_002",
+      "template_id": "827aae38-7cb2-437d-9390-88297f3811aa",
+      "expected_visual_id": "ba1a0a28-eff4-5854-ba9b-bb9e8f9c5b78",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-lady-quinsy",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Lady Quinsy",
+      "review": {
+        "adult": true,
+        "evidence": "A personal bodyguard in the employ of the Guildmaster. Both the localized title and the separate named guard assignment identify this professional. Stock English display name: Lady Quinsy. Recorded title: Nine-Fingers' Bodyguard."
+      }
+    },
+    {
+      "actor_id": "1a070383-da33-4107-90ef-68e2fdc03ac0",
+      "expected_name": "S_LOW_Guildhall_Bodyguard_003",
+      "template_id": "03f29f32-d720-4081-bfea-bbbbffca5650",
+      "expected_visual_id": "2a970d18-fe30-06b8-738b-12cce5d5bc73",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-lady-croup",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Lady Croup",
+      "review": {
+        "adult": true,
+        "evidence": "A personal bodyguard in the employ of the Guildmaster. Both the localized title and the separate named guard assignment identify this professional. Stock English display name: Lady Croup. Recorded title: Nine-Fingers' Bodyguard."
+      }
+    },
+    {
+      "actor_id": "5ac9c7ec-d26f-404e-bd17-e9d3dad000c4",
+      "expected_name": "S_LOW_Guildhall_Zhent_Mercenary_001",
+      "template_id": "eea4b002-cadc-43d5-a096-b2951d9f15ee",
+      "expected_visual_id": "a8f385f9-c62d-cc8c-91ad-d8b5b7165743",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-slick-inatra",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Slick Inatra",
+      "review": {
+        "adult": true,
+        "evidence": "Paid Zhentarim mercenary or caravan guard on an assigned security detail. Stock English display name: Slick Inatra. Recorded title: Zhentarim."
+      }
+    },
+    {
+      "actor_id": "fbffc206-5f7d-4d27-9fc8-6080a7212602",
+      "expected_name": "S_LOW_Guildhall_Zhent_Mercenary_003",
+      "template_id": "eea4b002-cadc-43d5-a096-b2951d9f15ee",
+      "expected_visual_id": "7b0db45b-a572-6243-8afe-2a5986759ab9",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-carlorina-the-wolf",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Carlorina the Wolf",
+      "review": {
+        "adult": true,
+        "evidence": "Paid Zhentarim mercenary or caravan guard on an assigned security detail. Stock English display name: Carlorina the Wolf. Recorded title: Zhentarim."
+      }
+    },
+    {
+      "actor_id": "6dc1a56a-19b7-4a4a-9530-ec41ba9dfef7",
+      "expected_name": "S_LOW_Guildhall_Zhent_Mercenary_007",
+      "template_id": "7201328a-c191-4347-a00e-b909ca32e270",
+      "expected_visual_id": "ddd6a2c5-9a86-6ce4-be99-7c399510e060",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-smilin-ginna",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Smilin' Ginna",
+      "review": {
+        "adult": true,
+        "evidence": "Paid Zhentarim mercenary or caravan guard on an assigned security detail. Stock English display name: Smilin' Ginna. Recorded title: Zhentarim."
+      }
+    },
+    {
+      "actor_id": "c8bb42d3-9670-4604-beb9-dde0f9e92abd",
+      "expected_name": "S_LOW_Guildhall_Zhent_Mercenary_009",
+      "template_id": "499e4688-4695-40ef-a60a-f50c9450fd6e",
+      "expected_visual_id": "fa8c11a3-c9c8-b6e0-017a-d464ab95fb77",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-lacy-dancer",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Lacy Dancer",
+      "review": {
+        "adult": true,
+        "evidence": "Paid Zhentarim mercenary or caravan guard on an assigned security detail. Stock English display name: Lacy Dancer. Recorded title: Zhentarim."
+      }
+    },
+    {
+      "actor_id": "4e3bb260-3d2e-48b0-86cf-c2693592915b",
+      "expected_name": "S_LOW_HagSurvivors_Bandit_Fighter_01",
+      "template_id": "b36fe7f5-2913-49ed-9f6c-ef6a0e646e77",
+      "expected_visual_id": "3ed01d06-5e98-9b7b-fbf2-e247753e3c9b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-maggie-ni-chuirc",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Maggie Ni Chuirc",
+      "review": {
+        "adult": true,
+        "evidence": "An armed member of the professional Dead Eyes gang at Old Garlow's Place. Stock English display name: Maggie Ni Chuirc. Recorded title: Member of the Dead Eyes."
+      }
+    },
+    {
+      "actor_id": "bbd05a60-77c7-48fe-9273-a9e5303c7c24",
+      "expected_name": "S_LOW_Park_FlamingFist1",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "87b7d5ce-8006-fefe-ecd1-cc2d34efce23",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-bella",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Bella",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Bella."
+      }
+    },
+    {
+      "actor_id": "3bd85855-86d9-4c58-92c6-115ac442ec00",
+      "expected_name": "S_LOW_Park_FlamingFist_Reserve",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "cc50ea1e-5719-ab8b-dd39-883364a1a316",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-griff",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Fist Griff",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Griff."
+      }
+    },
+    {
+      "actor_id": "abb7f3be-9b67-4c61-8e19-5572f66648a0",
+      "expected_name": "S_LOW_Park_ReplacementFlamingFist02",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "06493f68-3315-0531-40f2-f544180d7e38",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-elda",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Fist Elda",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Elda."
+      }
+    },
+    {
+      "actor_id": "d7cd0aa5-7303-45c7-a9e2-fac6a458f63e",
+      "expected_name": "S_LOW_Park_RetiredFist_Elf02",
+      "template_id": "e9bf55b6-59f8-4bb1-ad4e-06462a3d3467",
+      "expected_visual_id": "49d4cede-901d-4b86-cda8-97fffd96a956",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-avourel",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Avourel",
+      "review": {
+        "adult": true,
+        "evidence": "A retired Flaming Fist soldier in the park, identified by the retired guard placement. Stock English display name: Avourel."
+      }
+    },
+    {
+      "actor_id": "f7773813-75fe-4aae-99cb-7160f64f630d",
+      "expected_name": "S_LOW_PrisonGuard02",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "96d17d74-99bc-8417-59cf-bfff8b9dd95f",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-arrinye",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Fist Arrinye",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Arrinye."
+      }
+    },
+    {
+      "actor_id": "4c52c070-8e51-4b32-9a75-e65274edbc9c",
+      "expected_name": "S_LOW_RefugeeDuties_Mother",
+      "template_id": "7651267f-5eee-40c6-9b54-93a9772d3609",
+      "expected_visual_id": "bc180d0c-b920-22dc-df09-7e785e0cb323",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-mama-falice",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Mama Falice",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Mama Falice."
+      }
+    },
+    {
+      "actor_id": "d25b7709-2d37-406e-be4d-a2f24390cf68",
+      "expected_name": "S_LOW_SWS_BaldursMouth_FF_000",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "939367e4-ba5d-255d-d2b8-14a3e0b7a1a8",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-glenvora",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Glenvora",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Glenvora."
+      }
+    },
+    {
+      "actor_id": "0f84f1c1-2321-47f9-be8b-46df8f5f1dec",
+      "expected_name": "S_LOW_SWS_BasiliskGate_FF_001",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "2a1e11fd-084d-4266-d14d-662fc2834930",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-olloa",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Olloa",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Olloa."
+      }
+    },
+    {
+      "actor_id": "9a305cf0-f6b0-4d7b-bb44-f35f571f318a",
+      "expected_name": "S_LOW_SWS_Bonecloak_FF_002",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "c0ca5a5b-9bfa-be67-63eb-403e5ed1d3c5",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-karoline",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Fist Karoline",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Karoline."
+      }
+    },
+    {
+      "actor_id": "6e40bdc8-b4c1-4d60-b986-60517ced3400",
+      "expected_name": "S_LOW_SWS_DocksRoad_FF_000",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "9891fd55-305f-fd88-ece6-35464a695d07",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-pantella",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Pantella",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Pantella."
+      }
+    },
+    {
+      "actor_id": "979be68f-f08f-48e0-b299-11284b1e8eeb",
+      "expected_name": "S_LOW_SWS_Patrols_000_FF_000",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "71ebf2ef-9f04-93c7-7c16-8ee867465808",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-hextra",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Fist Hextra",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Hextra."
+      }
+    },
+    {
+      "actor_id": "04589068-fb1d-4497-8a54-38eebe94290a",
+      "expected_name": "S_LOW_SWS_Patrols_001_FF_000",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "8ec688bb-82dc-20cc-92d0-357bc29ff9d7",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-starrlet",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Fist Starrlet",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Starrlet."
+      }
+    },
+    {
+      "actor_id": "6cbbd8c6-ee3f-487d-90e8-d3e80fedd3e1",
+      "expected_name": "S_LOW_SWS_Patrols_001_FF_002",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "f30b67e3-5297-92f1-9825-68fd70ba4b70",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-discoria",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Fist Discoria",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Discoria."
+      }
+    },
+    {
+      "actor_id": "0b75b432-ba58-4d2f-9225-c735a5dc483b",
+      "expected_name": "S_LOW_SWS_Patrols_002_FF_001",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "9b167d89-07ef-c805-29ea-fb23d73a8b6d",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-togarr",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Fist Togarr",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Togarr."
+      }
+    },
+    {
+      "actor_id": "c9fd0b0a-de28-4099-b17b-715b30fa4501",
+      "expected_name": "S_LOW_SWS_Patrols_003_FF_000",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "89c0a973-24fc-20da-bc22-912db452dcf2",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-brandella",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Brandella",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Brandella."
+      }
+    },
+    {
+      "actor_id": "32d20237-fd5b-4b7d-91ba-e9f5934c4e56",
+      "expected_name": "S_LOW_SWS_Patrols_003_FF_001",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "98f521ae-8aac-6200-4c00-fac0551bb907",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-okralope",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Fist Okralope",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Okralope."
+      }
+    },
+    {
+      "actor_id": "9bf4314a-ff1b-47a2-ad86-33ce59ee8c9c",
+      "expected_name": "S_LOW_SWS_Patrols_004_FF_000",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "b18ec713-3214-e5a2-c358-765fef98b801",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-duddamoor",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Fist Duddamoor",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Duddamoor."
+      }
+    },
+    {
+      "actor_id": "680ecd79-6fdd-4ac3-af3a-1fec349a5ad9",
+      "expected_name": "S_LOW_SWS_Patrols_004_FF_001",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "c2fd3c92-7b4e-f863-b63c-d3f92205cdd1",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-halantow",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Halantow",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Halantow."
+      }
+    },
+    {
+      "actor_id": "387061e5-478e-4e6c-af05-5aef578a9c32",
+      "expected_name": "S_LOW_SWS_Patrols_OnWall_FF_000",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "a7b85a68-44e3-2051-30ce-81aad0293fb7",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-equidna",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Equidna",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Equidna."
+      }
+    },
+    {
+      "actor_id": "b944774a-ab63-4325-81a0-3931fbbe0842",
+      "expected_name": "S_LOW_SWS_Patrols_OnWall_FF_001",
+      "template_id": "ec34598b-0a16-4b50-b271-c6682893837f",
+      "expected_visual_id": "0a173e41-204b-915e-f311-a13cb2499da5",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-hagedorrn",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Hagedorrn",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Hagedorrn."
+      }
+    },
+    {
+      "actor_id": "4544476d-1260-4ddb-8155-64712ad44950",
+      "expected_name": "S_LOW_SoberingUp_Cashguard_01",
+      "template_id": "9e054949-8251-438e-bbf5-7371815b5bea",
+      "expected_visual_id": "6dc97aa3-1f95-e1fd-1160-961a1b33d469",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cashguard-taslim",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Cashguard Taslim",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed Cashguard of the Counting House, identified by rank in the English game text and by their assigned guard template. Stock English display name: Cashguard Taslim."
+      }
+    },
+    {
+      "actor_id": "a50e70b0-972e-4fa0-bf0d-2fe54b11e713",
+      "expected_name": "S_LOW_SteepsEvacuation_Mother",
+      "template_id": "7651267f-5eee-40c6-9b54-93a9772d3609",
+      "expected_visual_id": "fcc0a063-6efc-c924-348b-d2011868ce64",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-leepak-brislen",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Leepak Brislen",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Leepak Brislen."
+      }
+    },
+    {
+      "actor_id": "70a074ae-db79-4f1a-9b12-62a380adbd18",
+      "expected_name": "S_LOW_SteepsTrader_BooksAndScrolls",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "4ea0a878-fa09-90b8-e581-0cacc5e4abf8",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-nansi-gretta",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Nansi Gretta",
+      "review": {
+        "adult": true,
+        "evidence": "The bookseller running a books and scrolls stall near the Lower City Steeps. Stock English display name: Nansi Gretta."
+      }
+    },
+    {
+      "actor_id": "46aa02d8-28e9-4ebb-876c-82fe29262d35",
+      "expected_name": "S_LOW_Tolna",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "0d727fd9-7cf0-bdaa-e6f1-9bdadce6ada1",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-tolna-tome-monger",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Tolna Tome-Monger",
+      "review": {
+        "adult": true,
+        "evidence": "The specialist bookseller who supervises rare tomes at Sorcerous Sundries. Stock English display name: Tolna Tome-Monger."
+      }
+    },
+    {
+      "actor_id": "ba52a7af-885a-4298-9fe1-32bc8c67cc8a",
+      "expected_name": "S_LOW_UmberleeFollower04",
+      "template_id": "8a7af0ec-be10-49df-8ead-f43c9e100bf2",
+      "expected_visual_id": "fb7dcd0c-a702-5cb4-e68a-c523b539fdbb",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-captain-goldwake",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Captain Goldwake",
+      "review": {
+        "adult": true,
+        "evidence": "A ship's captain associated with the temple of Umberlee, identified by her localized captain's title. Stock English display name: Captain Goldwake."
+      }
+    },
+    {
+      "actor_id": "8c7485ca-9105-425d-be85-2a4e39ef8c51",
+      "expected_name": "S_LOW_UnloadingTheBrigg_Dockworker_01",
+      "template_id": "7651267f-5eee-40c6-9b54-93a9772d3609",
+      "expected_visual_id": "3057ca0a-d401-27ad-50a7-f1c38bfa3e8b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-bosun-sharley",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Bosun Sharley",
+      "review": {
+        "adult": true,
+        "evidence": "The senior seafarer supervising the unloading of a brig, identified by nautical rank and dock crew assignment. Stock English display name: Bosun Sharley."
+      }
+    },
+    {
+      "actor_id": "323eb737-2422-4026-b403-785473c738ee",
+      "expected_name": "S_LOW_WindmillMindflayerFollowup_Mother",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "1787dc94-6acb-16a2-8b5f-eb81481ff35b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-talli-armbrust",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Talli Armbrust",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Talli Armbrust."
+      }
+    },
+    {
+      "actor_id": "623d562f-937c-4863-97df-d836f6bf2c6a",
+      "expected_name": "S_MOO_AssaultFlamingFist_001",
+      "template_id": "23390aab-1411-42de-80b9-14043cc50bc5",
+      "expected_visual_id": "ca10b0f2-e014-307f-5027-c29c77ae8733",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-nipawa",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Fist Nipawa",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Nipawa."
+      }
+    },
+    {
+      "actor_id": "ebfd7bc7-0fd5-4dee-8fd5-308ded4d0a65",
+      "expected_name": "S_MOO_RoofCultist",
+      "template_id": "eb3e4b8e-6e34-4489-8b3d-42024186555b",
+      "expected_visual_id": "0f0463ca-8385-13d7-6326-a306f6d2de5f",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-susdera",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Susdera",
+      "review": {
+        "adult": true,
+        "evidence": "The senior Myrkulite Mistress of Souls directing the roof cultists at Moonrise Towers. Stock English display name: Susdera. Recorded title: Mistress of Souls."
+      }
+    },
+    {
+      "actor_id": "646a4195-4091-4dc9-81e1-cff2604f3911",
+      "expected_name": "S_PLA_FlamingFist1",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "c0b74392-d90c-61ca-8013-5ce8dd3aa94c",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-gauntlet-yeva",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Gauntlet Yeva",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Gauntlet Yeva."
+      }
+    },
+    {
+      "actor_id": "c28e5d52-8674-49a2-a60a-6e5ed47f4441",
+      "expected_name": "S_PLA_FlamingFist7",
+      "template_id": "2774a43e-db7a-49d4-90b2-e07097b0b531",
+      "expected_visual_id": "2eb059d6-ea31-dc3f-3105-dea65c85f6fa",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-gauntlet-dain",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Gauntlet Dain",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Gauntlet Dain."
+      }
+    },
+    {
+      "actor_id": "bf6a657e-091c-43e5-b18a-a2ca7ca7e511",
+      "expected_name": "S_PLA_Refugee_003",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "b3391b20-54db-14f5-b40d-f60617a97c6a",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cyrel",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Cyrel",
+      "review": {
+        "adult": true,
+        "evidence": "Trader for Anders's group at the Risen Road tollhouse. Stock English display name: Cyrel. Recorded title: Trader."
+      }
+    },
+    {
+      "actor_id": "8a064abd-3582-4a32-a9f8-748ad60f63ca",
+      "expected_name": "S_PLA_ZhentDungeon_Zhent02",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "f64dc1ec-12e3-1c85-719a-98e7a96d465b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-zarys",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Zarys",
+      "review": {
+        "adult": true,
+        "evidence": "Commander of the Zhentarim at the Waukeen's Rest hideout. Stock English display name: Zarys."
+      }
+    },
+    {
+      "actor_id": "71c140fa-0ebd-4f36-8728-6e28a445a6ff",
+      "expected_name": "S_SCL_Drider_Harper_Ranger_001",
+      "template_id": "b9e7a9fb-05b9-4eed-b2fc-5e8a8ed86968",
+      "expected_visual_id": "98b2c959-88e4-944a-e219-7289224289f3",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-harper-skywin",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Harper Skywin",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Harper on a scout, sentry or ambush detail at Last Light or in the Shadow-Cursed Lands. Stock English display name: Harper Skywin."
+      }
+    },
+    {
+      "actor_id": "25e154f6-d762-4bea-862e-98c48d7ebe3e",
+      "expected_name": "S_SCL_HarperScout_001",
+      "template_id": "b8f53895-c394-41f9-a842-cab00cea6246",
+      "expected_visual_id": "091a7490-4504-9753-3464-e5662471ae94",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-harper-meygan",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Harper Meygan",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Harper on a scout, sentry or ambush detail at Last Light or in the Shadow-Cursed Lands. Stock English display name: Harper Meygan."
+      }
+    },
+    {
+      "actor_id": "4caa11fb-d04d-45fd-bc11-e825833498c6",
+      "expected_name": "S_WYR_Circus_FlamingFist_01",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "eb894fd3-6878-a456-4d70-d7d37551ef5e",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-taraji",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Fist Taraji",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Taraji."
+      }
+    },
+    {
+      "actor_id": "6a9de2b5-008c-404e-bbba-0c34a7a92fa4",
+      "expected_name": "S_WYR_Flophouse_Cook",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "66ef9426-48d3-9d7a-858d-a37d75a4786c",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-queelia-arvis",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Queelia Arvis",
+      "review": {
+        "adult": true,
+        "evidence": "The cook employed at Fraygo's Flophouse. Her localized title and workplace identify this tradesperson. Stock English display name: Queelia Arvis. Recorded title: Flophouse Cook."
+      }
+    },
+    {
+      "actor_id": "a4ef7429-bca0-4e2f-9aab-a4eff9ac95e9",
+      "expected_name": "S_WYR_GurCamp_Hunter_001",
+      "template_id": "eb3e4b8e-6e34-4489-8b3d-42024186555b",
+      "expected_visual_id": "4c026169-ab7c-79f7-35dc-23cdd915db60",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cassivora-dophir",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Cassivora Dophir",
+      "review": {
+        "adult": true,
+        "evidence": "A member of the adult hunting party of the Gur. The personal name and professional hunter assignment distinguish the hunter from the camp's children. Stock English display name: Cassivora Dophir."
+      }
+    },
+    {
+      "actor_id": "8948bd61-52a0-41a0-99b8-bb6d4c301255",
+      "expected_name": "S_WYR_GurCamp_Hunter_003",
+      "template_id": "eb3e4b8e-6e34-4489-8b3d-42024186555b",
+      "expected_visual_id": "ccf003d5-ba8e-3c45-c742-4cde57ebac57",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-katelyn-lerskin",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Katelyn Lerskin",
+      "review": {
+        "adult": true,
+        "evidence": "A member of the adult hunting party of the Gur. The personal name and professional hunter assignment distinguish the hunter from the camp's children. Stock English display name: Katelyn Lerskin."
+      }
+    },
+    {
+      "actor_id": "afbb70d4-5cc4-444f-90b6-0d243b6418c3",
+      "expected_name": "S_WYR_GurCamp_Hunter_005",
+      "template_id": "eb3e4b8e-6e34-4489-8b3d-42024186555b",
+      "expected_visual_id": "7b76895a-8f0b-4ea4-31d7-bca954449d86",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-dominica-arsetz",
+      "donor_profile": "donor_juno_b",
+      "display_name": "Dominica Arsetz",
+      "review": {
+        "adult": true,
+        "evidence": "A member of the adult hunting party of the Gur. The personal name and professional hunter assignment distinguish the hunter from the camp's children. Stock English display name: Dominica Arsetz."
+      }
+    },
+    {
+      "actor_id": "cc8cc22b-d9d0-4a82-bfa1-c90d6d216406",
+      "expected_name": "S_WYR_KillDirectorGortash_GortashsBodyguard_003",
+      "template_id": "d7340e9f-f7b7-4d24-bdca-5e751aabaff3",
+      "expected_visual_id": "13e49ba7-3d78-c6a4-f1d2-c3d0029ca931",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-iron-consul-jaxbock",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Iron Consul Jaxbock",
+      "review": {
+        "adult": true,
+        "evidence": "Professional armed guard or officer on premises held by Felogyr's Fireworks, the newspaper or the Banites. The assigned security post and localized rank identify the individual. Stock English display name: Iron Consul Jaxbock."
+      }
+    },
+    {
+      "actor_id": "bed33e19-1620-4845-aaa6-52de87f7e2e8",
+      "expected_name": "S_WYR_MerchantsHouse_ThugLeader",
+      "template_id": "772eb5f4-f9a3-480e-90b1-25b0ba107a44",
+      "expected_visual_id": "58149b02-a62b-d24e-068b-19c0cda126d9",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-zenovia-dawg",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Zenovia Dawg",
+      "review": {
+        "adult": true,
+        "evidence": "Leader of the hired enforcers engaged by Arfur Gregorio at his Rivington mansion. Stock English display name: Zenovia Dawg."
+      }
+    },
+    {
+      "actor_id": "b5cb45e5-4bd0-4744-b8d0-e363455a63e8",
+      "expected_name": "S_WYR_OpenHand_Rose",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "a41198ba-1147-e5fa-3e25-b3a2b7cb9421",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-sister-rose-the-penitent",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Sister Rose the Penitent",
+      "review": {
+        "adult": true,
+        "evidence": "An Ilmatari priestess at the Open Hand Temple, identified by her clerical name and placement. Stock English display name: Sister Rose the Penitent."
+      }
+    },
+    {
+      "actor_id": "4c22257a-4729-47eb-ae4b-61305033be95",
+      "expected_name": "S_WYR_RefugeeCamp_DibbsWife",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "5a0ffac5-c0b5-e457-4e60-da6ef1b26b99",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-grisselda-dibbs",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Grisselda Dibbs",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Grisselda Dibbs."
+      }
+    },
+    {
+      "actor_id": "285923f1-dce0-4f7f-8ebe-0de8ba990467",
+      "expected_name": "S_WYR_RefugeeCamp_FlamingFist_004",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "cc12a253-6f65-ea3b-76be-6cd7b1027885",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-lochan",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Fist Lochan",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Lochan."
+      }
+    },
+    {
+      "actor_id": "f0b8e3b7-3761-418a-a331-aae048c08ead",
+      "expected_name": "S_WYR_RefugeeCamp_FlamingFist_006",
+      "template_id": "1a80541e-f990-4a07-ba08-008b9992f7be",
+      "expected_visual_id": "10ca55bf-e550-6491-e1d8-aca2ea7a5f13",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-varone",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Varone",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Varone."
+      }
+    },
+    {
+      "actor_id": "36d86e86-d3de-45c0-a421-c5489231d4e4",
+      "expected_name": "S_WYR_Rivington_FlamingFist_004",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "46df2300-3340-9c6e-8c27-ecc94797d855",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-osmund",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Osmund",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Osmund."
+      }
+    },
+    {
+      "actor_id": "655c601f-b123-429b-9b48-0ab39c491cb6",
+      "expected_name": "S_WYR_ScaredLocals_Mother01",
+      "template_id": "7651267f-5eee-40c6-9b54-93a9772d3609",
+      "expected_visual_id": "28e9ef13-9a46-c49d-0056-cce02cc9a848",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-monifa-diallo",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Monifa Diallo",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Monifa Diallo."
+      }
+    },
+    {
+      "actor_id": "2501fe05-28c3-40b5-9913-ea35dfa274a9",
+      "expected_name": "S_WYR_ScaredLocals_Mother02",
+      "template_id": "7651267f-5eee-40c6-9b54-93a9772d3609",
+      "expected_visual_id": "73c0d025-88c3-4448-af64-4b19e3ae016a",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-ha-yoon-kim",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Ha-yoon Kim",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Ha-yoon Kim."
+      }
+    },
+    {
+      "actor_id": "a19ad7b2-ef28-4d85-a422-c8abd6fecfc8",
+      "expected_name": "S_WYR_SharessCaress_NymphRoom_NetherbrainFlamingFist",
+      "template_id": "801be74f-6f1c-4fcd-bace-48a0308304bb",
+      "expected_visual_id": "9b2233c8-00e9-c078-3732-f28cb6d1a99a",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-jara",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Fist Jara",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Jara."
+      }
+    },
+    {
+      "actor_id": "662b787e-d5f1-4bd2-b398-36961bda0ab4",
+      "expected_name": "S_WYR_SharessCaress_Nymph_01",
+      "template_id": "ffcf9408-6695-4e7a-9e57-749da0992df7",
+      "expected_visual_id": "7455a41c-8f5c-698c-bcc1-9d961c57ee27",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-irenya",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Irenya",
+      "review": {
+        "adult": true,
+        "evidence": "The barmaid employed at Sharess' Caress, identified by her localized title and workplace. Stock English display name: Irenya. Recorded title: Barmaid."
+      }
+    },
+    {
+      "actor_id": "e572c6d1-3330-46fd-9ecc-da318f499956",
+      "expected_name": "S_WYR_South_Guard_004",
+      "template_id": "2774a43e-db7a-49d4-90b2-e07097b0b531",
+      "expected_visual_id": "613eaf5a-1550-0be7-3388-aa7ce9f753a5",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-gauntlet-edwynna",
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Gauntlet Edwynna",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Gauntlet Edwynna. Recorded title: Garrison of Wyrm's Crossing."
+      }
+    },
+    {
+      "actor_id": "51d12be7-131c-4a07-9d38-57b88a6f56bf",
+      "expected_name": "S_WYR_TiredWalkers_Mother",
+      "template_id": "7651267f-5eee-40c6-9b54-93a9772d3609",
+      "expected_visual_id": "c239fb8a-60de-2f9a-ef8d-a2ffb7b963d3",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-nonah-baragezian",
+      "donor_profile": "donor_kiriko_c",
+      "display_name": "Nonah Baragezian",
+      "review": {
+        "adult": true,
+        "evidence": "Parent or spouse in the civilian household identified directly on this named placement and its family role. Stock English display name: Nonah Baragezian."
+      }
+    },
+    {
+      "actor_id": "e019ed47-a0fd-45d5-9baa-1a817f52b984",
+      "expected_name": "S_WYR_WyrmRockPrison_Guard_004",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "fdd62de2-99fa-364c-eea6-df14195306f4",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-jagic",
+      "donor_profile": "donor_cinderella_a",
+      "display_name": "Fist Jagic",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Jagic."
+      }
+    },
+    {
+      "actor_id": "a9b44d9f-2fe3-4554-bc10-04e28f05f5d2",
+      "expected_name": "S_WYR_WyrmRock_BarracksGuard_001",
+      "template_id": "696525ec-6f0f-41f5-a568-41fc946618b1",
+      "expected_visual_id": "98cf214b-5bb6-e823-c2c4-2a6f46c02f5b",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-oriona",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Oriona",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Oriona."
+      }
+    },
+    {
+      "actor_id": "1dce766a-e26a-45f8-a7d5-618a3c7bf72c",
+      "expected_name": "S_WYR_WyrmRock_FFOfficeGuard_002",
+      "template_id": "1a80541e-f990-4a07-ba08-008b9992f7be",
+      "expected_visual_id": "83f5906a-2124-b097-1737-4acb35c5b70f",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-broko",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Broko",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Broko."
+      }
+    },
+    {
+      "actor_id": "1ad44c05-4065-4c57-9b24-cab1378dca93",
+      "expected_name": "S_WYR_WyrmRock_MessHallCook",
+      "template_id": "e9bf55b6-59f8-4bb1-ad4e-06462a3d3467",
+      "expected_visual_id": "a1ce214d-e7b4-2f0a-5eb8-eb5edab9d655",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-cook-darlie",
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Cook Darlie",
+      "review": {
+        "adult": true,
+        "evidence": "The professional cook working in the mess hall at Wyrm's Rock fortress. Stock English display name: Cook Darlie."
+      }
+    },
+    {
+      "actor_id": "352d8f42-9588-4bce-b206-e031f4f3f36f",
+      "expected_name": "S_WYR_WyrmRock_NorthBridgeGuard_001",
+      "template_id": "1a80541e-f990-4a07-ba08-008b9992f7be",
+      "expected_visual_id": "e490120a-78f4-e1e0-e2b2-c94f727206f9",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-blaze-savora",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Blaze Savora",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Blaze Savora."
+      }
+    },
+    {
+      "actor_id": "2de31d40-ad10-4051-8901-4ad9609bcf6c",
+      "expected_name": "S_WYR_WyrmRock_RoofGuard_001",
+      "template_id": "f57f2157-6587-402a-b8f5-89ed217b5655",
+      "expected_visual_id": "eee23977-62b3-2f91-b39b-9a649bd795fd",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "worker-fist-diallo",
+      "donor_profile": "donor_juno_e",
+      "display_name": "Fist Diallo",
+      "review": {
+        "adult": true,
+        "evidence": "Serving Flaming Fist soldier or officer on an assigned military guard, patrol or garrison posting. Stock English display name: Fist Diallo."
+      }
+    }
+  ]
+}

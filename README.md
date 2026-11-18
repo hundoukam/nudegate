@@ -3,15 +3,28 @@
 An experimental Baldur's Gate 3 project for adult NPC nudity, body variety and
 compatible body physics, inspired by NudePunk2077.
 
-**Current source version: 0.3.0 experimental. This is a development prototype, not an
-all-NPC release.** The builder produces an appearance-only `.pak` from a local
+**Body Replacer 0.4.0** assigns the six Blender shapes to existing adult NPCs
+who use compatible standard body meshes. It hides garments and equipped gear
+only on appearances receiving a replacement. It preserves each NPC's head and
+uses the active profile's appearance data. The packed records contain body meshes,
+their physics settings, and redirects on existing appearances. In-game
+appearance and movement still need testing.
+
+Run `python tools/build_npc_variety.py` with the locally prepared donor packages,
+original body collection, physics sources and BG3 installation. The builder reads
+the active mod profile before choosing appearances. The PAK, `NPC-roster.txt`
+and `npc-variety-report.json` are written to `dist/Nudegate-Body-Replacer-0.4.0/`.
+It uses the same module UUID as the earlier NPC builds. The six individual
+new-Tav packages remain separate character-creation experiments.
+
+The original alpha builder produces an appearance-only `.pak` from a local
 BG3 installation. It changes twelve explicitly reviewed adult root templates,
 creates private character visuals, removes embedded garment slots and disables
 equipment rendering. Equipment, armor class, inventory, loot, dialogue and
 combat data are retained. Original head, hair, skin materials, anatomy,
 body family and censorship leaves are retained.
 
-## Current coverage
+## Original alpha coverage
 
 The catalog includes the main adult roots for Lae'zel, Karlach, Wyll (human and
 transformed), Minthara (normal and vanity), Jaheira, Minsc, Shadowheart,

@@ -1,0 +1,742 @@
+{
+  "schema_version": 1,
+  "actors": [
+    {
+      "actor_id": "08c970d7-3138-45e8-8965-68eadf4b07cd",
+      "expected_name": "S_HAG_Hagspawn_SurrogateMother",
+      "template_id": "4dbce619-49a2-4fae-b3d9-72aeadc0ee38",
+      "expected_visual_id": "9df4e562-0931-0e55-ab09-838de65a1d58",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "mayrina",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "Connor's adult widow and the parent in the hag's bargain. Stock English display name: Mayrina."
+      },
+      "display_name": "Mayrina"
+    },
+    {
+      "actor_id": "25721313-0c15-4935-8176-9f134385451b",
+      "expected_name": "S_GOB_DrowCommander",
+      "template_id": "9d85d0f6-5231-4738-a674-bf28ff19e515",
+      "expected_visual_id": "383236f9-c7ab-7163-4638-d2e2702ec513",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "minthara",
+      "review": {
+        "adult": true,
+        "evidence": "The adult drow commander of the attack on the grove, identified by her title True Soul of the Absolute. Stock English display name: Nightwarden Minthara."
+      },
+      "donor_profile": "donor_mercy_c",
+      "display_name": "Nightwarden Minthara"
+    },
+    {
+      "actor_id": "95eb2b0b-a522-4ea5-8167-c5f4d1418156",
+      "expected_name": "S_DEN_DruidLeader",
+      "template_id": "ffcf9408-6695-4e7a-9e57-749da0992df7",
+      "expected_visual_id": "0774cbd6-d405-bfbf-4b75-0d4681f83f69",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "kagha",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "Acting archdruid in charge of the Emerald Grove, identified as Archdruid on this actor. Stock English display name: Kagha."
+      },
+      "display_name": "Kagha"
+    },
+    {
+      "actor_id": "4a405fba-3000-4c63-97e5-a8001ebb883c",
+      "expected_name": "S_DEN_Bard",
+      "template_id": "9103fce3-6423-4f8a-af04-83ac1af2a1d7",
+      "expected_visual_id": "1ab11041-a5b8-7f62-ced5-a6bc1179c0e3",
+      "expected_body_set_visual": "820ddd41-7946-f026-099f-7034983d50d2",
+      "body_seed": "alfira",
+      "review": {
+        "adult": true,
+        "evidence": "The adult bard and partner of Lakrissa at the grove. Stock English display name: Alfira."
+      },
+      "display_name": "Alfira"
+    },
+    {
+      "actor_id": "23129d6c-8d39-4a4c-a4f6-cfc6637b597c",
+      "expected_name": "S_DEN_Tiefling_010",
+      "template_id": "9103fce3-6423-4f8a-af04-83ac1af2a1d7",
+      "expected_visual_id": "1bb6c82f-b0d5-70af-f496-f08bcfff8efa",
+      "expected_body_set_visual": "820ddd41-7946-f026-099f-7034983d50d2",
+      "body_seed": "lakrissa",
+      "review": {
+        "adult": true,
+        "evidence": "The adult travelling companion and partner of Alfira, who later works at the Elfsong Tavern. Stock English display name: Lakrissa."
+      },
+      "display_name": "Lakrissa"
+    },
+    {
+      "actor_id": "b304e07d-019c-4ec6-b5ea-c4ccb29ed892",
+      "expected_name": "S_DEN_BackupLeader",
+      "template_id": "d0cbec55-ec10-458e-96bb-09edfe2d6b19",
+      "expected_visual_id": "2aae30df-7b73-5c36-0aa5-a057321feb98",
+      "expected_body_set_visual": "820ddd41-7946-f026-099f-7034983d50d2",
+      "body_seed": "cerys",
+      "review": {
+        "adult": true,
+        "evidence": "The Elturian scout who assumes leadership of the adult refugee party. Stock English display name: Cerys."
+      },
+      "display_name": "Cerys"
+    },
+    {
+      "actor_id": "1b35671b-e5d7-4943-bbd0-4c816b69b7cb",
+      "expected_name": "S_DEN_Tiefling_FoodTrader_001",
+      "template_id": "9103fce3-6423-4f8a-af04-83ac1af2a1d7",
+      "expected_visual_id": "8c1eedb3-9877-9545-6557-5adf381e53e8",
+      "expected_body_set_visual": "820ddd41-7946-f026-099f-7034983d50d2",
+      "body_seed": "okta",
+      "review": {
+        "adult": true,
+        "evidence": "The elderly refugee cook who runs the food stall at the Emerald Grove. Stock English display name: Okta."
+      },
+      "display_name": "Okta"
+    },
+    {
+      "actor_id": "27fa0802-fa38-4eea-9c03-496f2e022259",
+      "expected_name": "S_GLO_GithCaptain",
+      "template_id": "0ff41984-3c36-4011-a74c-6a4e986289ed",
+      "expected_visual_id": "6f810419-6a19-e9eb-e8b7-690910c15ca8",
+      "expected_body_set_visual": "b7bfa2d3-4dad-d8a3-8639-9e3dddb97a00",
+      "body_seed": "baretha",
+      "review": {
+        "adult": true,
+        "evidence": "The adult senior warrior commanding the gith patrol at the mountain pass. Stock English display name: Sarth Baretha."
+      },
+      "display_name": "Sarth Baretha"
+    },
+    {
+      "actor_id": "5f4048ba-72ef-43c2-9528-1c9a12f3f82f",
+      "expected_name": "S_GLO_Expeditioner",
+      "template_id": "a9bbf63d-03ed-4194-88ac-1ecb93eb8c07",
+      "expected_visual_id": "a35d9680-f87e-a99e-cc80-f405b0df4aa2",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "lady-esther",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "The Society of Brilliance's adult contractor who seeks the egg from the gith creche. Stock English display name: Lady Esther."
+      },
+      "display_name": "Lady Esther"
+    },
+    {
+      "actor_id": "5093da9b-237a-491f-9402-4f9da73c1565",
+      "expected_name": "S_CRE_CrecheCaptain",
+      "template_id": "3fa051b0-ee9f-411e-940c-ffc886fc9a4d",
+      "expected_visual_id": "5e7ab9e9-92ca-0d84-262e-3b03969480fd",
+      "expected_body_set_visual": "b7bfa2d3-4dad-d8a3-8639-9e3dddb97a00",
+      "body_seed": "therezzyn",
+      "review": {
+        "adult": true,
+        "evidence": "The commanding officer of Creche Y'llek, identified as its commander on the actor. Stock English display name: Kith'rak Therezzyn."
+      },
+      "display_name": "Kith'rak Therezzyn"
+    },
+    {
+      "actor_id": "c04c1977-d53f-4b5c-a29d-2e8d75024768",
+      "expected_name": "S_CRE_Doctor",
+      "template_id": "3fa051b0-ee9f-411e-940c-ffc886fc9a4d",
+      "expected_visual_id": "1d967830-760b-24b3-9604-f141c10ff924",
+      "expected_body_set_visual": "b7bfa2d3-4dad-d8a3-8639-9e3dddb97a00",
+      "body_seed": "stornugoss",
+      "review": {
+        "adult": true,
+        "evidence": "The principal healer of Creche Y'llek who operates the zaith'isk. Stock English display name: Ghustil Stornugoss."
+      },
+      "display_name": "Ghustil Stornugoss"
+    },
+    {
+      "actor_id": "ffb0ec61-5739-4b34-8d27-e61b1f4500ad",
+      "expected_name": "S_CRE_Quartermistress",
+      "template_id": "dc2edbd2-e404-43bf-8279-6d42ecc727e0",
+      "expected_visual_id": "66a1afd7-5393-3c92-6977-38174571c958",
+      "expected_body_set_visual": "b7bfa2d3-4dad-d8a3-8639-9e3dddb97a00",
+      "body_seed": "jeera",
+      "review": {
+        "adult": true,
+        "evidence": "The military quartermistress at Creche Y'llek, identified by her own rank and shop. Stock English display name: A'jak'nir Jeera."
+      },
+      "display_name": "A'jak'nir Jeera"
+    },
+    {
+      "actor_id": "263bfbfc-6160-46f4-a9e1-1089cdb5c211",
+      "expected_name": "S_GLO_Isobel",
+      "template_id": "e9bf55b6-59f8-4bb1-ad4e-06462a3d3467",
+      "expected_visual_id": "19f61161-d9f0-bdcb-aec0-12264a4b5bd5",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "isobel",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "The adult Selunite cleric protecting the Last Light Inn and partner of Dame Aylin. Stock English display name: Isobel."
+      },
+      "display_name": "Isobel"
+    },
+    {
+      "actor_id": "f769815c-d437-4a45-9ae4-aebd53ec8f7c",
+      "expected_name": "S_HAV_HavenOutcasts_HarperQuartermaster",
+      "template_id": "285ac2fd-1858-470f-80f5-a120d6ffe13f",
+      "expected_visual_id": "eb0fc566-0586-70fd-6046-8e9e19714642",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "talli",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "The senior Harper supply officer and trader at Last Light Inn. Stock English display name: Quartermaster Talli."
+      },
+      "display_name": "Quartermaster Talli"
+    },
+    {
+      "actor_id": "c6dfb2aa-809f-4b3e-8b32-968c10184ec3",
+      "expected_name": "S_SCL_HarperScout_000",
+      "template_id": "285ac2fd-1858-470f-80f5-a120d6ffe13f",
+      "expected_visual_id": "43e0321c-bde3-ad1a-ff89-e3749ad2f7c0",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "lassandra",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "The adult Harper who commands the patrol in the Shadow-Cursed Lands. Stock English display name: Harper Lassandra."
+      },
+      "display_name": "Harper Lassandra"
+    },
+    {
+      "actor_id": "511c9413-25fe-449c-a81d-4b09bc20745a",
+      "expected_name": "S_MOO_InfernalVendor",
+      "template_id": "53325284-e0cb-470e-8576-fb12c494ecd3",
+      "expected_visual_id": "4963cb0e-05db-5932-71d1-9fe5aef10bdb",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "araj-oblodra",
+      "donor_profile": "donor_cinderella_a",
+      "review": {
+        "adult": true,
+        "evidence": "The adult blood alchemist and proprietor who operates at Moonrise Towers and later in Baldur's Gate. Stock English display name: Araj Oblodra."
+      },
+      "display_name": "Araj Oblodra"
+    },
+    {
+      "actor_id": "204a74d2-e6ad-4e9b-a275-f03cb5f3d975",
+      "expected_name": "S_WYR_VampireSpawns_Dalyria",
+      "template_id": "62da2a18-f4a6-40b8-b440-ba56a36ada33",
+      "expected_visual_id": "a9bd3bd3-fe6b-31e2-eb2f-5cc04ec7d479",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "dalyria",
+      "donor_profile": "donor_cinderella_a",
+      "review": {
+        "adult": true,
+        "evidence": "The adult former physician who became one of Cazador's vampire spawn. Stock English display name: Dalyria."
+      },
+      "display_name": "Dalyria"
+    },
+    {
+      "actor_id": "7574fc5a-3645-4370-a778-0b38d0ef162a",
+      "expected_name": "S_WYR_DapperDrow_Sister",
+      "template_id": "fd76eb7c-5679-4de4-b6e9-d5e874672226",
+      "expected_visual_id": "f58bc327-2fb8-6e05-3d38-11670a4ecfe7",
+      "expected_body_set_visual": "9e43f0e4-d063-d85c-87b4-470d569645db",
+      "body_seed": "nym-orlith",
+      "review": {
+        "adult": true,
+        "evidence": "The adult courtesan working at Sharess' Caress with her twin Sorn. Stock English display name: Nym Orlith."
+      },
+      "donor_profile": "donor_jubilee_b",
+      "display_name": "Nym Orlith"
+    },
+    {
+      "actor_id": "ab24945c-268d-4f90-b8ea-bbb11cd50157",
+      "expected_name": "S_WYR_SharessCaress_Bartender",
+      "template_id": "53b04c7e-19b6-4c9f-b92d-d0e1245bd7f8",
+      "expected_visual_id": "929fc39c-95c3-4823-479e-1d7fc80c4d14",
+      "expected_body_set_visual": "9725b3db-6e40-054b-dc49-b8e479bc0cba",
+      "body_seed": "hoots-hooligan",
+      "review": {
+        "adult": true,
+        "evidence": "The adult barkeep who runs the bar at Sharess' Caress. Stock English display name: Hoots Hooligan."
+      },
+      "display_name": "Hoots Hooligan"
+    },
+    {
+      "actor_id": "c95af77b-6fc3-4c73-ac7c-087124f4b1e4",
+      "expected_name": "S_WYR_Circus_Ringmaster",
+      "template_id": "bdf4f7c8-a385-4af0-8fb9-b02805250ca3",
+      "expected_visual_id": "eb90eea1-afd3-4ad5-c6ee-79f26fcb8c26",
+      "expected_body_set_visual": "9725b3db-6e40-054b-dc49-b8e479bc0cba",
+      "body_seed": "lucretious",
+      "review": {
+        "adult": true,
+        "evidence": "The adult necromancer and ringmaster who runs the Circus of the Last Days. Stock English display name: Lucretious."
+      },
+      "display_name": "Lucretious"
+    },
+    {
+      "actor_id": "fff7fecf-d6c0-478d-92fb-3aa854298cd2",
+      "expected_name": "S_WYR_SharessCaress_Mamzell",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "9918d1fc-81a5-f8a6-ad68-fbd617a4e280",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "mamzell-amira",
+      "donor_profile": "donor_mercy_c",
+      "review": {
+        "adult": true,
+        "evidence": "The adult proprietor who manages Sharess' Caress in Wyrm's Crossing. Stock English display name: Mamzell Amira."
+      },
+      "display_name": "Mamzell Amira"
+    },
+    {
+      "actor_id": "bc3a5dac-3179-4a7c-bd3f-1391eb6d5497",
+      "expected_name": "S_WYR_SharessCaress_NymphRoom_Nymph",
+      "template_id": "ffcf9408-6695-4e7a-9e57-749da0992df7",
+      "expected_visual_id": "fc341db7-a1f7-338d-c15a-03f9b616e5c3",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "naoise",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "The adult courtesan at Sharess' Caress in Wyrm's Crossing. Stock English display name: Naoise Nallinto."
+      },
+      "display_name": "Naoise Nallinto"
+    },
+    {
+      "actor_id": "831fbc36-b0df-4248-9c39-50906b715d25",
+      "expected_name": "S_WYR_WyrmRock_ArmouryQuartermaster",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "6a2a53d8-0546-42a4-2a0b-63f191a99e45",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "arkleia",
+      "donor_profile": "donor_juno_b",
+      "review": {
+        "adult": true,
+        "evidence": "The Flaming Fist quartermaster responsible for the armoury at Wyrm's Rock. Stock English display name: Arkleia Oloril."
+      },
+      "display_name": "Arkleia Oloril"
+    },
+    {
+      "actor_id": "44b0baf1-84e8-4a67-bf45-81ee304bc731",
+      "expected_name": "S_WYR_WyrmRock_SouthBridgeGuard_001",
+      "template_id": "1a80541e-f990-4a07-ba08-008b9992f7be",
+      "expected_visual_id": "bf701555-9d54-d047-5e1d-df365b77bce2",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "blaze-elin",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "The ranked Flaming Fist officer commanding the gate at Wyrm's Crossing. Stock English display name: Blaze Elin."
+      },
+      "display_name": "Blaze Elin"
+    },
+    {
+      "actor_id": "0d9c9a7c-3f15-4b86-990f-2b5dd65b4dc7",
+      "expected_name": "S_WYR_MerchantsHouse_RefugeeWife",
+      "template_id": "ef845ccb-4302-41c1-8681-dc47292247aa",
+      "expected_visual_id": "fb504594-9817-22f5-7593-dad7c287ed80",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "marpha",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "The adult refugee spouse of Ben Golewits and mother of his child in Rivington. Stock English display name: Marpha Golewits."
+      },
+      "display_name": "Marpha Golewits"
+    },
+    {
+      "actor_id": "ef1b7a12-6439-470a-885c-fa47851728cd",
+      "expected_name": "S_LOW_Guildhall_NineFingers",
+      "template_id": "d3378977-3240-4233-8f72-4970d38b1125",
+      "expected_visual_id": "bbb5072a-c26f-2b2f-f91a-61bb1ffb3296",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "nine-fingers-keene",
+      "donor_profile": "donor_juno_b",
+      "review": {
+        "adult": true,
+        "evidence": "The adult guildmaster who runs the Guildhall in the Lower City. Stock English display name: Nine-Fingers Keene."
+      },
+      "display_name": "Nine-Fingers Keene"
+    },
+    {
+      "actor_id": "74f08242-30d7-4ad5-a0d7-36aa75b213cc",
+      "expected_name": "S_LOW_KurwinCoffin_KelemvorPriestess",
+      "template_id": "290dc842-c476-4518-81f7-f3fc0e835121",
+      "expected_visual_id": "acc33187-db0b-ea4b-8d80-69b5b57795eb",
+      "expected_body_set_visual": "9725b3db-6e40-054b-dc49-b8e479bc0cba",
+      "body_seed": "gracie-scyre",
+      "review": {
+        "adult": true,
+        "evidence": "The adult mortarch who runs the city mortuary and oversees Kelemvor's funeral rites. Stock English display name: Mortarch Gracie Scyre."
+      },
+      "display_name": "Mortarch Gracie Scyre"
+    },
+    {
+      "actor_id": "915d074c-8f6f-4f5a-ae18-fb333ce6dc29",
+      "expected_name": "S_LOW_BasiliskGate_Commander",
+      "template_id": "23390aab-1411-42de-80b9-14043cc50bc5",
+      "expected_visual_id": "e2a09f7a-c5c5-0b3a-428b-5f367a9c6068",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "liara-portyr",
+      "donor_profile": "donor_cinderella_a",
+      "review": {
+        "adult": true,
+        "evidence": "The adult officer and commander of the Flaming Fist headquarters at Basilisk Gate. Stock English display name: Blaze Liara Portyr."
+      },
+      "display_name": "Blaze Liara Portyr"
+    },
+    {
+      "actor_id": "812a2565-3c84-4c47-9255-5d66d840ede4",
+      "expected_name": "S_LOW_CountingHouse_LobbyMainGuard",
+      "template_id": "9e054949-8251-438e-bbf5-7371815b5bea",
+      "expected_visual_id": "b0109451-b307-b8f7-5fa9-035bcf872e9c",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "captain-faril",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "The ranking Cashguard captain responsible for security at the Counting House. Stock English display name: Cashguard Captain Faril."
+      },
+      "display_name": "Cashguard Captain Faril"
+    },
+    {
+      "actor_id": "aa38af5c-9c75-4b2e-89e3-0cc1b995dbd6",
+      "expected_name": "S_LOW_HagSurvivors_Adrielle",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "025b333a-9417-0a25-8e39-34c85caa9ce1",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "adrielle",
+      "donor_profile": "donor_juno_b",
+      "review": {
+        "adult": true,
+        "evidence": "The adult cleric of Helm working with the hag survivors in the Lower City. Stock English display name: Adrielle."
+      },
+      "display_name": "Adrielle"
+    },
+    {
+      "actor_id": "9d475536-34f0-4a6f-9191-3a635b81a232",
+      "expected_name": "S_LOW_BlushingMermaid_QuenoraGrizly",
+      "template_id": "41a60a7d-4949-4449-ab82-3ff3bef1e3c9",
+      "expected_visual_id": "14c3bb48-0912-3a39-ab7c-365d68073323",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "captain-grizly",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "The adult captain and proprietor of the Blushing Mermaid. Stock English display name: Captain Grisly."
+      },
+      "display_name": "Captain Grisly"
+    },
+    {
+      "actor_id": "5790158e-f3bc-47f4-9fc9-38767daeeceb",
+      "expected_name": "S_LOW_BlushingMermaid_QuenoraGrizly_HagVoiceDummy",
+      "template_id": "41a60a7d-4949-4449-ab82-3ff3bef1e3c9",
+      "expected_visual_id": "14c3bb48-0912-3a39-ab7c-365d68073323",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "captain-grizly",
+      "donor_profile": "donor_kiriko_c",
+      "review": {
+        "adult": true,
+        "evidence": "The separate voice proxy of the adult hag disguised as the same adult Captain Grisly. Stock English display name: Captain Grisly."
+      },
+      "display_name": "Captain Grisly"
+    },
+    {
+      "actor_id": "b7e59d50-dad4-40b3-88f7-e05d27134356",
+      "expected_name": "S_LOW_KerriEvenfield",
+      "template_id": "b2fe9ed6-c6b4-43fe-af6a-e463c5ae33cd",
+      "expected_visual_id": "2b2fbef3-1554-8834-b8f8-97836d77f2d0",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "kerri-evenfield",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "The spirit of Oskar Fevras's adult former partner in Free the Artist. Stock English display name: Kerri Evenfield."
+      },
+      "display_name": "Kerri Evenfield"
+    },
+    {
+      "actor_id": "f64fa57e-8061-4eb4-8d46-1ac743e1852d",
+      "expected_name": "S_LOW_Jannath",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "facf2a2d-9815-e486-ed11-627dcaf1d02e",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "lady-jannath",
+      "donor_profile": "donor_mercy_c",
+      "review": {
+        "adult": true,
+        "evidence": "The adult wife of Oskar Fevras and owner of the Jannath estate. Stock English display name: Lady Jannath."
+      },
+      "display_name": "Lady Jannath"
+    },
+    {
+      "actor_id": "2c10ff0f-d2ff-4dcb-8f8b-c6f870044f5d",
+      "expected_name": "S_LOW_ShadowheartFriend",
+      "template_id": "2248d9d1-581a-4d39-989c-2d6110585f7c",
+      "expected_visual_id": "fe1e93d0-0aab-12bd-bd64-57933fdeb0f3",
+      "expected_body_set_visual": "820ddd41-7946-f026-099f-7034983d50d2",
+      "body_seed": "nocturne",
+      "review": {
+        "adult": true,
+        "evidence": "The current adult Sharran quartermaster who knew Shadowheart when both were growing up. Stock English display name: Nocturne."
+      },
+      "display_name": "Nocturne"
+    },
+    {
+      "actor_id": "8f5ab254-2d62-4115-a4d4-3b84e6d1896c",
+      "expected_name": "S_LOW_JaheirasHouse_JaheirasEldestDaughter",
+      "template_id": "a432cb36-e5fa-44a0-992c-b0c96a272c40",
+      "expected_visual_id": "4fd25bd3-0258-31da-b90b-7de27e2bf90d",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "rion",
+      "donor_profile": "donor_juno_e",
+      "review": {
+        "adult": true,
+        "evidence": "Jaheira's adult eldest daughter who helps raise the younger children of the household. Stock English display name: Rion."
+      },
+      "display_name": "Rion"
+    },
+    {
+      "actor_id": "1986e6df-5cc3-47c3-88db-8592321f51f7",
+      "expected_name": "S_LOW_TheLodge_SocietyMember_04",
+      "template_id": "53325284-e0cb-470e-8576-fb12c494ecd3",
+      "expected_visual_id": "ccd378b2-5aac-3991-8d5c-15c6477e5177",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "professor-limeleech",
+      "donor_profile": "donor_juno_b",
+      "review": {
+        "adult": true,
+        "evidence": "The established professor and member of the Society of Brilliance at the Lodge. Stock English display name: Professor Limeleech."
+      },
+      "display_name": "Professor Limeleech"
+    },
+    {
+      "actor_id": "d68c344d-e491-4ca6-b88e-959e68445bb8",
+      "expected_name": "S_LOW_Traders_JewelVendor",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "68635383-153d-8c9e-1165-3fd814f4f772",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "omotola",
+      "donor_profile": "donor_jubilee_b",
+      "review": {
+        "adult": true,
+        "evidence": "The adult proprietor of the Glitter Gala in Baldur's Gate and purveyor of gems and jewels. Stock English display name: Omotola."
+      },
+      "display_name": "Omotola"
+    },
+    {
+      "actor_id": "e17a32d6-78e5-4c33-b718-c548c058aac4",
+      "expected_name": "S_LOW_HagSurvivors_Bandit_Wizard_01",
+      "template_id": "f7b08119-aad9-46ad-b5b6-842635d0e6ca",
+      "expected_visual_id": "206bda8f-3e1c-872b-e839-4ab2d805dca0",
+      "expected_body_set_visual": "db6e5918-8514-4dcc-8363-e8fd3c50cce5",
+      "body_seed": "aideen",
+      "donor_profile": "donor_cinderella_a",
+      "review": {
+        "adult": true,
+        "evidence": "The adult leader of the Dead Eyes who heads their operation at Old Garlow's Place. Stock English display name: Aideen Ni Chuirc."
+      },
+      "display_name": "Aideen Ni Chuirc"
+    },
+    {
+      "actor_id": "b1ea974d-96fb-47ca-b6d9-9c85fcb69313",
+      "expected_name": "S_LOW_Viconia",
+      "template_id": "49f24908-b2ac-4d13-9e39-d932bd652e89",
+      "expected_visual_id": "bd843e87-e62b-1007-83ce-4069e8ebc448",
+      "expected_body_set_visual": "691326d2-1506-970a-2ca4-ebc84b64c877",
+      "body_seed": "viconia",
+      "review": {
+        "adult": true,
+        "evidence": "The adult Sharran Mother Superior who presides over the House of Grief. Stock English display name: Viconia DeVir."
+      },
+      "display_name": "Viconia DeVir"
+    },
+    {
+      "actor_id": "2c76687d-93a2-477b-8b18-8a14b549304c",
+      "expected_name": "S_Player_Karlach",
+      "template_id": "3ab0a797-0904-47cb-955d-cdc3ec32409c",
+      "expected_visual_id": "ce24301b-f705-ab7d-4354-d51ab93c5ae3",
+      "expected_body_set_visual": "a1292048-0f09-89e2-2fd6-42d8afe3ef02",
+      "body_seed": "3ab0a797-0904-47cb-955d-cdc3ec32409c",
+      "review": {
+        "adult": true,
+        "evidence": "The gameplay actor for the reviewed adult companion Karlach, a veteran of the Blood War. This actor points at the named companion root reviewed in the main catalog."
+      },
+      "display_name": "Karlach"
+    },
+    {
+      "actor_id": "0de603c5-42e2-4811-9dad-f652de080eba",
+      "expected_name": "S_Player_Minsc",
+      "template_id": "9d5f838a-8595-490c-85d5-8a2a69414356",
+      "expected_visual_id": "b933b9ae-e37a-95ff-0801-1dd31069ecfc",
+      "expected_body_set_visual": "82ab6969-2889-4149-bd6f-c7922e320593",
+      "body_seed": "9d5f838a-8595-490c-85d5-8a2a69414356",
+      "review": {
+        "adult": true,
+        "evidence": "The gameplay actor for the reviewed adult companion Minsc, veteran ranger of Rashemen. This actor points at the named companion root reviewed in the main catalog."
+      },
+      "display_name": "Minsc"
+    },
+    {
+      "actor_id": "7628bc0e-52b8-42a7-856a-13a6fd413323",
+      "expected_name": "S_GLO_Halsin",
+      "template_id": "1a3d9848-f86e-4f4c-bba5-125ab605c69e",
+      "expected_visual_id": "b7830265-b4d4-3419-bd41-1fe1099ccf16",
+      "expected_body_set_visual": "82ab6969-2889-4149-bd6f-c7922e320593",
+      "body_seed": "1a3d9848-f86e-4f4c-bba5-125ab605c69e",
+      "review": {
+        "adult": true,
+        "evidence": "The gameplay actor for the reviewed adult archdruid Halsin, the longtime leader of the Emerald Grove. Stock English display name: Halsin."
+      },
+      "display_name": "Halsin"
+    },
+    {
+      "actor_id": "91b6b200-7d00-4d62-8dc9-99e8339dfa1a",
+      "expected_name": "S_Player_Jaheira",
+      "template_id": "7c7e6552-3fc0-4495-bb11-4b9f9a8e71fc",
+      "expected_visual_id": "966e8a68-24a0-fd94-8323-74f7b091df7c",
+      "expected_body_set_visual": "691326d2-1506-970a-2ca4-ebc84b64c877",
+      "body_seed": "7c7e6552-3fc0-4495-bb11-4b9f9a8e71fc",
+      "review": {
+        "adult": true,
+        "evidence": "The gameplay actor for the reviewed elderly Harper Jaheira, adoptive parent of Rion. Stock English display name: Jaheira."
+      },
+      "display_name": "Jaheira"
+    },
+    {
+      "actor_id": "6c55edb0-901b-4ba4-b9e8-3475a8392d9b",
+      "expected_name": "S_GLO_Nightsong",
+      "template_id": "3690bd38-c4b3-4f3b-89e2-270f95283c90",
+      "expected_visual_id": "01b2e885-b569-8c2e-3885-551d113ef452",
+      "expected_body_set_visual": "d8d9aee4-098a-dcda-08b4-6d03ea392d49",
+      "body_seed": "dame-aylin",
+      "review": {
+        "adult": true,
+        "evidence": "The adult daughter of Selune and partner of Isobel, Dame Aylin. Stock English display name: Nightsong."
+      },
+      "display_name": "Nightsong"
+    },
+    {
+      "actor_id": "f25b5f9a-bfde-4d81-a3fb-74fc39dad95b",
+      "expected_name": "S_WYR_DapperDrow_Brother",
+      "template_id": "fc4cc2e2-355d-4627-b51c-1f4987bc055c",
+      "expected_visual_id": "a206c877-6528-8756-6778-aa9ac242a5a1",
+      "expected_body_set_visual": "017534b5-2b56-4160-9d8c-7712d3a413ea",
+      "body_seed": "sorn-orlith",
+      "review": {
+        "adult": true,
+        "evidence": "The adult drow courtesan working at Sharess' Caress with his twin Nym. Stock English display name: Sorn Orlith."
+      },
+      "display_name": "Sorn Orlith"
+    },
+    {
+      "actor_id": "c12d561f-beae-4ef6-917e-0bec2f829449",
+      "expected_name": "S_LOW_ShadowheartFather",
+      "template_id": "37e45dec-4ed6-4bad-bfbd-a9f6ce8f8307",
+      "expected_visual_id": "0ab0651f-0dcb-4874-3c56-3eb466a57394",
+      "expected_body_set_visual": "017534b5-2b56-4160-9d8c-7712d3a413ea",
+      "body_seed": "arnell-hallowleaf",
+      "review": {
+        "adult": true,
+        "evidence": "The adult father of Shadowheart encountered at the House of Grief. Stock English display name: Arnell Hallowleaf."
+      },
+      "display_name": "Arnell Hallowleaf"
+    },
+    {
+      "actor_id": "d085272a-f1d0-4ff8-a498-80728030f83e",
+      "expected_name": "S_LOW_ShadowheartMother",
+      "template_id": "19dc6cab-aa38-4f09-b9cf-546e1c0ecb8a",
+      "expected_visual_id": "00d7dfe3-498b-63bf-e8af-ffab628bc6d4",
+      "expected_body_set_visual": "691326d2-1506-970a-2ca4-ebc84b64c877",
+      "body_seed": "emmeline-hallowleaf",
+      "review": {
+        "adult": true,
+        "evidence": "The adult mother of Shadowheart encountered at the House of Grief. Stock English display name: Emmeline Hallowleaf."
+      },
+      "display_name": "Emmeline Hallowleaf"
+    },
+    {
+      "actor_id": "475200ee-cc3c-4dbe-84b1-1820c02ea26a",
+      "expected_name": "S_DEN_TieflingLeader",
+      "template_id": "a5856190-08e3-4741-b697-8b1cbf03eaa1",
+      "expected_visual_id": "6b49f80c-3ce2-cfe8-f569-5202f8f09f23",
+      "expected_body_set_visual": "9d618ae2-7993-5cea-bfea-887a010e2c2b",
+      "body_seed": "zevlor",
+      "review": {
+        "adult": true,
+        "evidence": "The adult former Hellrider commander who leads the tiefling refugees at the grove. Stock English display name: Zevlor."
+      },
+      "display_name": "Zevlor"
+    },
+    {
+      "actor_id": "2b537d2a-14c8-43b3-ab71-d537c925a2a7",
+      "expected_name": "S_GLO_Derryth",
+      "template_id": "1ad176b6-d4df-49b9-b487-c0751c39e55e",
+      "expected_visual_id": "7073a549-3d3d-f803-4c4e-b03c8bfa220f",
+      "expected_body_set_visual": "774a9359-3d67-4021-b32f-6c229d709741",
+      "body_seed": "derryth-bonecloak",
+      "review": {
+        "adult": true,
+        "evidence": "The adult merchant, married to Baelen, who operates Bonecloak's Apothecary. Stock English display name: Derryth Bonecloak."
+      },
+      "display_name": "Derryth Bonecloak"
+    },
+    {
+      "actor_id": "299a1c00-ff53-415e-ad8e-9bcbbae55597",
+      "expected_name": "S_LOW_DevilsFee_Helsik",
+      "template_id": "0edf4736-306d-4995-9357-f452e7bf0e58",
+      "expected_visual_id": "0c42d904-a8e2-9428-5ba4-17e213d2357c",
+      "expected_body_set_visual": "774a9359-3d67-4021-b32f-6c229d709741",
+      "body_seed": "helsik",
+      "review": {
+        "adult": true,
+        "evidence": "The adult diabolist who owns the Devil's Fee and sells access to the Hells. Stock English display name: Helsik."
+      },
+      "display_name": "Helsik"
+    }
+  ],
+  "root_inheritors": [
+    {
+      "actor_id": "3ed74f06-3c60-42dc-83f6-f034cb47c679",
+      "expected_name": "S_Player_ShadowHeart",
+      "template_id": "2ac51f22-e357-4639-b81d-022d462c8c6a",
+      "review": {
+        "adult": true,
+        "evidence": "Named gameplay actor for the reviewed adult ORIGIN_Shadowheart companion, directly inheriting that exact template."
+      }
+    },
+    {
+      "actor_id": "58a69333-40bf-8358-1d17-fff240d7fb12",
+      "expected_name": "S_Player_Laezel",
+      "template_id": "3a0351bd-0b2f-4fbf-84a6-30ad80bb3100",
+      "review": {
+        "adult": true,
+        "evidence": "Named gameplay actor for the reviewed adult ORIGIN_Laezel companion, directly inheriting that exact template."
+      }
+    },
+    {
+      "actor_id": "c774d764-4a17-48dc-b470-32ace9ce447d",
+      "expected_name": "S_Player_Wyll",
+      "template_id": "159cdf9e-6665-4450-9375-8494e233b0e4",
+      "review": {
+        "adult": true,
+        "evidence": "Named gameplay actor for the reviewed adult ORIGIN_Wyll companion, directly inheriting that exact template."
+      }
+    },
+    {
+      "actor_id": "c7c13742-bacd-460a-8f65-f864fe41f255",
+      "expected_name": "S_Player_Astarion",
+      "template_id": "5614c25e-0213-479f-864c-e95895adb30f",
+      "review": {
+        "adult": true,
+        "evidence": "Named gameplay actor for the reviewed adult ORIGIN_Astarion companion, directly inheriting that exact template."
+      }
+    },
+    {
+      "actor_id": "38358b07-50fc-4d16-b604-13be82a6c927",
+      "expected_name": "ORIGIN_Shadowheart_000",
+      "template_id": "2ac51f22-e357-4639-b81d-022d462c8c6a",
+      "review": {
+        "adult": true,
+        "evidence": "Facial Animations' TL_Gabbo actor depicts present-day adult companion Shadowheart. Its exact stock adult origin parent supplies its appearance."
+      }
+    }
+  ]
+}

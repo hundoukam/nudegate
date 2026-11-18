@@ -528,7 +528,7 @@ def copy_skin_style_package(package: Path, stage: Path, styles: dict, divine: Pa
             for record in styles['files']]
 
 
-def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, report: dict) -> None:
+def read_back_package(divine: Path, pak: Path, stage: Path, verification: Path) -> dict:
     run(divine, "-a", "extract-package", "-s", pak, "-d", verification)
     expected = {p.relative_to(stage).as_posix(): p for p in stage.rglob("*") if p.is_file()}
     actual = {p.relative_to(verification).as_posix(): p for p in verification.rglob("*") if p.is_file()}
@@ -542,6 +542,11 @@ def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, rep
             converted = actual[name].with_suffix(".verified.lsx")
             run(divine, "-a", "convert-resource", "-s", actual[name], "-d", converted)
             documents[name] = ET.parse(converted)
+    return documents
+
+
+def verify_package(divine: Path, pak: Path, stage: Path, verification: Path, report: dict) -> None:
+    documents = read_back_package(divine, pak, stage, verification)
     roots = documents["Public/Nudegate/RootTemplates/_merged.lsf"]
     visuals = documents["Public/Nudegate/Content/[PAK]_CharacterVisuals/_merged.lsf"]
     root_nodes = {attrs(n)["MapKey"]: n for n in roots.findall('./region/node/children/node')}
