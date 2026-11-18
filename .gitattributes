@@ -1,3 +1,5 @@
 * text=auto eol=lf
 # Preserve the pinned upstream implementation, including its CRLF and spaces.
 tools/donor_mesh_export/ReferenceClothUtils.cs -text -whitespace
+# Reviewed conditioning configurations are byte-hashed in their proof ledgers.
+config/float32_conditioning/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

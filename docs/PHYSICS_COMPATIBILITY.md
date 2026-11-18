@@ -1,8 +1,10 @@
 # Jiggle compatibility audit
 
-The current Nudegate body exports are static skinned meshes. They do not include
-new jiggle physics. Installing **The Jiggle Is Up** alongside them does not turn
-the private Nudegate body resources into that mod's matched cloth assets.
+The original static Nudegate body pipeline exports skinned meshes without a
+matched cloth setup. Installing **The Jiggle Is Up** alongside those meshes does
+not turn their private body resources into that mod's matched cloth assets.
+The six later donor probes include fitted native cloth setups; their runtime
+motion remains unverified, as described in the progress section below.
 
 This read-only audit inspected the locally installed archives and already
 extracted COLLADA/resource banks on 2026-11-17. No game files, active mods,
@@ -523,6 +525,29 @@ Breast, hands/feet, upper neck and sampled outer pelvic contours remain exact
 outside the tiny central support. This remains body preparation: Cinderella's
 own proxy fit, actual serialized rest proof, materials and runtime acceptance
 are separate requirements.
+
+Cinderella's own matched-proxy authoring is reproduced by
+`tools/make_cinderella_proxy_seeds.py` and the shared
+`tools/fit_native_donor_proxy.py`. Search seeds use her actual source breast
+poles and strong-support height/width spans; they guide correspondence only.
+The shared fitter selects actual same-side, agreeing-normal triangle points on
+her connected donor surface and samples one analytic compact velocity flow on
+the original proxy and disposable native lookup. The actual dense sculpt never
+passes through that deformation. The selected 75 mm support has no new proxy or
+lookup intersections/collapse, proxy Jacobian minimum 1.1038 and lookup minimum
+0.1588. An 89-sample central-difference check agrees within 5.51e-9.
+
+```powershell
+python tools/make_cinderella_proxy_seeds.py --target-pose build/donors/cinderella_actual_posefix_v2/posed_dense.npz --pose-audit build/donors/cinderella_actual_posefix_v2/global-pose-surface-audit.json --output build/donors/cinderella-proxy-run/seeds.npz
+python tools/fit_native_donor_proxy.py --source-id cinderella_a --target-pose build/donors/cinderella_actual_posefix_v2/posed_dense.npz --pose-audit build/donors/cinderella_actual_posefix_v2/global-pose-surface-audit.json --target-body build/donors/cinderella_actual_posefix_v2/body_prepared.npz --radius .075 --moving-centres --projection-seeds build/donors/cinderella-proxy-run/seeds.npz --output build/donors/cinderella-proxy-run/fit
+```
+
+The same-field UV/paint transfer preserves every reviewed body corner position,
+normal, skin weight and source ID. Its native-derived breast poles and 10 mm
+caps retain R127, with no manual paint override. The repainted dynamic region's
+exact all-proxy-triangle distances have median 3.47 mm, 95th percentile 13.22 mm,
+and maximum 21.90 mm. The subsequent raw serialized mapping and final body/proxy
+surface audits remain distinct proof steps; none establishes runtime movement.
 
 The selected A sculpt and original file remain intact. A separate optional
 uncompressed study releases only three measured authored wardrobe controls:

@@ -1,8 +1,10 @@
 """Geometry-preserving preparation of an evaluated, skinned Blender donor.
 
-The donor positions already include its saved pose.  Corrections below rotate
-only limb segments using the original deform weights; they never fit the donor
-surface to a native body.  Native body data is a skin/UV/paint reference.
+The donor positions already include its saved pose. Default corrections rotate
+limb segments using original deform weights. An explicit segment endpoint helper
+can additionally fit axial lengths while preserving individual cross-sections.
+These methods never fit the donor surface to a native body. Native body data is
+a skin/UV/paint reference.
 """
 from __future__ import annotations
 
@@ -109,6 +111,34 @@ def rotation_between(a,b):
         return 2*np.outer(axis,axis)-np.eye(3)
     k=np.array([[0.,-cross[2],cross[1]],[cross[2],0.,-cross[0]],[-cross[1],cross[0],0.]])
     return np.eye(3)+k+k@k/(1+dot)
+
+
+def fit_segment_endpoints(source_start,source_end,target_start,target_end):
+    """Map segment endpoints exactly, scaling only along its original axis.
+
+    The returned affine matrix applies a proper shortest rotation after the
+    longitudinal scale. Every cross-section perpendicular to the source axis
+    keeps its distances and area; no radial/girth scale is introduced. This is
+    an opt-in limb proportion fit, separate from the default rigid pose math.
+    """
+    a,b,ta,tb=[np.asarray(value,dtype=float) for value in
+        (source_start,source_end,target_start,target_end)]
+    if any(value.shape!=(3,) or not np.isfinite(value).all() for value in (a,b,ta,tb)):
+        raise ValueError('Segment endpoints must be finite three-dimensional points')
+    direction=b-a;target=tb-ta
+    length=float(np.linalg.norm(direction));target_length=float(np.linalg.norm(target))
+    if min(length,target_length)<1e-10:raise ValueError('Zero segment length')
+    axis=direction/length;scale=target_length/length
+    rotation=rotation_between(direction,target)
+    matrix=rotation@(np.eye(3)+(scale-1)*np.outer(axis,axis))
+    offset=ta-matrix@a
+    report={'source_length_m':length,'native_length_m':target_length,
+        'longitudinal_scale':scale,'cross_section_scale':1.,'rotation':rotation.tolist(),
+        'source_start':a.tolist(),'source_end':b.tolist(),
+        'target_start':ta.tolist(),'target_end':tb.tolist(),
+        'start_residual_m':float(np.linalg.norm(matrix@a+offset-ta)),
+        'end_residual_m':float(np.linalg.norm(matrix@b+offset-tb))}
+    return matrix,offset,report
 
 
 def fractional_rotation(rotation,fraction):
@@ -344,6 +374,30 @@ def _zipper(lower,upper,positions):
     return faces
 
 
+def _orient_bridge_from_body(body_faces, bridge):
+    """Keep zipper faces coherent and opposite the attached body boundary."""
+    def directed_edges(faces):
+        result={}
+        for triangle in faces:
+            for a,b in zip(triangle,np.roll(triangle,-1)):
+                edge=tuple(sorted((int(a),int(b))))
+                result.setdefault(edge,[]).append((int(a),int(b)))
+        return result
+    body_edges=directed_edges(body_faces);bridge_edges=directed_edges(bridge)
+    orientation=[]
+    for edge,values in bridge_edges.items():
+        if len(values)==2:
+            if values[0]==values[1]:raise ValueError('Zipper bridge has inconsistent internal winding')
+        elif len(values)!=1:raise ValueError('Zipper bridge has a nonmanifold edge')
+        if edge in body_edges:
+            if len(values)!=1 or len(body_edges[edge])!=1:
+                raise ValueError('Bridge does not attach to a single body boundary')
+            orientation.append(values[0]==body_edges[edge][0])
+    if not orientation or any(value!=orientation[0] for value in orientation):
+        raise ValueError('Source body rim has inconsistent winding')
+    return bridge[:,[0,2,1]] if orientation[0] else bridge
+
+
 def validate_open_boundary_provenance(final_edges,source_ids,collar_ids,source_triangles,
                                       original_source_ids,*,allow_inherited=False):
     """Accept the exact collar and, optionally, only original source openings."""
@@ -371,16 +425,25 @@ def validate_open_boundary_provenance(final_edges,source_ids,collar_ids,source_t
             'inherited_openings_explicitly_allowed':allow_inherited}
 
 
-def trim_and_bridge(posed,mapped,native,cut=1.52,band=.035,*,allow_inherited_openings=False):
+def trim_and_bridge(posed,mapped,native,cut=1.52,band=.035,*,allow_inherited_openings=False,cut_height=None,
+                    bridge_orientation='source-boundary'):
     """Clip the head locally and append an exact native collar plus neck bridge.
 
     Original triangles wholly below the curved cut keep their exact vertices.
     Edge intersections are shared by their original edge IDs. No welding,
     decimation, smoothing or general surface fitting is performed.
+    The generated zipper inherits coherent winding from the original body
+    boundary. ``bridge_orientation='radial'`` reproduces older archives only.
     """
+    if bridge_orientation not in ('source-boundary','radial'):
+        raise ValueError('Unknown neck bridge orientation mode')
+    cut_function=_cut_height if cut_height is None else cut_height
     p=posed['positions'];t=posed['triangles'];points=p.tolist();weight=mapped.tolist()
+    heights=np.asarray(cut_function(p[:,0],cut))
+    if heights.shape!=(len(p),) or not np.isfinite(heights).all():
+        raise ValueError('Invalid local neck cut height field')
     ids=posed['source_vertex_ids'].tolist();source_face=[];faces=[];cache={}
-    scalar=p[:,1]-_cut_height(p[:,0],cut)
+    scalar=p[:,1]-heights
     def intersection(a,b):
         edge=tuple(sorted((int(a),int(b))))
         if edge not in cache:
@@ -411,9 +474,10 @@ def trim_and_bridge(posed,mapped,native,cut=1.52,band=.035,*,allow_inherited_ope
     # Compress only the existing narrow collar band; reject a folded mapping.
     shift=min(0.,float(collar[:,1].min())-.014-cut)
     if 1+1.5*shift/band<.1:raise ValueError('Neck transition would fold')
-    transition=(abs(points[:,0])<.12)&(points[:,1]>_cut_height(points[:,0],cut)-band)
+    point_heights=cut_function(points[:,0],cut)
+    transition=(abs(points[:,0])<.12)&(points[:,1]>point_heights-band)
     neck_displacement=np.zeros_like(points)
-    neck_displacement[transition,1]=shift*_smooth((points[transition,1]-(_cut_height(points[transition,0],cut)-band))/band)
+    neck_displacement[transition,1]=shift*_smooth((points[transition,1]-(cut_function(points[transition,0],cut)-band))/band)
     pre_neck=points.copy();points+=neck_displacement
     normals=vertex_normals(points,faces)
     # Ring starts and winding agree by actual arc-length order around XZ.
@@ -459,10 +523,14 @@ def trim_and_bridge(posed,mapped,native,cut=1.52,band=.035,*,allow_inherited_ope
     original_count=len(points);points=np.concatenate([points,np.asarray(append_p)])
     weight=np.concatenate([weight,np.asarray(append_w)]);ids=np.r_[ids,np.full(len(append_p),-2)]
     bridge=np.array([f for lo,hi in zip(rings,rings[1:]) for f in _zipper(lo,hi,points)])
-    # Orient bridge outward; donor and native ring sample counts can differ.
-    center=collar[:,[0,2]].mean(0);q=points[bridge]
-    n=np.cross(q[:,1]-q[:,0],q[:,2]-q[:,0]);radial=q.mean(1);radial[:,[0,2]]-=center;radial[:,1]=0
-    reverse=np.einsum('ij,ij->i',n,radial)<0;bridge[reverse]=bridge[reverse][:,[0,2,1]]
+    if bridge_orientation=='source-boundary':
+        bridge=_orient_bridge_from_body(faces,bridge)
+    elif bridge_orientation=='radial':
+        # Original behavior retained for existing reviewed donor stages.
+        center=collar[:,[0,2]].mean(0);q=points[bridge]
+        n=np.cross(q[:,1]-q[:,0],q[:,2]-q[:,0]);radial=q.mean(1);radial[:,[0,2]]-=center;radial[:,1]=0
+        reverse=np.einsum('ij,ij->i',n,radial)<0;bridge[reverse]=bridge[reverse][:,[0,2,1]]
+    else:raise ValueError('Unknown neck bridge orientation mode')
     faces=np.concatenate([faces,bridge]);source_face=np.r_[source_face,np.full(len(bridge),-1)]
     final_edges=_boundary_edges(faces)
     boundary_report=validate_open_boundary_provenance(final_edges,ids,top,t,posed['source_vertex_ids'],
@@ -477,6 +545,11 @@ def trim_and_bridge(posed,mapped,native,cut=1.52,band=.035,*,allow_inherited_ope
         'bridge_added_vertices':len(append_p),'bridge_added_triangles':len(bridge),
         'outside_neck_position_error':error,'final_open_edges':len(final_edges),
         'boundary_provenance':boundary_report}
+    if cut_height is not None:
+        report['head_cut_curve']='explicit local cut-height callback; see donor profile parameters'
+    if bridge_orientation!='radial':
+        report.update(bridge_orientation=bridge_orientation,bridge_internal_winding_conflicts=0,
+                      body_bridge_boundary_winding_conflicts=0)
     return {'positions':points,'triangles':faces,'bone_weights':weight,'source_vertex_ids':ids,
         'source_face_ids':source_face,'collar_vertex_indices':top,'collar_native_indices':collar_indices,
         'pre_neck_positions':np.concatenate([pre_neck,np.asarray(append_p)]),

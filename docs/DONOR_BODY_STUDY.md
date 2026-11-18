@@ -1,126 +1,158 @@
 # Selected Blender body study
 
-The donor path preserves the author's selected body surface and authored shape
-keys. Original Blender files and earlier smaller-body collections stay unchanged.
-Generated meshes, packages, scenes, textures and source exports remain local and
-are excluded from Git.
+Six selected donor states now have individually validated **offline GR2 body,
+native breast-cloth proxy and private new-Tav packages**. These prototypes target
+the matched BG3 human-normal female rig. Other skeletons, broad NPC distribution
+and successful physics in game remain outside this acceptance.
 
-## Selected states
+Original Blender files, frozen captures and earlier smaller-body collections
+remain unchanged. Generated assets and packages stay local and outside Git.
 
-| Source | Selected state | Authored key setting |
-| --- | --- | --- |
-| Mercy | C, large | `TitsSkey = -1` |
-| Juno | B, medium | `Big.Tits = 0.5` |
-| Juno | E, chubby | `Chubby = 1`; breast size keys at their reviewed defaults |
-| Cinderella | A, default | Reviewed default, including the recorded reset keys |
-| Kiriko 2.0 | C, large | `BreastSize = 1` |
-| Jubilee, Marvel Rivals | B, medium | `PBMBreastsSize = 0.5`, `FBMHeavy = 0` |
+## Selected states and packages
 
-All six states have detailed, unsmoothed source exports in
-`build/donors/selected`. The older shaded gallery used regularized mannequins;
-those are not conversion inputs. The export manifest pins the originals and
-exact presets. Kiriko requires the verified Blender 5.2 loader; invalid
-older-loader outputs are quarantined.
+| Source | Selected authored state | Body vertices / triangles | Folder under `build/donors` |
+| --- | --- | ---: | --- |
+| Mercy C | Large, `TitsSkey = -1` | 14,933 / 26,168 | `mercy-cc-probe` |
+| Juno B | Medium, `Big.Tits = 0.5` | 39,070 / 73,154 | `juno-b-coherent-cc-probe` |
+| Juno E | `Chubby = 1`; reviewed breast-key defaults | 38,945 / 73,108 | `juno-e-cc-probe` |
+| Cinderella A | Reviewed default, including recorded reset keys | 34,170 / 64,390 | `cinderella-cc-probe` |
+| Kiriko 2.0 C | Large, `BreastSize = 1` | 34,271 / 63,364 | `kiriko-cc-probe` |
+| Jubilee, Marvel Rivals B | `PBMBreastsSize = 0.5`, `FBMHeavy = 0` | 55,693 / 103,386 | `jubilee-cc-probe` |
 
-All six also have skin-group captures whose complete frozen geometry and UV
-arrays match byte-for-byte. Captures are write-once. Enumerated skin-only repairs
-are separate outputs from `tools/repair_donor_skin_capture.py`: Mercy's one
-unreferenced orphan vertex receives a placeholder that is removed during mesh
-compaction; Kiriko's four tiny negative weight residuals become zero. No body
-positions or UVs change in these repairs.
+Each folder contains a `.pak` and `probe-report.json` binding the model, mapping,
+surface proofs and compiled resources. The local consolidated index is
+`build/donors/accepted-six-donor-validation-index.json`; it records all six
+accepted stage paths, fingerprints and individual body/proxy/winding results.
+Earlier failed or superseded studies remain separate.
 
-Mercy C and Cinderella A now have dense fitted geometry studies with their own
-calibration and native collars. Each uses its original authored body surface.
-Juno E's chubby study and fitted proxy remain held because its neutral-pose
-adaptation introduces new contacts. These later bodies do not yet have accepted
-physics packages; their local audit reports determine each candidate's status.
+Each package creates five private roots and five private visuals for five
+explicitly reviewed adult normal-human female creation presets, with **zero
+original NPC root overrides**. Test **one donor package at a time**: these
+alternatives use the same probe folder and character-creation records. They are
+not six simultaneously selectable bodies in one package. Existing saves are
+not supported by this new-character probe.
 
-## First packaged body: Juno B
+Detailed source exports are frozen in `build/donors/selected`. The older shaded
+gallery used regularized mannequins, which are not conversion inputs. Kiriko
+requires the verified Blender 5.2 loader; invalid older-loader outputs remain
+quarantined.
 
-The experimental new-Tav package is
-`build/donors/juno-cc-probe/Nudegate-donor_juno_b-creation-probe.pak`.
-Its report records private IDs and source fingerprints. It covers five compatible
-adult normal-human female creation presets and emits no NPC patches.
+## Preserved shape and explicit changes
 
-The body contains **39,070 vertices and 73,154 triangles**. Preparation uses a
-uniform scale and source-weighted limb pose correction. The dense donor surface
-and authored breast shape are retained. Only the head cut and local neck bridge
-change topology; the collar uses BG3's exact 18-point native connection.
+The pipeline retains the selected author's dense sculpt and shape settings.
+It applies one uniform placement, explicit neutral limb posing, a local head
+cut and a bridge to BG3's exact 18-point collar. Sources already include their
+saved pose, so rest-to-pose skinning is not applied twice. Reports disclose
+the additional operations:
 
-The source is already posed, so rest-to-pose skinning is not applied twice.
-Deform weights are normalized separately from unrelated wardrobe masks.
-Seventeen reviewed stray tongue influences on the hips are reassigned to the
-native root, with geometry and other weights unchanged. The model retains the
-native skeleton, binding order and rig matrices. Bone bounds are rebuilt for
-the actual body. Source limb lengths remain unchanged; the resulting wrist and
-ankle anchors differ by about 2 cm from native joints. Hand/prop contact and
-animation fit therefore still require review.
+- **Source-support fields:** Mercy, Juno E and Kiriko use their own anatomical
+  bone hierarchy and smooth fields to retain original central anatomy during
+  posing. E also restores its original proximal shoulder/axilla surface while
+  actual elbow, wrist, knee and ankle neighborhoods, hands and feet remain exact
+  to its reviewed limb-pose baseline. Weak breast-weight tails on arms are
+  distinguished from the breast surface.
+- **Cinderella:** a separate, fingerprinted pelvic pose correction moves 17
+  source vertices by less than 0.8 mm, with breast, silhouette, hand/foot and
+  neck protection checked. It is a local pose repair, not a new chubby sculpt.
+- **Kiriko:** her seven-spine rig and independent toe chains are mapped
+  explicitly. Native segment endpoints are fitted through longitudinal limb
+  adjustments that preserve cross-sections, followed by source-support guards.
+  This does not prove animation or hand/prop contact in game.
+- **Float32 conditioning:** explicitly enumerated nanometre-scale changes on
+  Jubilee's hand and Kiriko's toenail copies preserve microscopic clearance in
+  the serialized format. Configurations under `config/float32_conditioning` pin
+  the data; unrelated fields stay exact. Fresh complete audits follow, with no
+  relaxed predicates or pair exceptions.
+- **Neck winding:** coherent bridge orientation fixes Juno B/E shading defects
+  without moving accepted neck vertices or changing source body triangles.
+  Coherent winding is now the preparation default. Explicit
+  `--legacy-radial-neck-winding` reproduces old archives; original B models and
+  packages remain preserved separately.
 
-### Jiggle
+Skin captures retain complete frozen geometry and UV arrays byte-for-byte.
+Separate recorded skin repairs handle Mercy's unused orphan vertex and Kiriko's
+four tiny negative weight residuals. The Juno profiles also reassign the same
+17 reviewed stray tongue influences on the hips to the native root. These skin
+repairs do not change positions. The native skeleton, joint transforms and
+binding order remain intact; per-bone bounds are rebuilt for the actual body.
 
-The package includes the fitted native cloth proxy and a new dense-body map.
-The mapping implementation was checked byte-for-byte against all five original
-matched native models. Original solver settings are retained. This establishes
-the serialized setup, not successful motion in game.
+Cinderella A retains its saved wardrobe-compression settings. An **optional,
+separate uncompressed study** disables only the three verified authored controls
+`Boobpress`, `Boba marcas bikini parche` and `thihhs`. It is not the selected A
+default and is not one of the final six physics probes.
 
-New gravity controls, hand contact and squeeze behavior have not been ported.
-Each later body needs its own fitted proxy and mapping. Static renders do not
-demonstrate physics.
+The original 35-body collection and smaller-body archives under
+`build/collections/classic-small-v0.1` and
+`build/collections/pictured-normal-v0.1` remain intact.
 
-### Verification and limits
+## Physics setup and verification
 
-Checks bind the actual prepared arrays to serialized GR2 buffers and the final
-package. Float32 positions match the intended conversion byte-for-byte.
-Topology, skin bytes, proxy records, material groups and rig data are checked
-after serialization. Package extraction reproduces every staged file exactly;
-compiled visual resources are read back.
+Each donor has its own fitted native breast-cloth simulation patch and rebuilt
+render-to-proxy map. The same verified field fits the disposable native UV/paint
+lookup where needed; it does not replace the dense donor sculpt. Native solver
+settings and paint semantics are retained. Mapping behavior was reproduced
+byte-for-byte against all five original matched native models.
 
-The original source already contains intersecting surfaces. A complete search
-of that source represented in the game's Float32 format provides the baseline
-before pose correction or the neck cut. The final body has zero introduced
-intersection pairs, zero bridge contacts and zero collapsed faces relative to
-that baseline. The unquantized-source comparison is also retained: Float32
-conversion itself creates two submicron contacts. These checks do not establish
-collision-free animation.
+All six actual serialized bodies pass their own complete source comparison:
+**zero introduced intersection pairs, zero bridge contacts, zero collapsed
+faces and zero bridge winding conflicts**. Each actual serialized proxy has
+zero absolute intersections and collapsed faces; its authoring field has
+positive sampled flow Jacobians. Actual GR2 buffers, skin/paint bytes, rig,
+material groups and bounds are read back and checked. Package extraction and
+compiled resource readback verify integrity and private UUID isolation.
 
-Skin mapping is provisional. Original Juno texture files are missing locally,
-and projected native UVs show checker distortion. In-game skin appearance,
-head/neck shading, motion, distance behavior and performance are unverified.
-There is currently one authored render LOD.
+The authored sources contain existing intersecting surfaces. Each accepted
+state uses **one independently searched baseline of that same original state**
+after uniform placement and Float32 conversion, before pose correction or neck
+operations. Existing authored and format-created contacts remain reported.
+Unquantized comparisons are retained separately; their pair sets are never
+unioned into a larger exception list. The index and per-stage
+`global-serialized-*-audit.json` reports contain exact counts and evidence.
+These are rest-mesh checks, not collision-free animation proofs.
 
-A reversible character-creation test was attempted on 2026-11-17. Both installed
-game executables exited before exposing a game window; Steam exposed its sign-in
-screen. No authentication was automated. Original mod settings were restored
-byte-for-byte and only the exact temporary probe package was removed. No saved
-game was loaded or written. Test records are in `build/donors/runtime-juno-b`.
+## Remaining work
 
-## Tools
+The user chose to continue offline. These six packages are built and verified
+locally, not installed for a successful game test. Runtime jiggle, materials,
+head/neck appearance, anatomy attachments, animation and prop contact,
+performance and distance/LOD behavior remain unverified. Each dense body has
+one authored render LOD. Projected native UVs and missing local donor textures
+also leave skin presentation provisional.
 
-`tools/export_blender_donors.py` captures a reviewed state with scripts disabled
-and checks the source before and after. Optional sparse skin groups are added
-only after proving all frozen geometry arrays are bit-identical.
-Duplicate source group labels retain their distinct indices, matching
-[Blender's per-index pose-channel mapping](https://github.com/blender/blender/blob/v4.5.0/source/blender/blenkernel/intern/armature_deform.cc#L504).
-Finite out-of-range source weights are recorded verbatim and block skin
-normalization until explicitly repaired. Kiriko has four tiny negative weights
-in the evaluated source. Jubilee's repeated subdivision evaluation changes a
-few UV values by at most `2.3842e-7`; its explicit frozen-UV option retains the
-original UV bytes after exact geometry and loop-order checks.
-`tools/prepare_donor_body.py` currently implements the Juno rig's pose, neck and
-attribute preparation. Other rigs require their own semantic joint review.
+This is the native breast-cloth setup only. New gravity or squeeze controls and
+donor `+100`/`+200` breast sliders are **not implemented**. Larger variants should
+use reviewed authored states; the earlier procedural `+200` shape is not
+promoted into this path. Further body-family support and adult NPC rollout
+remain future work.
 
-`tools/donor_mesh_export` writes the actual dense render mesh while retaining
-the matched native rig and fitted proxy. `tools/build_donor_probe.py` requires
-hash-bound export, mapping and accepted surface-audit reports before creating
-private character-creation resources.
+An earlier reversible Juno B creation test exited before a game window appeared;
+Steam showed its sign-in screen. No authentication was automated. Original mod
+settings were restored byte-for-byte and the temporary package was removed;
+no save was loaded or written. Records remain in `build/donors/runtime-juno-b`.
+
+## Reproduction tools
+
+`tools/export_blender_donors.py` captures reviewed states with scripts disabled
+and checks original files before and after. Skin-group capture requires frozen
+geometry parity. Duplicate group labels retain separate indices, matching
+[Blender's per-index armature mapping](https://github.com/blender/blender/blob/v4.5.0/source/blender/blenkernel/intern/armature_deform.cc#L504).
+Out-of-range weights block normalization until explicit repair. Jubilee's
+frozen-UV option retains original UV bytes after geometry/loop-order checks.
+
+Donor-specific preparation tools record calibration, semantic skin mapping,
+pose guards and local neck operations. `tools/fit_native_donor_proxy.py` authors
+the matched proxy/lookup field. `tools/donor_mesh_export` writes the dense render
+mesh while preserving the native rig and fitted proxy.
+`tools/build_donor_probe.py` requires accepted, hash-bound model, mapping and
+surface reports before creating private character-creation resources. Example:
 
 ```powershell
 python tools/build_donor_probe.py `
-  --export-report build/donors/juno_actual_nativehips_v2/export-f64roundtrip/HUM_F_NKD_Body_A_one_cloth_mesh.GR2.report.json `
-  --mapping-report build/donors/juno_actual_nativehips_v2/export-f64roundtrip/HUM_F_NKD_Body_A_one_cloth_mesh.GR2.mapping.json `
-  --surface-audit build/donors/juno_actual_nativehips_v2/global-serialized-float32source-surface-audit.json
+  --export-report build/donors/juno_b_coherent_neck_v3/export/HUM_F_NKD_Body_A_one_cloth_mesh.GR2.report.json `
+  --mapping-report build/donors/juno_b_coherent_neck_v3/export/HUM_F_NKD_Body_A_one_cloth_mesh.GR2.mapping.json `
+  --surface-audit build/donors/juno_b_coherent_neck_v3/global-serialized-float32source-surface-audit.json `
+  --output build/donors/juno-b-coherent-cc-probe
 ```
 
-This builds local artifacts without installing them. Future large variants use
-the authors' own shape-key states; the earlier procedural +200 chest deformation
-is not promoted into this path.
+This builds local artifacts without installing them. See
+[the physics audit](PHYSICS_COMPATIBILITY.md) for native format and rig details.

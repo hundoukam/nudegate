@@ -76,6 +76,55 @@ def apply_pose_coherence(posed, parameters, source_sha256):
         'independent_surface_acceptance': 'required; parameter validation does not establish intersection safety'}
 
 
+def proxy_projection_seeds(native_proxy_positions, posed):
+    """Guide native-patch correspondence with this donor's own breast support.
+
+    These are search seeds only. The final target points must still be selected
+    on the independently audited donor surface by the shared proxy fitter.
+    """
+    p = np.asarray(native_proxy_positions, dtype=np.float64)
+    donor = np.asarray(posed['positions'], dtype=np.float64)
+    left = np.asarray(posed['source_breast_influence_left'], dtype=np.float64)
+    right = np.asarray(posed['source_breast_influence_right'], dtype=np.float64)
+    if (p.ndim != 2 or p.shape[1] != 3 or not len(p) or donor.ndim != 2 or donor.shape[1] != 3
+            or left.shape != (len(donor),) or right.shape != (len(donor),)
+            or not all(np.isfinite(value).all() for value in (p, donor, left, right))
+            or np.any(left < 0) or np.any(right < 0)):
+        raise ValueError('Invalid Cinderella proxy or authored breast-support coordinates')
+    seed = p.copy()
+    poles = []
+    def smooth(value):
+        value = np.clip(value, 0, 1)
+        return value*value*(3 - 2*value)
+    for sign, side, support in [(1, 'left', left), (-1, 'right', right)]:
+        native_ids = np.flatnonzero(p[:, 0]*sign > .018)
+        donor_ids = np.flatnonzero((support > .05) & (donor[:, 0]*sign > .018))
+        if not len(native_ids) or not len(donor_ids):
+            raise ValueError('Cinderella pole search requires both authored breast sides')
+        native_pole = p[native_ids[np.argmin(p[native_ids, 2])]]
+        donor_pole = donor[donor_ids[np.argmin(donor[donor_ids, 2])]]
+        shift = donor_pole - native_pole
+        ids = np.flatnonzero(p[:, 0]*sign > 0)
+        gate = smooth((-.035 - p[ids, 2])/.10)*smooth((abs(p[ids, 0]) - .008)/.025)
+        seed[ids] += shift*gate[:, None]
+        poles.append({'side': side, 'native_pole': native_pole.tolist(), 'donor_pole': donor_pole.tolist(),
+                      'shift': shift.tolist()})
+    strong = left + right > .75
+    if not strong.any() or np.ptp(p[:, 1]) <= 0:
+        raise ValueError('Cinderella proxy seeds require strong authored support and nonzero patch height')
+    lo, hi = np.quantile(donor[strong, 1], [.005, .995])
+    width = np.quantile(abs(p[:, 0]), .995)
+    if hi <= lo or width <= 0:
+        raise ValueError('Cinderella authored support has a degenerate span')
+    width_ratio = float(np.quantile(abs(donor[strong, 0]), .995)/width)
+    seed[:, 1] = lo + (p[:, 1] - p[:, 1].min())/(p[:, 1].max() - p[:, 1].min())*(hi - lo)
+    seed[:, 0] = p[:, 0]*width_ratio
+    return seed, {'profile': 'cinderella-a-pole-height-width-seeds-v1', 'poles': poles,
+        'strong_source_breast_weight_threshold': .75, 'height_and_width_quantiles': [.005, .995],
+        'donor_height_limits': [float(lo), float(hi)], 'width_ratio': width_ratio,
+        'purpose': 'correspondence search only; actual dense geometry is never modified'}
+
+
 def active_bones(metadata):
     active = set(metadata['vertex_group_validation']['active_vertex_group_rigs'])
     bones = {bone['name']: bone for rig in metadata['rigs'] if rig['name'] in active for bone in rig['bones']}

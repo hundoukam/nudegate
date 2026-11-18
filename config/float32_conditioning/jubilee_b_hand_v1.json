@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "jubilee-b-float32-hand-clearance-v1",
+  "source_stage": "build/donors/jubilee_actual_samefield_paint_v2",
+  "expected_source_file_sha256": {
+    "body_prepared.npz": "e042104d251e7343f9d86e1c4d24ada17a3af090ebf041b9128ac446b8529695",
+    "neck_geometry.npz": "8f600fad9d547e38782fb230d160531775e8ac1b244398ddfb6367c08d8f59f9",
+    "body_payload.json": "290e9a334c021b5c1132a518333624eb71357d0e6410257a21b88ca3b3d9a3dc",
+    "posed_dense.npz": "b7b094dd85b15ae5cabf148284e15aa3074a02363145de45c1c9eae90883b0c0",
+    "report.json": "d2fca6ab0428c23d882958a45249046836c1637db508e70883e699f78702d8d3",
+    "global-pose-surface-audit.json": "ec9c051a1d0b61df1b5041f37681ab26e1e24f6e797a7a258ad85b17a978b8d0"
+  },
+  "previous_actual_model_sha256": "6a3d7593299ac30ff6719460a36bb644056a67b48d914aa481d709d10fd72731",
+  "offending_actual_faces": [
+    77228,
+    80904
+  ],
+  "offending_raw_source_faces": [
+    118678,
+    123890
+  ],
+  "patches": [
+    {
+      "source_vertex_id": 30709,
+      "geometry_vertex_id": 20618,
+      "export_vertex_ids": [
+        22258
+      ],
+      "neck_vertex_ids": [
+        20618
+      ],
+      "axis": 1,
+      "ulp_direction": -1,
+      "before_float64_position": [
+        -0.7279659781267239,
+        1.0843637753345614,
+        -0.04417751126067687
+      ],
+      "before_float32_component": 1.0843638181686401,
+      "after_float32_component": 1.0843636989593506,
+      "float32_ulp_shift_m": 1.1920928955078125e-07,
+      "displacement_from_original_float64_m": 7.637521082237697e-08,
+      "maximum_allowed_error_m": 2e-07,
+      "coincident_copy_count": 1,
+      "all_other_positions_and_attributes_bit_exact": true,
+      "protected_breast_and_torso_positions_bit_exact": true,
+      "source_anatomy_edited": false,
+      "purpose": "Keep an existing microscopic posed right-hand triangle gap representable in Float32"
+    }
+  ],
+  "no_predicate_or_pair_exceptions": true,
+  "requires_fresh_global_audits_and_actual_reexport": true,
+  "validated_case": {
+    "actual_model_sha256": "30177190239d942d990ce33585719ab1460cab40a46c88008285d198252af8e5",
+    "audit_sha256": {
+      "global-prepared-surface-audit.json": "fb33be002c18b5fd2014cec365be4398414ac20d7f12858c02cc93fd4d467f3d",
+      "global-serialized-surface-audit.json": "7a2ebd6d2f35f808f5d257a08817a8f9d550eff4048a46a6cf8da75f910a6167",
+      "global-serialized-float32source-surface-audit.json": "5e6a27993e76f02228f56a1632cb12e07463866b5b14f7193f683243c7fe8e85",
+      "global-serialized-proxy-surface-audit.json": "5cab01bf36585afadbc16d563f605c473c6a06f0307e2e03a4a41e45e944312e"
+    },
+    "prepared_and_actual_Double_and_Float32_source_new_intersections": 0,
+    "actual_proxy_absolute_intersections": 0,
+    "all_collapsed_faces": 0
+  }
+}

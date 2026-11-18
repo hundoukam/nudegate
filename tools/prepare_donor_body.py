@@ -22,13 +22,15 @@ def preview(output, native_path):
     sys.path.insert(0,str(ROOT/'tools'))
     from render_bodies import label,panel,BODY_COLOR,MUTED_COLOR
     from nudegate.collada import ColladaMesh
+    report=json.loads((output/'report.json').read_text())
+    display_name=report.get('display_label','Juno')
     with np.load(output/'posed_dense.npz') as data:
         posed=data['positions'][:,[0,2,1]]
         source=data['scaled_source_positions'][:,[0,2,1]]
         faces=data['triangles'][:,[0,2,1]]
     native=ColladaMesh.load(native_path,geometry_id='HUM_F_NKD_Body_A_Mesh-geom')
-    profiles=[('Original Juno / uniform scale',source,faces),
-              ('Actual Juno / limb pose corrected',posed,faces),
+    profiles=[(display_name+' / uniform scale',source,faces),
+              (display_name+' / corrected neutral pose',posed,faces),
               ('Native BG3 / comparison',np.array(native.positions)[:,[0,2,1]],np.array(native.triangles)[:,[0,2,1]])]
     bpy.ops.wm.read_factory_settings(use_empty=True)
     scene=bpy.context.scene;scene.render.engine='BLENDER_WORKBENCH'
@@ -49,8 +51,7 @@ def preview(output, native_path):
         for suffix,offset,angle in [('front',-.38,0),('side',.62,math.pi/2)]:
             ob=bpy.data.objects.new(title+suffix,mesh);scene.collection.objects.link(ob)
             ob.location=(x+offset,0,0);ob.rotation_euler.z=angle;ob.color=BODY_COLOR
-        label(title,x,1.96,.075);label('FRONT',x-.38,-.04,.048,MUTED_COLOR);label('SIDE',x+.62,-.04,.048,MUTED_COLOR)
-    report=json.loads((output/'report.json').read_text())
+        label(title,x,1.96,min(.075,2.1/max(len(title),1)));label('FRONT',x-.38,-.04,.048,MUTED_COLOR);label('SIDE',x+.62,-.04,.048,MUTED_COLOR)
     heading='Actual dense donor / source-weighted pose correction'
     for audit_name in ('global-pose-surface-audit.json','corrective-global-audit.json'):
         audit_path=output/audit_name
@@ -63,8 +64,8 @@ def preview(output, native_path):
     if report.get('arm_rotation_fraction',1)!=1:annotation+=f" / arm correction {report['arm_rotation_fraction']*100:g}%"
     if report.get('additional_stance_per_side_m',0):annotation+=f" / stance +{report['additional_stance_per_side_m']*1000:g}mm per side"
     label(annotation,0,2.15,.075,MUTED_COLOR)
-    if report.get('native_joint_fit'):
-        label('Rest-pose study / animation and hand-prop contact unverified',0,-.20,.065,MUTED_COLOR)
+    if report.get('native_joint_fit') or report.get('game_motion_and_hand_prop_contact') or report.get('in_game_motion'):
+        label('Offline geometry / animation and hand-prop contact unverified',0,-.20,.065,MUTED_COLOR)
     camera_data=bpy.data.cameras.new('Camera');camera=bpy.data.objects.new('Camera',camera_data)
     scene.collection.objects.link(camera);camera.location=(0,-12,1.0)
     camera.rotation_euler=(Vector((0,0,1.0))-camera.location).to_track_quat('-Z','Y').to_euler()
@@ -148,6 +149,12 @@ def main():
     parser.add_argument('--arm-lateral-extra',type=float,default=0.,help='Additional outward source-weighted arm pivot translation per side in metres')
     parser.add_argument('--align-arm-pivot',action='store_true',help='Translate source-weighted arms to native shoulder joint XYZ')
     parser.add_argument('--posed-input',type=Path,help='Use a separately reviewed full-topology pose/corrective NPZ without recomputing its coordinates')
+    neck=parser.add_mutually_exclusive_group()
+    neck.add_argument('--consistent-neck-winding',dest='neck_orientation',action='store_const',const='source-boundary',
+        help='Coherent source-boundary orientation for the generated neck bridge (default)')
+    neck.add_argument('--legacy-radial-neck-winding',dest='neck_orientation',action='store_const',const='radial',
+        help='Explicit archive reproduction only: original per-face radial orientation')
+    parser.set_defaults(neck_orientation='source-boundary')
     parser.add_argument('--pose-only',action='store_true')
     parser.add_argument('--blender-preview',action='store_true')
     parser.add_argument('--blender-preview-final',action='store_true')
@@ -179,6 +186,8 @@ def main():
         report['skin_repair_input_payload_sha256']=sha(source/'body_payload.json')
         (destination/'report.json').write_text(json.dumps(report,indent=2))
         print(json.dumps({'payload':report['payload'],'sha256':report['payload_sha256'],'repair':repair},indent=2));return
+    if args.output.exists():
+        raise ValueError('Donor preparation requires a fresh output directory')
     metadata=json.loads(args.donor.with_suffix('.json').read_text())
     if sha(args.donor)!=metadata['npz_sha256']:
         raise ValueError('Donor capture fingerprint changed')
@@ -211,7 +220,7 @@ def main():
         posed['source_breast_influence_'+side]=values
         report['source_breast_influence_'+side]={'groups':groups,'positive_vertices':int((values>0).sum()),
             'maximum':float(values.max()),'sum':float(values.sum())}
-    args.output.mkdir(parents=True,exist_ok=True)
+    args.output.mkdir(parents=True)
     np.savez_compressed(args.output/'posed_dense.npz',**posed)
     report.update(donor_state_id=metadata['id'],display_label=metadata['donor_id']+' '+metadata['preset']['id'],
                   reviewed_preset=metadata['preset'],source_key_values={name:metadata['applied_shape_keys'][name]['value']
@@ -223,7 +232,7 @@ def main():
                   complete=False)
     if not args.pose_only:
         mapped,report['skin_mapping']=map_native_weights(weights,names,bones,native['bone_palette'])
-        body,report['neck']=trim_and_bridge(posed,mapped,native)
+        body,report['neck']=trim_and_bridge(posed,mapped,native,bridge_orientation=args.neck_orientation)
         np.savez_compressed(args.output/'neck_geometry.npz',**body)
         reference=load_dae(args.reference)
         final,report['surface_transfer']=transfer_native_surface(body,reference,native)

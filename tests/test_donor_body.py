@@ -7,10 +7,29 @@ from nudegate.donor_body import (rotation_between,quantize_weights,closest_trian
     repair_juno_stray_facial_weights,JUNO_STRAY_FACIAL_SOURCE_IDS)
 from nudegate.donor_body import pose_donor
 from nudegate.donor_body import validate_open_boundary_provenance
-from nudegate.donor_body import fractional_rotation,transport_corresponding_surface
+from nudegate.donor_body import fractional_rotation,transport_corresponding_surface,fit_segment_endpoints
 
 
 class DonorBodyMathTests(unittest.TestCase):
+    def test_longitudinal_fit_matches_endpoints_and_preserves_cross_section(self):
+        a=np.array([.1,-.2,.3]);b=a+[.4,.3,0]
+        ta=np.array([-.2,.5,.1]);tb=ta+[0,0,.8]
+        matrix,offset,report=fit_segment_endpoints(a,b,ta,tb)
+        np.testing.assert_allclose(matrix@a+offset,ta,atol=1e-15)
+        np.testing.assert_allclose(matrix@b+offset,tb,atol=1e-15)
+        # Two orthogonal source radial directions remain orthonormal, and a
+        # translated ring at any point along the segment retains its girth.
+        radial=np.array([[-.6,.8,0],[0,0,1.]])
+        transformed=radial@matrix.T
+        np.testing.assert_allclose(transformed@transformed.T,np.eye(2),atol=1e-14)
+        self.assertAlmostEqual(report['longitudinal_scale'],1.6)
+        self.assertAlmostEqual(np.linalg.det(matrix),1.6)
+        for value in ([float('nan'),0,0],[0,0]):
+            with self.assertRaisesRegex(ValueError,'finite three-dimensional'):
+                fit_segment_endpoints(value,b,ta,tb)
+        with self.assertRaisesRegex(ValueError,'Zero segment'):
+            fit_segment_endpoints(a,a,ta,tb)
+
     def test_original_openings_require_exact_edge_ancestry_and_explicit_mode(self):
         collar=np.array([3,4,5]);ids=np.array([10,11,12,-2,-2,-2])
         source=np.array([[0,1,2]])

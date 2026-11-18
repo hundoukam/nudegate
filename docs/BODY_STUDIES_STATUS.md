@@ -13,11 +13,22 @@ are local studies, with donor-model transfer now being evaluated. No complete
 new capped grid or finalized 0.3 package has been published. The original 35
 meshes remain unchanged.
 
-The [selected Blender donor path](DONOR_BODY_STUDY.md) has now produced its first
-dense Juno medium new-Tav package with a native cloth proxy and rebuilt mapping.
-It preserves the authored body surface and uses a local native neck bridge.
-In-game appearance and motion remain unverified. The six selected source states
-and the exact preserved smaller-body archives are separate from this prototype.
+The [selected Blender donor path](DONOR_BODY_STUDY.md) now has six individually
+validated offline body/proxy packages: Mercy C, Juno B/E, Cinderella A, Kiriko
+2.0 C and Jubilee B. Actual serialized bodies have zero new contacts versus
+each state's own original Float32-source baseline, zero bridge contacts,
+collapsed faces or winding conflicts; their actual native breast-cloth proxies
+also pass separately. The detailed local index is
+`build/donors/accepted-six-donor-validation-index.json`; no source-pair exception
+unions are used. Each private new-Tav probe covers five reviewed adult presets
+with zero NPC root overrides. Use one donor package at a time because the probe
+folder and creation records overlap. Original Blender files, old B outputs and
+the smaller-body archives remain intact. Explicit pose/local-neck repairs and
+bounded hand/toenail Float32 conditioning are documented in the donor study.
+The optional three-key uncompressed Cinderella study is separate from selected
+A and these six probes. Runtime physics/materials, heads/anatomy, props,
+performance and LODs remain unverified; new gravity/squeeze, donor +100/+200
+sliders and NPC rollout are not implemented.
 
 **Preserved smaller-body catalog:** all six earlier profiles for normal
 human/elf, githyanki and tiefling bodies are retained for initial in-game review.

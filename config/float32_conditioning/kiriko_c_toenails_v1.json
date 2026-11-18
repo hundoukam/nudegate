@@ -1,0 +1,515 @@
+{
+  "schema_version": 2,
+  "id": "kiriko-c-float32-toenail-clearance-v1",
+  "source_stage": "build/donors/kiriko_actual_samefield_paint_v6",
+  "expected_source_file_sha256": {
+    "body_prepared.npz": "ce1b4691554621f9bd436f872553d4d45b03f389b57349570ed0d30fb2fcd0f4",
+    "neck_geometry.npz": "129647d994a841d77aed3d25fa60332b12f6ca32eb6bf05fe02342be43153bc8",
+    "body_payload.json": "348074c87322cd772b21b22459eab45a7e6520173d2f28cbcef533b3eb130cff",
+    "posed_dense.npz": "dabe62930b8e4af973df93aa24628fcd5806f17dce43979c5209792bd903595c",
+    "report.json": "713c7964530711016217d31499ba7a98633cf3b2543e30f6beb20a9124c27c16"
+  },
+  "source_pose_audit": "build/donors/kiriko_native_jointfit_v5/global-pose-surface-audit.json",
+  "source_pose_audit_sha256": "d8dbea379803cf24a351a430400a6d6db46caa8a2f5eaf7ec56c50ecab71c5ee",
+  "source_material_guard": {
+    "source_id": "kiriko_2_0_c",
+    "npz": "build/donors/skinned-repaired/kiriko_2_0_c.npz",
+    "npz_sha256": "ef096853a46b7e30510f4e81c586cea2f51f29ca6d867a6884301e25d040ac27",
+    "metadata": "build/donors/skinned-repaired/kiriko_2_0_c.json",
+    "metadata_sha256": "07c943809612a81ebc22a9a3751398b6001b49701e4d8629287aeee466f4333e",
+    "exclusive_material_name": "Kiri Nails"
+  },
+  "previous_actual_model_sha256": "51ce001b4dfcff76c82f3f67680fef5b2c57317a11b403a06d4a8234da0bf311",
+  "purpose": "Keep authored microscopic toenail/skin clearance representable after pose and Float32 serialization; all other materials remain exact",
+  "maximum_vector_error_m": 2e-07,
+  "patches": [
+    {
+      "export_vertex_ids": [
+        4
+      ],
+      "geometry_vertex_ids": [
+        2
+      ],
+      "source_vertex_ids": [
+        2
+      ],
+      "before_float64_position": [
+        0.1140518558530493,
+        0.0011473845280696032,
+        -0.09735488037739656
+      ],
+      "after_float64_position": [
+        0.11405184864997864,
+        0.0011473845280696032,
+        -0.09735488037739656
+      ],
+      "before_float32_position": [
+        0.11405185610055923,
+        0.0011473845224827528,
+        -0.09735488146543503
+      ],
+      "after_float32_position": [
+        0.11405184864997864,
+        0.0011473845224827528,
+        -0.09735488146543503
+      ],
+      "displacement_from_original_float64_m": 7.2030706677050915e-09,
+      "neck_vertex_ids": [
+        2
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        125
+      ],
+      "geometry_vertex_ids": [
+        102
+      ],
+      "source_vertex_ids": [
+        102
+      ],
+      "before_float64_position": [
+        0.10321458802118394,
+        0.009655635049880984,
+        -0.10503725021708966
+      ],
+      "after_float64_position": [
+        0.10321459174156189,
+        0.009655643254518509,
+        -0.10503725021708966
+      ],
+      "before_float32_position": [
+        0.10321459174156189,
+        0.009655634872615337,
+        -0.10503724962472916
+      ],
+      "after_float32_position": [
+        0.10321459174156189,
+        0.009655643254518509,
+        -0.10503724962472916
+      ],
+      "displacement_from_original_float64_m": 9.00873404022741e-09,
+      "neck_vertex_ids": [
+        102
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        193,
+        194
+      ],
+      "geometry_vertex_ids": [
+        158,
+        158
+      ],
+      "source_vertex_ids": [
+        158,
+        158
+      ],
+      "before_float64_position": [
+        0.1267665923029016,
+        0.0012064808082127391,
+        -0.08951197977997158
+      ],
+      "after_float64_position": [
+        0.1267665923029016,
+        0.0012064854381605983,
+        -0.08951197977997158
+      ],
+      "before_float32_position": [
+        0.12676659226417542,
+        0.0012064807815477252,
+        -0.08951198309659958
+      ],
+      "after_float32_position": [
+        0.12676659226417542,
+        0.0012064854381605983,
+        -0.08951198309659958
+      ],
+      "displacement_from_original_float64_m": 4.629947859130512e-09,
+      "neck_vertex_ids": [
+        158
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        357
+      ],
+      "geometry_vertex_ids": [
+        303
+      ],
+      "source_vertex_ids": [
+        303
+      ],
+      "before_float64_position": [
+        0.15335903258414557,
+        -0.00467691783481234,
+        -0.06517216293917252
+      ],
+      "after_float64_position": [
+        0.15335903258414557,
+        -0.004676917567849159,
+        -0.06517216293917252
+      ],
+      "before_float32_position": [
+        0.15335902571678162,
+        -0.0046769180335104465,
+        -0.06517216563224792
+      ],
+      "after_float32_position": [
+        0.15335902571678162,
+        -0.004676917567849159,
+        -0.06517216563224792
+      ],
+      "displacement_from_original_float64_m": 2.6696318072838565e-10,
+      "neck_vertex_ids": [
+        303
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        359
+      ],
+      "geometry_vertex_ids": [
+        305
+      ],
+      "source_vertex_ids": [
+        305
+      ],
+      "before_float64_position": [
+        0.1536837977929501,
+        -0.002040983826217242,
+        -0.0634533065103449
+      ],
+      "after_float64_position": [
+        0.15368379652500153,
+        -0.002040983826217242,
+        -0.0634533017873764
+      ],
+      "before_float32_position": [
+        0.15368379652500153,
+        -0.0020409838762134314,
+        -0.063453309237957
+      ],
+      "after_float32_position": [
+        0.15368379652500153,
+        -0.0020409838762134314,
+        -0.0634533017873764
+      ],
+      "displacement_from_original_float64_m": 4.8902070584839475e-09,
+      "neck_vertex_ids": [
+        305
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        413
+      ],
+      "geometry_vertex_ids": [
+        346
+      ],
+      "source_vertex_ids": [
+        346
+      ],
+      "before_float64_position": [
+        0.1522890585727622,
+        -0.003650319305990378,
+        -0.06651710354777829
+      ],
+      "after_float64_position": [
+        0.1522890585727622,
+        -0.0036503190640360117,
+        -0.06651710354777829
+      ],
+      "before_float32_position": [
+        0.15228906273841858,
+        -0.0036503192968666553,
+        -0.06651710718870163
+      ],
+      "after_float32_position": [
+        0.15228906273841858,
+        -0.0036503190640360117,
+        -0.06651710718870163
+      ],
+      "displacement_from_original_float64_m": 2.419543662646184e-10,
+      "neck_vertex_ids": [
+        346
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        435,
+        436
+      ],
+      "geometry_vertex_ids": [
+        366,
+        366
+      ],
+      "source_vertex_ids": [
+        366,
+        366
+      ],
+      "before_float64_position": [
+        0.14881680107135647,
+        -0.0010086344005411849,
+        -0.0652321880493026
+      ],
+      "after_float64_position": [
+        0.1488168090581894,
+        -0.0010086344005411849,
+        -0.0652321880493026
+      ],
+      "before_float32_position": [
+        0.1488167941570282,
+        -0.0010086344555020332,
+        -0.06523218750953674
+      ],
+      "after_float32_position": [
+        0.1488168090581894,
+        -0.0010086344555020332,
+        -0.06523218750953674
+      ],
+      "displacement_from_original_float64_m": 7.986832917250553e-09,
+      "neck_vertex_ids": [
+        366
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        16735
+      ],
+      "geometry_vertex_ids": [
+        15556
+      ],
+      "source_vertex_ids": [
+        17622
+      ],
+      "before_float64_position": [
+        -0.11552748638898308,
+        0.00218322944336774,
+        -0.10858847786502349
+      ],
+      "after_float64_position": [
+        -0.11552748638898308,
+        0.0021832312922924757,
+        -0.10858847786502349
+      ],
+      "before_float32_position": [
+        -0.11552748829126358,
+        0.0021832294296473265,
+        -0.10858847945928574
+      ],
+      "after_float32_position": [
+        -0.11552748829126358,
+        0.0021832312922924757,
+        -0.10858847945928574
+      ],
+      "displacement_from_original_float64_m": 1.8489247355368832e-09,
+      "neck_vertex_ids": [
+        15556
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        16777
+      ],
+      "geometry_vertex_ids": [
+        15594
+      ],
+      "source_vertex_ids": [
+        17660
+      ],
+      "before_float64_position": [
+        -0.1209905714602354,
+        0.001255257903203421,
+        -0.11008061654472716
+      ],
+      "after_float64_position": [
+        -0.1209905714602354,
+        0.0012552615953609347,
+        -0.11008061654472716
+      ],
+      "before_float32_position": [
+        -0.1209905743598938,
+        0.0012552578700706363,
+        -0.11008061468601227
+      ],
+      "after_float32_position": [
+        -0.1209905743598938,
+        0.0012552615953609347,
+        -0.11008061468601227
+      ],
+      "displacement_from_original_float64_m": 3.692157513751626e-09,
+      "neck_vertex_ids": [
+        15594
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        16849
+      ],
+      "geometry_vertex_ids": [
+        15650
+      ],
+      "source_vertex_ids": [
+        17716
+      ],
+      "before_float64_position": [
+        -0.10494838126571188,
+        0.009806866239021581,
+        -0.11751568025179357
+      ],
+      "after_float64_position": [
+        -0.10494838126571188,
+        0.009806881658732891,
+        -0.11751568025179357
+      ],
+      "before_float32_position": [
+        -0.10494837909936905,
+        0.009806865826249123,
+        -0.1175156831741333
+      ],
+      "after_float32_position": [
+        -0.10494837909936905,
+        0.009806881658732891,
+        -0.1175156831741333
+      ],
+      "displacement_from_original_float64_m": 1.5419711309888617e-08,
+      "neck_vertex_ids": [
+        15650
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        16913,
+        16914
+      ],
+      "geometry_vertex_ids": [
+        15700,
+        15700
+      ],
+      "source_vertex_ids": [
+        17766,
+        17766
+      ],
+      "before_float64_position": [
+        -0.1286702533982369,
+        -0.00019904899389529968,
+        -0.10330239199039648
+      ],
+      "after_float64_position": [
+        -0.1286702533982369,
+        -0.0001990489399759099,
+        -0.10330239199039648
+      ],
+      "before_float32_position": [
+        -0.12867026031017303,
+        -0.0001990489981835708,
+        -0.10330238938331604
+      ],
+      "after_float32_position": [
+        -0.12867026031017303,
+        -0.0001990489399759099,
+        -0.10330238938331604
+      ],
+      "displacement_from_original_float64_m": 5.391938978638322e-11,
+      "neck_vertex_ids": [
+        15700
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        17085
+      ],
+      "geometry_vertex_ids": [
+        15839
+      ],
+      "source_vertex_ids": [
+        17905
+      ],
+      "before_float64_position": [
+        -0.14058833739789273,
+        0.00018670460509784617,
+        -0.08765873277161625
+      ],
+      "after_float64_position": [
+        -0.14058835804462433,
+        0.00018670460509784617,
+        -0.08765873277161625
+      ],
+      "before_float32_position": [
+        -0.14058834314346313,
+        0.0001867046084953472,
+        -0.08765873312950134
+      ],
+      "after_float32_position": [
+        -0.14058835804462433,
+        0.0001867046084953472,
+        -0.08765873312950134
+      ],
+      "displacement_from_original_float64_m": 2.064673160218078e-08,
+      "neck_vertex_ids": [
+        15839
+      ],
+      "maximum_allowed_error_m": 2e-07
+    },
+    {
+      "export_vertex_ids": [
+        17099
+      ],
+      "geometry_vertex_ids": [
+        15851
+      ],
+      "source_vertex_ids": [
+        17917
+      ],
+      "before_float64_position": [
+        -0.1550912540692379,
+        -0.005262277369606206,
+        -0.07792142357854982
+      ],
+      "after_float64_position": [
+        -0.1550912540692379,
+        -0.005262277089059353,
+        -0.07792142357854982
+      ],
+      "before_float32_position": [
+        -0.15509125590324402,
+        -0.00526227755472064,
+        -0.07792142033576965
+      ],
+      "after_float32_position": [
+        -0.15509125590324402,
+        -0.005262277089059353,
+        -0.07792142033576965
+      ],
+      "displacement_from_original_float64_m": 2.8054685310974214e-10,
+      "neck_vertex_ids": [
+        15851
+      ],
+      "maximum_allowed_error_m": 2e-07
+    }
+  ],
+  "no_predicate_or_pair_exceptions": true,
+  "requires_fresh_global_audits_and_actual_reexport": true,
+  "study": {
+    "report": "build/donors/kiriko_numeric_conditioning_study/study.json",
+    "report_sha256": "a4e020e0ef408170b87e0b46b6c22e5681f08abf50fe9a86238b99b4d00f5e31",
+    "whole_double_prepared_new": 0,
+    "whole_source_float32_new": 0,
+    "changed_copy_groups": 13,
+    "changed_export_rows": 16,
+    "maximum_error_m": 2.064673160218078e-08
+  }
+}

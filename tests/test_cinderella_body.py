@@ -4,7 +4,8 @@ from unittest import mock
 import numpy as np
 
 from nudegate.cinderella_body import (calibrate, active_bones, map_weights, pose,
-                                     validate_optional_uncompressed, OPTIONAL_UNCOMPRESSED_KEYS, apply_pose_coherence)
+                                     validate_optional_uncompressed, OPTIONAL_UNCOMPRESSED_KEYS, apply_pose_coherence,
+                                     proxy_projection_seeds)
 from nudegate.surface_intersections import geometry_fingerprint
 
 
@@ -28,6 +29,23 @@ def matrix(point):
 
 
 class CinderellaProfileTests(unittest.TestCase):
+    def test_proxy_seed_guidance_uses_own_poles_height_and_width_without_editing_donor(self):
+        native = np.array([[.05, 1.3, -.15], [.1, 1.4, -.1], [.05, 1.5, -.05],
+                           [-.05, 1.3, -.15], [-.1, 1.4, -.1], [-.05, 1.5, -.05]])
+        donor = np.array([[.1, 1.2, -.3], [.2, 1.4, -.2], [.1, 1.6, -.1],
+                          [-.1, 1.2, -.3], [-.2, 1.4, -.2], [-.1, 1.6, -.1]])
+        posed = {'positions': donor, 'source_breast_influence_left': np.array([1, 1, 1, 0, 0, 0]),
+                 'source_breast_influence_right': np.array([0, 0, 0, 1, 1, 1])}
+        before = donor.tobytes()
+        seeds, report = proxy_projection_seeds(native, posed)
+        np.testing.assert_allclose(seeds[0], donor[0])
+        np.testing.assert_allclose(seeds[3], donor[3])
+        self.assertAlmostEqual(report['width_ratio'], 2)
+        self.assertEqual(donor.tobytes(), before)
+        posed['source_breast_influence_right'][:] = 0
+        with self.assertRaisesRegex(ValueError, 'both authored breast sides'):
+            proxy_projection_seeds(native, posed)
+
     def corrective_fixture(self):
         source = np.array([[0., 0, 0], [.01, 0, -0.], [0, 1, 0]])
         positions = source.copy()

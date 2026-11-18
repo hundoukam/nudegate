@@ -59,11 +59,16 @@ Game-derived outputs and third-party assets are excluded from Git.
 
 ## Body variety and jiggle
 
-The [selected Blender donor study](docs/DONOR_BODY_STUDY.md) now has a local
-Juno medium new-Tav prototype using the actual dense donor surface and rebuilt
-native cloth mappings. Authored large and chubby states are separate source
-exports. Runtime motion and skin appearance remain unverified; this is not the
-all-NPC distribution package.
+The [selected Blender donor study](docs/DONOR_BODY_STUDY.md) now has six local
+new-Tav prototypes: Mercy C, Juno B and E, Cinderella A, Kiriko 2.0 C and Jubilee
+B. Each actual dense body, fitted native breast-cloth proxy and bridge winding
+passes its own serialized rest-mesh checks against its original-state baseline.
+Each package uses five reviewed adult presets with private resources and zero
+NPC root overrides; test one package at a time because their creation records
+overlap. Original donor files and smaller-body archives remain preserved.
+Runtime physics, materials, heads/anatomy, props, performance and LOD behavior
+remain unverified. New gravity/squeeze controls and donor +100/+200 sliders are
+not implemented; broad NPC rollout remains future work.
 
 The additive 0.3 authoring pipeline keeps the original 35 body meshes and adds
 five new base shapes with separate nominal breast-growth buckets through +100.

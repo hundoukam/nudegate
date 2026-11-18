@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "case_configuration": "config/float32_conditioning/kiriko_c_toenails_v1.json",
+  "configuration_sha256": "37c69fc4c537bfc1f2dad7229248628c163c95c41c02ae02a61eeac6eeda3c9c",
+  "accepted_model_sha256": "e35138f3cb0cf3d0252ac675ca1f93819300030c4cd0c70184b26167b513122a",
+  "accepted_payload_sha256": "786829eb53511951d1d3edae60202c0535be9a8fc0406f9690257a3133155163",
+  "required_checks": {
+    "global-prepared-surface-audit.json": {
+      "passed": true,
+      "sha256": "b6fc0c2fff724e5de5b34da4db9e1e7e153d2d62571cd15078ec6b7c31454c09"
+    },
+    "global-serialized-float32source-surface-audit.json": {
+      "passed": true,
+      "sha256": "7d2ecb7021ef6281c99a023713d0b177375029bd814f4ac0f9fe41257ca61635"
+    },
+    "global-serialized-proxy-surface-audit.json": {
+      "passed": true,
+      "sha256": "1ccfc48daeaa046fbf40d34ec1b62236ae6510165fd32e787c3dfd5cb87c9f47"
+    },
+    "independent-numeric-conditioning-parity.json": {
+      "passed": true,
+      "sha256": "7344114872127c2043e0e424412479d9d749a4858310d0750716ab9151963914"
+    }
+  },
+  "conditioner_implementation_sha256": {
+    "src/nudegate/float32_conditioning.py": "cd4716086f6d4f1f89762325baf3ef38bdc634f70257a574c6f27cd077960334",
+    "tools/condition_donor_float32.py": "1877839cc61e2a0c13acbab229bd7e8637671a4557611bb0d87bf361604bf649",
+    "tools/condition_donor_float32_vectors.py": "130843a406a2bee9a63412fc210b43fc4e3f0f06ac5ec70c9ec4535fc3092d74"
+  },
+  "source_format_baseline": 2612,
+  "source_unquantized_baseline": 2619,
+  "actual_source_Float32_new_intersections": 0,
+  "prepared_Double_new_intersections": 0,
+  "actual_proxy_absolute_intersections": 0,
+  "all_collapsed_faces": 0,
+  "runtime_physics": "unverified",
+  "accepted_run_conditioner_implementation_sha256": {
+    "src/nudegate/float32_conditioning.py": "32030889c9a11780555d2ca27c29eb124f02eb53c1d588a0b8be7c722d9bc83a",
+    "tools/condition_donor_float32.py": "73946560a1d7a981a494fe845d58c23112024991d427fa100fc86b88d0fcbe05",
+    "tools/condition_donor_float32_vectors.py": "1573a764244cc39fd2c340f41a8f9b88fb80fab19b101190123e7267364f7e41"
+  },
+  "guarded_reproduction": {
+    "proof": "build/donors/conditioning-guarded-replay-20261117/proof.json",
+    "sha256": "0ad7f59a90b31992cf4eebd28450e37d1fd04f68f78f341ebf1c300dc20c0250",
+    "accepted_payloads_and_all_array_bytes_identical": true,
+    "note": "Accepted-run hashes retain the implementations used for the original artifacts. Current tools add a guard rejecting already-conditioned input; replay confirms identical geometry."
+  }
+}
